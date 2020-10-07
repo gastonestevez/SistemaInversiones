@@ -26,3 +26,8 @@ Rutas del Panel de administrador
 -Localidades: El admin podrá crear nuevas localidades. Cada proyecto tendrá una localidad
 -Acreditar Inversion: el admin podra elegir un usuario y a traves de un form acreditarle X cantidad a su billetera como inversion inicial. Una vez acreditado se le envia un email de aviso al inversor. (email transaccional de aviso)
 -Invertir en un proyecto: el admin podra elegir un usuario y un proyecto en el cual invertir su dinero previamente acreditado. (email transaccional de aviso)
+
+3 Emails Transaccionales.
+1) Cuando el admin crea un usuario. (estos son tus datos de usuario)
+2) Cuando el admin acredita dinero en Billetera (se te ha acreditado dinero en la billetera)
+3) Cuando el admin invierte dinero de un usuario en un proyecto (acabas de invertir en un proyecto)

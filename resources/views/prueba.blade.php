@@ -20,15 +20,39 @@
       {
         background: linear-gradient(96deg, #dfeffc, #707070);
       }
+
+      .contador
+      {
+        width: 40px;
+        height: 40px;
+        margin-right: auto;
+        margin-bottom: 0.25em;
+        margin-left: auto;
+        padding: 7px;
+        border-radius: 20px;
+        background-color: #dfeffc;
+        box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, 0.1);
+        font-size: 18px;
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
     <div class="">
       <div class="d-flex justify-content-around">
-        <span style="font-size: 30px;">Etapa 1</span>
-        <span style="font-size: 30px;">Etapa 2</span>
-        <span style="font-size: 30px;">Etapa 3</span>
-        <span style="font-size: 30px;">Etapa 4</span>
+        @php
+          $contador = 1
+        @endphp
+        @foreach ($array_estados as $estado)
+          <div class="d-flex flex-column">
+            <span class="text-center contador">{{$contador}}</span>
+            <span style="font-size: 30px;">{{$estado}}</span>
+          </div>
+          @php
+          $contador++
+          @endphp
+        @endforeach
+
       </div>
       <div class="">
         <progress class="uk-progress progress-green" value="80" max="100" style="border:2px solid;"></progress>

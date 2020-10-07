@@ -21,6 +21,4 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/prueba', function () {
-    return view('prueba');
-});
+Route::get('/prueba', 'Controller@prueba')->name('prueba');
