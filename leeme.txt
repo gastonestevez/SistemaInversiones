@@ -1,0 +1,28 @@
+HECHO
+
+Modelos hechos
+Migraciones hechas
+
+-----------------
+
+FALTA
+
+Seeders para practicar
+CRUD User
+CRUD Actualizacion
+CRUD Proyectos
+CRUD Asesores
+CRUD Billeteras
+CRUD Referente
+CRUD Tipo de Referente
+CRUD Localidad
+
+
+Rutas del Panel de administrador
+-Crear usuario: El admin rellena un formulario para crear un usuario. (el usuario recibe un email transaccional con sus datos para loguear)
+-Usuarios: El admin ve una lista de todos los usuarios y al ingresar a alguno puede ver (su, perfil, proyectos en los que invirtio, su billetera, y tambien podra acreditar nueva inversion)
+-Proyectos: El admin podrá entrar a cada proyecto y modificar los datos del proyecto y sus referentes (arquitectos, inversores, Participantes)
+-Asesores: El admin podrá editar totalmente los asesores.
+-Localidades: El admin podrá crear nuevas localidades. Cada proyecto tendrá una localidad
+-Acreditar Inversion: el admin podra elegir un usuario y a traves de un form acreditarle X cantidad a su billetera como inversion inicial. Una vez acreditado se le envia un email de aviso al inversor. (email transaccional de aviso)
+-Invertir en un proyecto: el admin podra elegir un usuario y un proyecto en el cual invertir su dinero previamente acreditado. (email transaccional de aviso)
