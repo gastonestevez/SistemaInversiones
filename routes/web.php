@@ -22,3 +22,5 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prueba', 'Controller@prueba')->name('prueba');
+Route::get('/ping','AuthenticationController@ping');
+
