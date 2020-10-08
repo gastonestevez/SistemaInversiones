@@ -31,3 +31,6 @@ Rutas del Panel de administrador
 1) Cuando el admin crea un usuario. (estos son tus datos de usuario)
 2) Cuando el admin acredita dinero en Billetera (se te ha acreditado dinero en la billetera)
 3) Cuando el admin invierte dinero de un usuario en un proyecto (acabas de invertir en un proyecto)
+
+Hacer Slugs con los titulos de los proyectos: EJ: /proyecto/torres-del-mirasol = /proyecto/{titulo}
+Manejar los valores de dinero con la milesima: EJ: 1.000 o 250.000

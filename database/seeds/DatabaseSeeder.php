@@ -11,15 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'nombre' => 'Tato',
-            'apellido' => 'Estevez',
-            'numero' => '03-03-456',
-            'foto' => '#',
-            'is_admin' => true,
-            'email' => 'dakota@gmail.com',
-            'password' => bcrypt('asdfasdf'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
+      // $this->call(UsersTableSeeder::class);
+        $this->call(AdminSeeder::class);
+        $this->call(AsesoresSeeder::class);
+        $this->call(LocalidadesSeeder::class);
+        $this->call(TipoDeReferentesSeeder::class);
+        $this->call(BilleterasSeeder::class);
+        $this->call(ProyectosSeeder::class);
+        $this->call(ActualizacionesSeeder::class);
+        $this->call(ArchivosSeeder::class);
+        $this->call(ReferentesSeeder::class);
+        $this->call(UsuariosProyectosSeeder::class);
     }
 }

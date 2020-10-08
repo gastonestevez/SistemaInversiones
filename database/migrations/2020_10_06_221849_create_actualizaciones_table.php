@@ -15,7 +15,7 @@ class CreateActualizacionesTable extends Migration
     {
         Schema::create('actualizaciones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre_empresa');
+            $table->string('nombre_empresa')->nullable();
             $table->longText('descripcion');
             $table->timestamps();
 

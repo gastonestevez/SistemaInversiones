@@ -16,11 +16,11 @@ class CreateProyectosTable extends Migration
         Schema::create('proyectos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
-            $table->string('fecha');
-            $table->string('link_web');
-            $table->string('imagen_360');
-            $table->string('estados');
-            $table->integer('porcentaje');
+            $table->string('fecha')->nullable();
+            $table->string('link_web')->nullable();
+            $table->string('imagen_360')->nullable();
+            $table->string('estados')->nullable();
+            $table->integer('porcentaje')->nullable();
             $table->timestamps();
 
             $table->bigInteger('localidad_id')->unsigned()->nullable();

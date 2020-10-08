@@ -15,9 +15,9 @@ class CreateBilleterasTable extends Migration
     {
         Schema::create('billeteras', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('inversion_inicial');
-            $table->integer('total');
-            $table->string('rentabilidad');
+            $table->integer('inversion_inicial')->nullable();
+            $table->integer('total')->nullable();
+            $table->string('rentabilidad')->nullable();
             $table->timestamps();
         });
     }

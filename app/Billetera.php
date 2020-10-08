@@ -12,6 +12,6 @@ class Billetera extends Model
 
   public function usuario()
   {
-    return $this->hasOne("App\User");
+    return $this->hasOne("App\User", "id");
   }
 }

@@ -42,7 +42,12 @@ class User extends Authenticatable implements JWTSubject
     {
       return $this->belongsToMany("App\Proyecto", "usuarios_proyectos", "user_id", "proyecto_id");
     }
-    
+
+    public function billetera()
+    {
+      return $this->hasOne("App\Billetera", "id");
+    }
+
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

@@ -6,6 +6,15 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Actualizacion;
+use App\User;
+use App\Archivo;
+use App\Asesor;
+use App\Billetera;
+use App\Localidad;
+use App\Referente;
+use App\Tipo_de_referente;
+use App\Proyecto;
 
 class Controller extends BaseController
 {
@@ -22,15 +31,17 @@ class Controller extends BaseController
       // Contamos cuantas posiciones tiene el array para tener el 100%
       $cantidad_estados = count($array_estados);
 
-      // Creamos un array vacio que va a servir como enumerador/contador
-      // $contador = [];
+      $actualizaciones = Actualizacion::all();
+      $usuarios = User::all();
+      $archivos = Archivo::all();
+      $asesores = Asesor::all();
+      $billeteras = Billetera::all();
+      $localidades = Localidad::all();
+      $proyectos = Proyecto::all();
+      $referentes = Referente::all();
+      $tipoDeReferentes = tipo_de_referente::all();
 
-      // Vamos sumando de uno en uno hasta llegar al numero máximo del array estado
-      // for ($i=1; $i <= $cantidad_estados ; $i++) {
-        // $contador[] = $i;
-      // }
-
-      $vac = compact('array_estados', 'cantidad_estados');
+      $vac = compact('array_estados', 'cantidad_estados', 'usuarios', 'archivos', 'asesores', 'billeteras', 'localidades', 'proyectos', 'referentes', 'tipoDeReferentes');
       return view('prueba', $vac);
     }
 }

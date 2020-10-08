@@ -17,10 +17,10 @@ class CreateAsesoresTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('numero');
-            $table->string('rentabilidad');
-            $table->string('foto');
-            $table->integer('n_de_proyectos');
-            $table->integer('n_de_inversores');          
+            $table->string('rentabilidad')->nullable();
+            $table->string('foto')->nullable();
+            $table->integer('n_de_proyectos')->nullable();
+            $table->integer('n_de_inversores')->nullable();          
             $table->timestamps();
         });
     }

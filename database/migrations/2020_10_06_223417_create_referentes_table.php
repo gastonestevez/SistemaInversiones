@@ -16,6 +16,7 @@ class CreateReferentesTable extends Migration
         Schema::create('referentes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
+            $table->string('foto');
             $table->timestamps();
 
             $table->bigInteger('proyecto_id')->unsigned()->nullable();
