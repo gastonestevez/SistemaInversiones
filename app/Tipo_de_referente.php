@@ -13,6 +13,6 @@ class Tipo_de_referente extends Model
 
   public function referentes()
   {
-    return $this->hasMany("App\Referente", "tipo_de_referente_id")
+    return $this->hasMany("App\Referente", "tipo_de_referente_id");
   }
 }
