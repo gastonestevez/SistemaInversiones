@@ -17,13 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::middleware(['jwt.auth'])->group(function(){
-    Route::post('/isAuth','AuthenticationController@isUserAuthenticated');
-});
-
-Route::get('/ping','AuthenticationController@ping');
-
 Route::group([
     'prefix' => 'auth'
 
