@@ -26,7 +26,7 @@ class Proyecto extends Model
 
   public function referentes()
   {
-    return $this->hasMany("App")
+    return $this->hasMany("App\Referente");
   }
 
   public function usuarios()
