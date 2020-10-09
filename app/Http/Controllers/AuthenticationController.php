@@ -7,10 +7,16 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Auth;
 
+/**
+* @OA\Info(title="API Usuarios", version="1.0")
+*
+* @OA\Server(url="http://localhost:8000")
+* https://styde.net/como-documentar-una-api-en-laravel-usando-swagger/
+*/
 class AuthenticationController extends Controller
 {
-
-     /**
+    
+    /**
      * Create a new AuthController instance.
      *
      * @return void
@@ -19,7 +25,21 @@ class AuthenticationController extends Controller
     {
         $this->middleware('auth:api', ['except' => ['login']]);
     }
-
+    
+    /**
+    * @OA\Post(
+    *     path="/api/auth/login",
+    *     summary="Mostrar usuarios",
+    *     @OA\Response(
+    *         response=200,
+    *         description="Logear un usuario."
+    *     ),
+    *     @OA\Response(
+    *         response="default",
+    *         description="Ha ocurrido un error."
+    *     )
+    * )
+    */
     public function login()
     {
         $credentials = request(['email', 'password']);
