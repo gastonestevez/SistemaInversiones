@@ -11,7 +11,7 @@ class BilleterasSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('Billeteras')->insert([
+      DB::table('billeteras')->insert([
         [
           'inversion_inicial' => '0',
           'total' => '0',
