@@ -50,6 +50,7 @@ class Controller extends BaseController
 
       $proyecto = Proyecto::where('slug', '=', $slug)->first();
       $vac = compact('proyecto');
+      dd($proyecto->archivos);
 
       return  view('/proyecto', $vac);
     }

@@ -21,13 +21,13 @@ class ArchivosSeeder extends Seeder
         [
           "logo" => "archivos/logos/logo2.png",
           "imagen" => "archivos/img/imagen2.jpg",
-          "documento" => "archivos/pdf/plano.pdf",
+          "documento" => "",
           "proyecto_id" => 1,
         ],
         [
           "logo" => null,
           "imagen" => "archivos/img/imagen3.jpg",
-          "documento" => "archivos/pdf/plano.pdf",
+          "documento" => "",
           "proyecto_id" => 1,
         ],
         [
