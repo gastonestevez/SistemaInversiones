@@ -23,6 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prueba', 'Controller@prueba')->name('prueba');
 
+Route::get('/perfil/{id}', 'Controller@editarperfil')->name('perfil.show');
+
+Route::put('/perfil/{id}', 'Controller@updateperfil')->name('perfil.show');
+
 Route::get('/proyecto/{slug}', 'Controller@proyecto')->name('proyecto.show');
 
 Route::get('/ping','AuthenticationController@ping');

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 use App\Actualizacion;
 use App\User;
 use App\Archivo;
@@ -54,4 +55,70 @@ class Controller extends BaseController
 
       return  view('/proyecto', $vac);
     }
+
+    public function editarperfil(int $id)
+    {
+      $user = User::find($id);
+      $vac = compact('user');
+
+      return view('/perfil', $vac);
+    }
+
+    public function updateperfil(Request $request, int $id)
+    {
+
+      $reglas = [
+        'name' =>'alpha|required|string|min:2|max:40|',
+        'email' => 'required|string|email|max:255|unique:users,email,'.$id.',id', // https://laravel.com/docs/5.2/validation#rule-unique , https://laracasts.com/discuss/channels/laravel/how-to-update-unique-email
+        'password' => 'nullable|min:6|confirmed',
+        "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
+      ];
+
+      $mensajes = [
+        "required" => "Completar campos obligatorios",
+        "alpha" => "El campo nombre debe ser un texto",
+        "name.min" => "El nombre debe tener un minimo de :min caracteres",
+        "password.min" => "La clave debe tener un minimo de :min caracteres",
+        "max" => "El nombre debe tener un maximo de :max caracteres",
+        "confirmed" => "Las contraseñas no coinciden"
+
+      ];
+
+      $this->validate($request, $reglas,$mensajes);
+
+      $user = User::find($id);
+      $user->name = $request->name;
+      $user->email = $request->email;
+      $user->number = $request->number;
+
+
+      if ($request->file("avatar")) { // si cambian una foto
+        // obtenemos la ruta de la foto anterior
+        $image_path = storage_path('app/public/') . $user->avatar;
+        // verificamos si ya existe en la base de datos y en storage
+        if ($user->avatar && file_exists($image_path)) {
+          // elimina la foto de storage
+          unlink($image_path);
+        }
+
+        // Si no poseía ninguna imagen directamente guardo la que estan subiendo
+        $ruta = $request->file("avatar")->store("public"); // Esta ruta guarda al archivo con la ruta entera.
+        $nombreDelArchivo = basename($ruta); // basename recorta la ruta y nos deja solo el nombre del archivo.
+        $user->avatar = $nombreDelArchivo; // le asigna la nueva ruta a la base de datos
+      }
+
+      if ($request['password'])
+      {
+        $user->password = Hash::make($request['password']);
+      }
+
+      $user->is_admin = ($request->admin) ? $request->admin : 0;
+
+      $user->save();
+
+      return redirect('/prueba')
+            ->with('status', 'Usuario actualizado exitosamente');
+
+    }
+
 }
