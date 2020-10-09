@@ -44,4 +44,13 @@ class Controller extends BaseController
       $vac = compact('array_estados', 'cantidad_estados', 'usuarios', 'archivos', 'asesores', 'billeteras', 'localidades', 'proyectos', 'referentes', 'tipoDeReferentes');
       return view('prueba', $vac);
     }
+
+    public function proyecto(string $slug)
+    {
+
+      $proyecto = Proyecto::where('slug', '=', $slug)->first();
+      $vac = compact('proyecto');
+
+      return  view('/proyecto', $vac);
+    }
 }

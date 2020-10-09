@@ -60,44 +60,8 @@
     </div> --}}
 
 
-    <h1>Probando Datos</h1>
-
-    @foreach ($usuarios as $usuario)
-
-
-      <span style="text-decoration: underline;">{{$usuario->nombre}}</span><br>
-      <span>Total en billetera: ${{precio($usuario->billetera->total)}}</span><br>
-      <span>Total invertido: ${{precio($usuario->billetera->inversion_inicial)}}</span><br>
-      <span>Proyectos en los que invirtio:{{count($usuario->proyectos)}}</span><br>
-
-
-      @foreach ($usuario->proyectos as $proyecto)
-        @php
-        $contador = 1
-        @endphp
-        <li class=""><span><a href="{{ route('proyecto.show', ['slug' => $proyecto->slug]) }}">{{$proyecto->titulo}}</a></span></li><br>
-        <span>Invertido en este proyecto: ${{precio($proyecto->pivot->inversion)}}</span>
-        <div style="width: 50%;">
-          <div class="d-flex justify-content-around">
-          @foreach (estados($proyecto->estados) as $estado)
-            <div class="d-flex flex-column">
-              <span class="text-center contador">{{$contador}}</span>
-              <span class="text-center" style="font-size: 10px;">{{$estado}}</span>
-            </div>
-            @php
-            $contador++
-            @endphp
-          @endforeach
-          </div>
-          <div class="">
-            <progress class="uk-progress progress-green" value="{{$proyecto->porcentaje}}" max="100" style="border:2px solid;"></progress>
-          </div>
-        </div>
-
-      @endforeach
-
-      <br>
-    @endforeach
+    <h1>Proyecto</h1>
+    <span>{{$proyecto->titulo}}</span>
 
     {{-- Bootstrap --}}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

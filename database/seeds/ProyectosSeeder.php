@@ -14,6 +14,7 @@ class ProyectosSeeder extends Seeder
       DB::table('proyectos')->insert([
         [
           'titulo' => 'Torres del Pozo',
+          'slug' => 'Torres-del-Pozo',
           'fecha' => 'Octubre 2025',
           'link_web' => 'www.google.com',
           'imagen_360' => 'www.imagen.com',
@@ -23,6 +24,7 @@ class ProyectosSeeder extends Seeder
         ],
         [
           'titulo' => 'Edificio Ruby',
+          'slug' => 'Edificio-Ruby',
           'fecha' => 'Marzo 2024',
           'link_web' => 'www.google.com',
           'imagen_360' => 'www.imagen.com',
@@ -32,6 +34,7 @@ class ProyectosSeeder extends Seeder
         ],
         [
           'titulo' => 'Complejo Zencity',
+          'slug' => 'Complejo-Zencity',
           'fecha' => 'Enero 2021',
           'link_web' => 'www.google.com',
           'imagen_360' => 'www.imagen.com',

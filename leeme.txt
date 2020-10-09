@@ -3,14 +3,17 @@ HECHO
 Modelos hechos
 Migraciones hechas
 
+Hacer Slugs con los titulos de los proyectos: EJ: /proyecto/torres-del-mirasol = /proyecto/{titulo}. Hecho
+Manejar los valores de dinero con la milesima: EJ: 1.000 o 250.000. Hecho (ver App\http\Helpers funcion precio())
+
 -----------------
 
 FALTA
 
 Seeders para practicar
-CRUD User
+CRUD User -> al editar usuario permitir cambiar la clave
 CRUD Actualizacion
-CRUD Proyectos
+CRUD Proyectos -> ojo con los valores unique (titulo y slug)
 CRUD Asesores
 CRUD Billeteras
 CRUD Referente
@@ -31,6 +34,3 @@ Rutas del Panel de administrador
 1) Cuando el admin crea un usuario. (estos son tus datos de usuario)
 2) Cuando el admin acredita dinero en Billetera (se te ha acreditado dinero en la billetera)
 3) Cuando el admin invierte dinero de un usuario en un proyecto (acabas de invertir en un proyecto)
-
-Hacer Slugs con los titulos de los proyectos: EJ: /proyecto/torres-del-mirasol = /proyecto/{titulo}
-Manejar los valores de dinero con la milesima: EJ: 1.000 o 250.000
