@@ -31,11 +31,30 @@ class AuthenticationController extends Controller
     
     protected function respondWithToken($token)
     {
+        $authUser = auth()->guard('api')->user();
+        $proyectos = $authUser->proyectos;
+
+        foreach ($proyectos as $proyecto) {
+            $proyecto['localidad'] = $proyecto->localidad;
+            $proyecto['actualizaciones'] = $proyecto->actualizaciones;
+            $proyecto['archivos'] = $proyecto->archivos;
+            $proyecto['referentes'] = $proyecto->referentes;
+        }
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->guard('api')->factory()->getTTL() * 60,
-            'user' => auth()->guard('api')->user(),
+            'usuario' => [
+                'id' => $authUser->id,
+                'nombre' => $authUser->name,
+                'apellido' => $authUser->last_name,
+                'numero' => $authUser->number,
+                'email' => $authUser->email,
+                'avatar' => $authUser->avatar,
+                'created_at' => $authUser->created_at,
+                'proyectos' => $proyectos,
+                'billetera' => $authUser->billetera,
+            ],
         ]);
     }
     

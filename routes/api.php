@@ -26,5 +26,12 @@ Route::group([
     Route::post('logout', 'AuthenticationController@logout');
     Route::post('refresh', 'AuthenticationController@refresh');
     Route::post('me', 'AuthenticationController@me');
+});
 
+Route::group([
+    'prefix' => 'misc'
+], function ($router) {
+    Route::get('localidades/{id}', 'ApiMiscEndpointsController@obtenerLocalidad');
+    Route::get('localidades', 'ApiMiscEndpointsController@obtenerLocalidades');
+    Route::get('asesores', 'ApiMiscEndpointsController@obtenerAsesores');
 });

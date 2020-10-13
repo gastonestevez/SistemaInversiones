@@ -41,7 +41,9 @@ class User extends Authenticatable implements JWTSubject
     public function proyectos()
     {
       // https://styde.net/pivot-tables-con-eloquent-en-laravel/ para agregar pivots
-      return $this->belongsToMany("App\Proyecto", "usuarios_proyectos", "user_id", "proyecto_id")->withPivot('inversion');
+      return $this->belongsToMany("App\Proyecto", "usuarios_proyectos", "user_id", "proyecto_id")
+      ->withPivot('inversion')
+      ->as('inversion');
     }
 
     public function billetera()
