@@ -23,7 +23,7 @@ class ApiMiscEndpointsController extends Controller
 
     public function obtenerLocalidad(int $id)
     {
-        return response()->json(['localidades' => Localidad::find($id)], 200);
+        return response()->json(['localidad' => Localidad::find($id)], 200);
     }
 
     public function obtenerAsesores()

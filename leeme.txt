@@ -10,6 +10,12 @@ Manejar los valores de dinero con la milesima: EJ: 1.000 o 250.000. Hecho (ver A
 
 FALTA
 
+API:
+-Completar el Exceptions -> handler con lo que dice Medium.
+-Consultar lo de la expiracion del Token.
+-Que es bearer?
+-Por que tenemos que hacer ese foreach de la linea 37 de ApiMiscEndpointsController
+
 Seeders para practicar
 CRUD User -> al editar usuario permitir cambiar la clave
 CRUD Actualizacion

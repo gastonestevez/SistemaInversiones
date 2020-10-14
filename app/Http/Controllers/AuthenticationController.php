@@ -27,8 +27,8 @@ class AuthenticationController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->respondWithToken($token);
-    }  
-    
+    }
+
     protected function respondWithToken($token)
     {
         $authUser = auth()->guard('api')->user();
@@ -52,12 +52,13 @@ class AuthenticationController extends Controller
                 'email' => $authUser->email,
                 'avatar' => $authUser->avatar,
                 'created_at' => $authUser->created_at,
+                'updated_at' => $authUser->updated_at,
                 'proyectos' => $proyectos,
                 'billetera' => $authUser->billetera,
             ],
         ]);
     }
-    
+
     /**
      * Get the authenticated User.
      *
@@ -67,12 +68,12 @@ class AuthenticationController extends Controller
     {
         return response()->json(auth()->guard('api')->user());
     }
-    
+
     public function payload()
     {
         return response()->json(auth()->guard('api')->payload());
     }
-    
+
     /**
      * Log the user out (Invalidate the token).
      *
@@ -83,7 +84,7 @@ class AuthenticationController extends Controller
         auth()->guard('api')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
-    
+
     /**
      * Refresh a token.
      *

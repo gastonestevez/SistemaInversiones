@@ -31,7 +31,7 @@ Route::group([
 Route::group([
     'prefix' => 'misc'
 ], function ($router) {
-    Route::get('localidades/{id}', 'ApiMiscEndpointsController@obtenerLocalidad');
+    Route::get('localidad/{id}', 'ApiMiscEndpointsController@obtenerLocalidad');
     Route::get('localidades', 'ApiMiscEndpointsController@obtenerLocalidades');
     Route::get('asesores', 'ApiMiscEndpointsController@obtenerAsesores');
 });
