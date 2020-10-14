@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'prefix' => 'auth'
 
-], function ($router) {
+], function () {
 
     Route::post('login', 'AuthenticationController@login');
     Route::post('logout', 'AuthenticationController@logout');
@@ -30,7 +30,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'misc'
-], function ($router) {
+], function () {
     Route::get('localidad/{id}', 'ApiMiscEndpointsController@obtenerLocalidad');
     Route::get('localidades', 'ApiMiscEndpointsController@obtenerLocalidades');
     Route::get('asesores', 'ApiMiscEndpointsController@obtenerAsesores');

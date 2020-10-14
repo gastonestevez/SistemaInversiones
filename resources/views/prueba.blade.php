@@ -81,7 +81,7 @@
           $contador = 1
           @endphp
           <li class=""><span><a href="{{ route('proyecto.show', ['slug' => $proyecto->slug]) }}">{{$proyecto->titulo}}</a></span></li><br>
-          <span>Invertido en este proyecto: ${{precio($proyecto->pivot->inversion)}}</span>
+          <span>Invertido en este proyecto: ${{precio($proyecto->inversion->inversion)}}</span>
           <div style="width: 50%;">
             <div class="d-flex justify-content-around">
             @foreach (estados($proyecto->estados) as $estado)
