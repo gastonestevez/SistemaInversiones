@@ -62,7 +62,12 @@
 
     <div class="container">
 
-
+      {{-- Notificaciones --}}
+    @if (session('status'))
+      <div class="alert">
+        {{session('status')}}
+      </div>
+    @endif
 
       <h1>Probando Datos</h1>
 

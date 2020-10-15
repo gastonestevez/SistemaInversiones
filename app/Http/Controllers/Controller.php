@@ -7,6 +7,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Hash;
 use App\Actualizacion;
 use App\User;
 use App\Archivo;
@@ -66,11 +68,13 @@ class Controller extends BaseController
 
     public function updateperfil(Request $request, int $id)
     {
+      // dd($request->all());
 
       $reglas = [
-        'name' =>'alpha|required|string|min:2|max:40|',
-        'email' => 'required|string|email|max:255|unique:users,email,'.$id.',id', // https://laravel.com/docs/5.2/validation#rule-unique , https://laracasts.com/discuss/channels/laravel/how-to-update-unique-email
-        'password' => 'nullable|min:6|confirmed',
+        'current_password' => ['required', new MatchOldPassword], // https://itsolutionstuff.com/post/laravel-change-password-with-current-password-validation-exampleexample.html
+        'new_password' => 'nullable|min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
+        'name' =>'alpha|string|min:2|max:40|',
+        'email' => 'string|email|max:255|unique:users,email,'.$id.',id', // https://laravel.com/docs/5.2/validation#rule-unique , https://laracasts.com/discuss/channels/laravel/how-to-update-unique-email
         "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
       ];
 
@@ -92,6 +96,7 @@ class Controller extends BaseController
       $user->number = $request->number;
 
 
+
       if ($request->file("avatar")) { // si cambian una foto
         // obtenemos la ruta de la foto anterior
         $image_path = storage_path('app/public/') . $user->avatar;
@@ -107,9 +112,9 @@ class Controller extends BaseController
         $user->avatar = $nombreDelArchivo; // le asigna la nueva ruta a la base de datos
       }
 
-      if ($request['password'])
+      if ($request['new_password'])
       {
-        $user->password = Hash::make($request['password']);
+        $user->password = Hash::make($request['new_password']);
       }
 
       $user->is_admin = ($request->admin) ? $request->admin : 0;

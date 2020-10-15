@@ -69,15 +69,15 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Actual Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" name="current_password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Nueva Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" name="new_password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Confirmar Nueva Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" name="new_password_confirmation" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <div class="form-group">
           <label for="avatar" class="field-label-17">Avatar (jpg hasta 2mb)</label>
