@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API Usuarios",
+        "title": "Sistema Inversiones",
         "version": "1.0"
     },
     "servers": [
@@ -12,14 +12,47 @@
     "paths": {
         "/api/auth/login": {
             "post": {
-                "summary": "Mostrar usuarios",
-                "operationId": "App\\Http\\Controllers\\AuthenticationController::login",
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Logear un usuario."
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
                     },
-                    "default": {
-                        "description": "Ha ocurrido un error."
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
                     }
                 }
             }

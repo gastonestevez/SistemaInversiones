@@ -8,7 +8,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Auth;
 
 /**
-* @OA\Info(title="API Usuarios", version="1.0")
+* @OA\Info(title="Sistema Inversiones", version="1.0")
 *
 * @OA\Server(url="http://localhost:8000")
 * https://styde.net/como-documentar-una-api-en-laravel-usando-swagger/
@@ -27,19 +27,53 @@ class AuthenticationController extends Controller
     }
     
     /**
-    * @OA\Post(
-    *     path="/api/auth/login",
-    *     summary="Mostrar usuarios",
-    *     @OA\Response(
-    *         response=200,
-    *         description="Logear un usuario."
-    *     ),
-    *     @OA\Response(
-    *         response="default",
-    *         description="Ha ocurrido un error."
-    *     )
-    * )
-    */
+     * @OA\Post(
+     ** path="/api/auth/login",
+     *   tags={"Login"},
+     *   summary="Login",
+     *   operationId="login",
+     *
+     *   @OA\Parameter(
+     *      name="email",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="password",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
     public function login()
     {
         $credentials = request(['email', 'password']);
