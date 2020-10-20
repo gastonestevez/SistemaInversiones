@@ -261,7 +261,7 @@
           <div data-w-tab="Project" class="dashboard-section w-tab-pane">
             <div class="container">
               <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="8ac6162d-26a5-e9a4-9c1b-fb5054b8e679" class="button-39 w-button">Agregar un asesor</a>
+                <a href="/addasesor" data-w-id="8ac6162d-26a5-e9a4-9c1b-fb5054b8e679" class="button-39 w-button">Agregar un asesor</a>
               </div>
               <div class="dash-row masonry-copy">
                 <div class="div-block-1768">

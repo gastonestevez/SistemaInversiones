@@ -36,3 +36,7 @@ Route::get('/ping','AuthenticationController@ping');
 Route::get('/', function () {
     return view('home');
 });
+
+// Asesores
+
+Route::get('/addasesor', 'AsesorController@new');
