@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['register' => false]);
 // https://stackoverflow.com/questions/42695917/laravel-5-4-disable-register-route
@@ -30,3 +30,9 @@ Route::put('/perfil/{id}', 'Controller@updateperfil')->name('perfil.show');
 Route::get('/proyecto/{slug}', 'Controller@proyecto')->name('proyecto.show');
 
 Route::get('/ping','AuthenticationController@ping');
+
+////////////////////////////////////////////////////////////////////////////
+
+Route::get('/', function () {
+    return view('home');
+});
