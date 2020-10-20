@@ -47,4 +47,14 @@ Route::get('/editasesor/{id}', 'AsesorController@edit');
 
 Route::put('/editasesor/{id}', 'AsesorController@update');
 
-Route::get('/deleteasesor/{id}', 'AsesorController@destroy');
+Route::delete('/deleteasesor/{id}', 'AsesorController@destroy');
+
+Route::delete('/deleteimagen/{id}', 'AsesorController@deleteimagen');
+
+// Borrar imagenes, planos y logos
+
+Route::post('/deletelogo/{id}', 'HomeController@deletelogo');
+
+Route::post('/deleteplano/{id}', 'HomeController@deleteplano');
+
+Route::delete('/deleteimage/{id}', 'HomeController@deleteImage');

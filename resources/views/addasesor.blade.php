@@ -46,41 +46,24 @@
     </div>
     <div class="form-block-copy w-form">
 
+      @if($errors->any())
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+      @endif
+
       <form id="addasesor-form" name="addasesor-form" data-name="Email Form" class="form-5" action="/addasesor" method="post" enctype="multipart/form-data">
         @csrf
         <div>
           <label for="nombre" class="field-label-31">Nombre</label>
-          <input type="text" class="text-field-16 w-input" maxlength="256" name="nombre" data-name="Nombre" placeholder="" id="nombre" required>
+          <input value="{{ old('nombre') }}" type="text" class="text-field-16 w-input" maxlength="256" name="nombre" data-name="Nombre" placeholder="" id="nombre" required autofocus>
         </div>
-        {{-- <div>
-          <label for="fecha-de-entrega" class="field-label-32">Fecha  (dd/mm/aa)</label>
-          <input type="number" class="text-field-16 w-input" maxlength="256" name="fecha-de-entrega" data-name="Fecha De Entrega" placeholder="" id="fecha-de-entrega" required>
-        </div> --}}
         <div>
           <label for="numero" class="field-label-31">Numero</label>
-          <input type="tel" pattern="^[0-9]+" maxlength="256" name="numero" data-name="" id="numero" class="text-field-16 w-input" required>
+          <input value="{{ old('numero') }}" type="tel" pattern="^[0-9]+" maxlength="256" name="numero" data-name="" id="numero" class="text-field-16 w-input" required>
         </div>
         <div>
           <label for="rentabilidad" class="field-label-32">Rentabilidad</label>
-          <input type="number" maxlength="256" name="rentabilidad" data-name="" id="rentabilidad" class="text-field-16 w-input">
+          <input value="{{ old('rentabilidad') }}" type="number" maxlength="256" name="rentabilidad" data-name="" id="rentabilidad" class="text-field-16 w-input">
         </div>
-        {{-- <div>
-          <label for="node" class="field-label-32">Numero de proyectos</label>
-          <input type="text" maxlength="256" data-name="" required="" id="node" class="text-field-16 w-input">
-        </div>
-        <div>
-          <label for="url-video" class="field-label-32">Numero de inversores</label>
-          <input type="text" class="text-field-16 w-input" maxlength="256" name="url-video" data-name="Url Video" placeholder="" id="url-video" required="">
-        </div> --}}
-        {{-- <div>
-          <label for="email" class="field-label-32">Proyectos</label>
-          <select id="field-2" name="field-2" class="w-select">
-            <option value="">Select one...</option>
-            <option value="First">First Choice</option>
-            <option value="Second">Second Choice</option>
-            <option value="Third">Third Choice</option>
-          </select>
-        </div> --}}
         <div id="foto" class="div-block-404">
           <label for="foto" class="field-label-32">Cargar Foto</label>
           <div class="div-block-1806">

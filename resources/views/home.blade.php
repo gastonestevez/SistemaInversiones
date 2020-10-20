@@ -269,7 +269,7 @@
                   <div class="div-block-1768">
                     <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
                       <div class="div-block-396">
-                        <div class="div-block-1769" style="background-image: url('/storage/{{$asesor->foto}}');"></div>
+                        <div class="div-block-1769" style="background-image: url('/storage/{{$asesor->foto}}'); background-size: contain; background-repeat: no-repeat;"></div>
                         <div class="div-block-1771">
                           <div class="text-block-310">{{$asesor->rentabilidad}}%</div>
                           <div class="text-block-311">De rentabilidad aprox.</div>
@@ -305,7 +305,11 @@
                         </a>
                         <div class="div-block-1805">
                           <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
-                          <a href="/deleteasesor/{{$asesor->id}}" class="button-39 w-button">Eliminar</a>
+                          <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <input type="submit" class="button-39 w-button" value="Eliminar">
+                          </form>
                         </div>
                       </div>
                     </div>

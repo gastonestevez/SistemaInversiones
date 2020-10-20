@@ -46,57 +46,68 @@
     </div>
     <div class="form-block-copy w-form">
 
-      <form id="addasesor-form" name="addasesor-form" data-name="Email Form" class="form-5" action="/addasesor" method="post" enctype="multipart/form-data">
+      @if($errors->any())
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+      @endif
+
+      <form id="addasesor-form" name="addasesor-form" data-name="Email Form" class="form-5" action="/editasesor/{{$asesor->id}}" method="post" enctype="multipart/form-data">
+        @method('put')
         @csrf
         <div>
           <label for="nombre" class="field-label-31">Nombre</label>
-          <input type="text" class="text-field-16 w-input" maxlength="256" name="nombre" data-name="Nombre" placeholder="" id="nombre" required>
+          <input  value="{{ old('nombre', $asesor->nombre) }}" type="text" class="text-field-16 w-input" maxlength="256" name="nombre" data-name="Nombre" placeholder="" id="nombre" required autofocus>
         </div>
-        {{-- <div>
-          <label for="fecha-de-entrega" class="field-label-32">Fecha  (dd/mm/aa)</label>
-          <input type="number" class="text-field-16 w-input" maxlength="256" name="fecha-de-entrega" data-name="Fecha De Entrega" placeholder="" id="fecha-de-entrega" required>
-        </div> --}}
         <div>
           <label for="numero" class="field-label-31">Numero</label>
-          <input type="tel" pattern="^[0-9]+" maxlength="256" name="numero" data-name="" id="numero" class="text-field-16 w-input" required>
+          <input value="{{ old('numero', $asesor->numero) }}" type="tel" pattern="^[0-9]+" maxlength="256" name="numero" data-name="" id="numero" class="text-field-16 w-input" required>
         </div>
         <div>
           <label for="rentabilidad" class="field-label-32">Rentabilidad</label>
-          <input type="number" maxlength="256" name="rentabilidad" data-name="" id="rentabilidad" class="text-field-16 w-input">
+          <input value="{{ old('rentabilidad', $asesor->rentabilidad) }}" type="number" maxlength="256" name="rentabilidad" data-name="" id="rentabilidad" class="text-field-16 w-input">
         </div>
-        {{-- <div>
-          <label for="node" class="field-label-32">Numero de proyectos</label>
-          <input type="text" maxlength="256" data-name="" required="" id="node" class="text-field-16 w-input">
-        </div>
-        <div>
-          <label for="url-video" class="field-label-32">Numero de inversores</label>
-          <input type="text" class="text-field-16 w-input" maxlength="256" name="url-video" data-name="Url Video" placeholder="" id="url-video" required="">
-        </div> --}}
-        {{-- <div>
-          <label for="email" class="field-label-32">Proyectos</label>
-          <select id="field-2" name="field-2" class="w-select">
-            <option value="">Select one...</option>
-            <option value="First">First Choice</option>
-            <option value="Second">Second Choice</option>
-            <option value="Third">Third Choice</option>
-          </select>
-        </div> --}}
         <div id="foto" class="div-block-404">
           <label for="foto" class="field-label-32">Cargar Foto</label>
           <div class="div-block-1806">
-            <input id="imagen" type="file" name="imagen" data-wait="Please wait..." class="submit-button-15 w-button">
-          </div>
-
-          <div class="div-block-1767">
-            <img src="/storage/{{$asesor->foto}}" alt="">
-            <a href="#" class="link-32">x</a>
+            <input id="foto" type="file" name="foto" data-wait="Please wait..." class="submit-button-15 w-button">
           </div>
         </div>
 
-          <br>
-
         <div id="w-node-3b6e0ffe3746-aa769d9a" class="div-block-1808">
-          <button type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button">Editar</button>
+          <button id="editasesor" type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button" style="display:none">Editar</button>
+        </div>
+
+      </form>
+
+      {{-- Foto del asesor --}}
+      <div class="div-block-1767">
+        <img src="/storage/{{$asesor->foto}}" alt="{{$asesor->nombre}}" style="max-width: 300px;">
+        {{-- Borrar la foto --}}
+        <form class="" action="/deleteimagen/{{$asesor->id}}" method="post">
+          @method('delete')
+          @csrf
+          <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
+        </form>
+      </div>
+
+      <br>
+      
+      @if (session('error'))
+        <p style="color:red; text-align: center;">{{session('error')}}</p>
+      @endif
+
+      <br>
+
+      <label for="editasesor" class="submit-button-17 w-button" style="text-align:center; font-weight: 500;">Editar</label>
+
+      <br>
+      <br>
+
+      {{-- Eliminar Asesor --}}
+      <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
+        @method('delete')
+        @csrf
+        <div id="w-node-3b6e0ffe3746-aa769d9a" class="div-block-1808">
+          <button type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button">Eliminar</button>
         </div>
       </form>
 
