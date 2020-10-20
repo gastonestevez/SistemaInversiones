@@ -19,7 +19,7 @@ Auth::routes(['register' => false]);
 // https://stackoverflow.com/questions/42695917/laravel-5-4-disable-register-route
 // Deshabilitamos la ruta register ya que únicamente los admins van a poder crear usuarios.
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prueba', 'Controller@prueba')->name('prueba');
 
@@ -33,10 +33,18 @@ Route::get('/ping','AuthenticationController@ping');
 
 ////////////////////////////////////////////////////////////////////////////
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 // Asesores
 
+Route::get('/asesor/{id}', 'AsesorController@show');
+
 Route::get('/addasesor', 'AsesorController@new');
+
+Route::post('/addasesor', 'AsesorController@store');
+
+Route::get('/editasesor/{id}', 'AsesorController@edit');
+
+Route::put('/editasesor/{id}', 'AsesorController@update');
+
+Route::get('/deleteasesor/{id}', 'AsesorController@destroy');

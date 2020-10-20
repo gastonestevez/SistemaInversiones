@@ -22,6 +22,7 @@ class CreateProyectosTable extends Migration
             $table->string('imagen_360')->nullable();
             $table->string('estados')->nullable();
             $table->integer('porcentaje')->nullable();
+            $table->boolean('destacado')->nullable();
             $table->timestamps();
 
             $table->bigInteger('localidad_id')->unsigned()->nullable();

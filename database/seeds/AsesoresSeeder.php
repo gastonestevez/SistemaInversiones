@@ -14,27 +14,27 @@ class AsesoresSeeder extends Seeder
     {
       DB::table('asesores')->insert([
         [
-          'nombre' => 'Asesor 1',
+          'nombre' => 'Jorgito',
           'numero' => '11173627',
-          'rentabilidad' => '78%',
+          'rentabilidad' => '78',
           'foto' => 'archivos/img/imagen3.jpg',
           'n_de_proyectos' => 5,
           'n_de_inversores' => 37,
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ],
         [
-          'nombre' => 'Asesor 2',
+          'nombre' => 'Juanito',
           'numero' => '13432798',
-          'rentabilidad' => '46%',
+          'rentabilidad' => '46',
           'foto' => 'archivos/img/imagen4.jpg',
           'n_de_proyectos' => 3,
           'n_de_inversores' => 7,
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ],
         [
-          'nombre' => 'Asesor 3',
+          'nombre' => 'Pedrito',
           'numero' => '1431764343',
-          'rentabilidad' => '78%',
+          'rentabilidad' => '85',
           'foto' => 'archivos/img/imagen1.jpg',
           'n_de_proyectos' => 15,
           'n_de_inversores' => 220,

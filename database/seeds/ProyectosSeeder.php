@@ -21,6 +21,7 @@ class ProyectosSeeder extends Seeder
           'estados' => 'inicio, obra, inversion, finalizacion',
           'porcentaje' => 20,
           'localidad_id' => 1,
+          'asesor_id' => 3,
         ],
         [
           'titulo' => 'Edificio Ruby',
@@ -31,6 +32,7 @@ class ProyectosSeeder extends Seeder
           'estados' => 'inicio, obra, inversion, preparacion, terminado',
           'porcentaje' => 50,
           'localidad_id' => 2,
+          'asesor_id' => 1,
         ],
         [
           'titulo' => 'Complejo Zencity',
@@ -41,6 +43,7 @@ class ProyectosSeeder extends Seeder
           'estados' => 'inicio, obra, inversion',
           'porcentaje' => 80,
           'localidad_id' => 2,
+          'asesor_id' => 2,
         ],
       ]);
     }

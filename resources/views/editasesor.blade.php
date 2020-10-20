@@ -42,7 +42,7 @@
   <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
     <div class="div-block-405"></div>
     <div class="div-block-1807">
-      <a href="/" class="button-53 w-button">Volver</a>
+      <a href="home.html" class="button-53 w-button">Volver</a>
     </div>
     <div class="form-block-copy w-form">
 
@@ -84,14 +84,19 @@
         <div id="foto" class="div-block-404">
           <label for="foto" class="field-label-32">Cargar Foto</label>
           <div class="div-block-1806">
-            <input id="foto" type="file" name="foto" data-wait="Please wait..." class="submit-button-15 w-button">
+            <input id="imagen" type="file" name="imagen" data-wait="Please wait..." class="submit-button-15 w-button">
+          </div>
+
+          <div class="div-block-1767">
+            <img src="/storage/{{$asesor->foto}}" alt="">
+            <a href="#" class="link-32">x</a>
           </div>
         </div>
 
           <br>
 
         <div id="w-node-3b6e0ffe3746-aa769d9a" class="div-block-1808">
-          <button type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button">Cargar</button>
+          <button type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button">Editar</button>
         </div>
       </form>
 

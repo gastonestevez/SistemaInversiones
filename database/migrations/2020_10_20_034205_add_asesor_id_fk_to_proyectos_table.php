@@ -15,7 +15,7 @@ class AddAsesorIdFkToProyectosTable extends Migration
     {
         Schema::table('proyectos', function (Blueprint $table) {
           $table->bigInteger('asesor_id')->unsigned()->nullable();
-          $table->foreign('asesor_id')->references('id')->on('proyectos')->onDelete('set null')->onUpdate('cascade');
+          $table->foreign('asesor_id')->references('id')->on('asesores')->onDelete('set null')->onUpdate('cascade');
 
         });
     }

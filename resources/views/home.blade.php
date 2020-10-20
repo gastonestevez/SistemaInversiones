@@ -261,185 +261,56 @@
           <div data-w-tab="Project" class="dashboard-section w-tab-pane">
             <div class="container">
               <div class="div-block-1796">
-                <a href="/addasesor" data-w-id="8ac6162d-26a5-e9a4-9c1b-fb5054b8e679" class="button-39 w-button">Agregar un asesor</a>
+                <a href="/addasesor" class="button-39 w-button">Agregar un asesor</a>
               </div>
               <div class="dash-row masonry-copy">
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
-                    <div class="div-block-396">
-                      <div class="div-block-1769"></div>
-                      <div class="div-block-1771">
-                        <div class="text-block-310">15%</div>
-                        <div class="text-block-311">De rentabilidad aprox.</div>
+
+                @foreach ($asesores as $asesor)
+                  <div class="div-block-1768">
+                    <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
+                      <div class="div-block-396">
+                        <div class="div-block-1769" style="background-image: url('/storage/{{$asesor->foto}}');"></div>
+                        <div class="div-block-1771">
+                          <div class="text-block-310">{{$asesor->rentabilidad}}%</div>
+                          <div class="text-block-311">De rentabilidad aprox.</div>
+                        </div>
+                        <div class="div-block-1798">
+                          <a href="#" data-w-id="b08037e4-5345-c4df-7e05-de57c2e4423a" class="button-35 w-button">Chat</a>
+                        </div>
                       </div>
-                      <div class="div-block-1798">
-                        <a href="#" data-w-id="b08037e4-5345-c4df-7e05-de57c2e4423a" class="button-35 w-button">Chat</a>
-                      </div>
-                    </div>
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del asesor</h2>
-                        <div class="div-block-79">
-                          <div class="box-padding">
-                            <div class="progress-wrapper">
-                              <div class="progress-text-row">
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-315">7</div>
+                      <div class="link-block-42">
+                        <a href="/asesor/{{$asesor->id}}" class="div-block-397 w-inline-block">
+                          <div class="text-block-83">Diciembre 2020</div>
+                          <h2 class="heading-5">{{$asesor->nombre}}</h2>
+                          <div class="div-block-79">
+                            <div class="box-padding">
+                              <div class="progress-wrapper">
+                                <div class="progress-text-row">
+                                  <div class="progress-text-column">
+                                    <div class="progress-icon">
+                                      <div class="text-block-315">{{count($asesor->proyectos)}}</div>
+                                    </div>
+                                    <div class="text-block-312">Proyectos</div>
                                   </div>
-                                  <div class="text-block-312">Proyectos</div>
-                                </div>
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-314">40</div>
+                                  <div class="progress-text-column">
+                                    <div class="progress-icon">
+                                      <div class="text-block-314">40</div>
+                                    </div>
+                                    <div class="text-block-313">Inversores</div>
                                   </div>
-                                  <div class="text-block-313">Inversores</div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        </a>
+                        <div class="div-block-1805">
+                          <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
+                          <a href="/deleteasesor/{{$asesor->id}}" class="button-39 w-button">Eliminar</a>
                         </div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a>
-                        <a href="#" class="button-39 w-button">Eliminar</a>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
-                    <div class="div-block-396">
-                      <div class="div-block-1769"></div>
-                      <div class="div-block-1771">
-                        <div class="text-block-310">15%</div>
-                        <div class="text-block-311">De rentabilidad aprox.</div>
-                      </div>
-                      <div class="div-block-1798">
-                        <a href="#" data-w-id="c9c4cb97-e8b5-e1c5-f0f7-784b605b834a" class="button-35 w-button">Chat</a>
-                      </div>
-                    </div>
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del asesor</h2>
-                        <div class="div-block-79">
-                          <div class="box-padding">
-                            <div class="progress-wrapper">
-                              <div class="progress-text-row">
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-315">7</div>
-                                  </div>
-                                  <div class="text-block-312">Proyectos</div>
-                                </div>
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-314">40</div>
-                                  </div>
-                                  <div class="text-block-313">Inversores</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a>
-                        <a href="#" class="button-39 w-button">Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
-                    <div class="div-block-396">
-                      <div class="div-block-1769"></div>
-                      <div class="div-block-1771">
-                        <div class="text-block-310">15%</div>
-                        <div class="text-block-311">De rentabilidad aprox.</div>
-                      </div>
-                      <div class="div-block-1798">
-                        <a href="#" data-w-id="afb0251d-33aa-f90b-5bfd-dcbc2faecdc8" class="button-35 w-button">Chat</a>
-                      </div>
-                    </div>
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del asesor</h2>
-                        <div class="div-block-79">
-                          <div class="box-padding">
-                            <div class="progress-wrapper">
-                              <div class="progress-text-row">
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-315">7</div>
-                                  </div>
-                                  <div class="text-block-312">Proyectos</div>
-                                </div>
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-314">40</div>
-                                  </div>
-                                  <div class="text-block-313">Inversores</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a>
-                        <a href="#" class="button-39 w-button">Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
-                    <div class="div-block-396">
-                      <div class="div-block-1769"></div>
-                      <div class="div-block-1771">
-                        <div class="text-block-310">15%</div>
-                        <div class="text-block-311">De rentabilidad aprox.</div>
-                      </div>
-                      <div class="div-block-1798">
-                        <a href="#" data-w-id="89a0b29f-835c-88b6-9199-ef79db7bb36e" class="button-35 w-button">Chat</a>
-                      </div>
-                    </div>
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del asesor</h2>
-                        <div class="div-block-79">
-                          <div class="box-padding">
-                            <div class="progress-wrapper">
-                              <div class="progress-text-row">
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-315">7</div>
-                                  </div>
-                                  <div class="text-block-312">Proyectos</div>
-                                </div>
-                                <div class="progress-text-column">
-                                  <div class="progress-icon">
-                                    <div class="text-block-314">40</div>
-                                  </div>
-                                  <div class="text-block-313">Inversores</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a>
-                        <a href="#" class="button-39 w-button">Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
           </div>

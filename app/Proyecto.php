@@ -37,5 +37,10 @@ class Proyecto extends Model
     ->as('inversion');
   }
 
+  public function asesor()
+  {
+    return $this->belongsTo("App\Asesor", "asesor_id");
+  }
+
 
 }
