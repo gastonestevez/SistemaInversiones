@@ -11,15 +11,11 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes(['register' => false]);
 // https://stackoverflow.com/questions/42695917/laravel-5-4-disable-register-route
 // Deshabilitamos la ruta register ya que únicamente los admins van a poder crear usuarios.
 
-// Route::get('/home', 'HomeController@index')->name('home');
+/////////////////////////////////// RUTAS DE PRUEBA /////////////////////////////////////////
 
 Route::get('/prueba', 'Controller@prueba')->name('prueba');
 
@@ -31,7 +27,7 @@ Route::get('/proyecto/{slug}', 'Controller@proyecto')->name('proyecto.show');
 
 Route::get('/ping','AuthenticationController@ping');
 
-////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// RUTAS DEL PROYECTO /////////////////////////////////////////
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -51,10 +47,25 @@ Route::delete('/deleteasesor/{id}', 'AsesorController@destroy');
 
 Route::delete('/deleteimagen/{id}', 'AsesorController@deleteimagen');
 
-// Borrar imagenes, planos y logos
+// Proyectos
+
+Route::get('/proyecto/{slug}', 'ProyectoController@show');
+
+Route::get('/addproyecto', 'ProyectoController@new');
+
+Route::post('/addproyecto', 'ProyectoController@store');
+
+Route::get('/editproyecto/{slug}', 'ProyectoController@edit');
+
+Route::get('/editproyecto/{slug}', 'ProyectoController@update');
+
+Route::delete('/deleteproyecto/{slug}', 'ProyectoController@destroy');
+
+
+// Borrar imagenes, documentos y logos de los proyectos
 
 Route::post('/deletelogo/{id}', 'HomeController@deletelogo');
 
-Route::post('/deleteplano/{id}', 'HomeController@deleteplano');
+Route::post('/deletedocumento/{id}', 'HomeController@deleteplano');
 
 Route::delete('/deleteimage/{id}', 'HomeController@deleteImage');

@@ -18,6 +18,7 @@ class CreateArchivosTable extends Migration
             $table->string('logo')->nullable();
             $table->string('imagen', 500)->nullable();
             $table->string('documento')->nullable();
+            $table->string('nombre_documento')->nullable();
             $table->timestamps();
 
             $table->bigInteger('proyecto_id')->unsigned()->nullable();

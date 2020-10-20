@@ -1,6 +1,8 @@
 HECHO
 
 Modelos hechos
+Seeders hechos
+Controladores Creados
 Migraciones hechas
 
 Hacer Slugs con los titulos de los proyectos: EJ: /proyecto/torres-del-mirasol = /proyecto/{titulo}. Hecho
@@ -11,16 +13,14 @@ Manejar los valores de dinero con la milesima: EJ: 1.000 o 250.000. Hecho (ver A
 FALTA
 
 API:
--Completar el Exceptions -> handler con lo que dice Medium.
+-Completar el Exceptions -> handler con la view 404 que nos brindaron
 -Consultar lo de la expiracion del Token.
 -Que es bearer?
 -Por que tenemos que hacer ese foreach de la linea 37 de ApiMiscEndpointsController
 
-Seeders para practicar
 CRUD User -> al editar usuario permitir cambiar la clave
 CRUD Actualizacion
 CRUD Proyectos -> ojo con los valores unique (titulo y slug)
-CRUD Asesores
 CRUD Billeteras
 CRUD Referente
 CRUD Tipo de Referente

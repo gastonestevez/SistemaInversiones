@@ -323,7 +323,7 @@
           <div data-w-tab="Assets" class="dashboard-section w-tab-pane">
             <div class="container">
               <div class="div-block-1796">
-                <a href="agregar-proyecto.html" class="button-35 w-button">Agregar un proyecto</a>
+                <a href="/addproyecto" class="button-35 w-button">Agregar un proyecto</a>
               </div>
               <div class="dash-row masonry">
                 <div class="div-block-1768">
