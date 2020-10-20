@@ -7017,7 +7017,7 @@ label {
 }
 
 .form-5 {
-  display: -ms-grid;
+  /* display: -ms-grid;
   display: grid;
   grid-auto-columns: 1fr;
   grid-column-gap: 16px;
@@ -7025,7 +7025,7 @@ label {
   -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   -ms-grid-rows: auto auto;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto; */
 }
 
 .field-label-30 {
