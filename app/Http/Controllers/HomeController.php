@@ -28,7 +28,7 @@ class HomeController extends Controller
       $asesores = Asesor::all();
       $vac = compact('asesores');
 
-      return view('/home', $vac);
+      return view('index', $vac);
     }
 
     public function deleteimage(Request $request)

@@ -25,15 +25,23 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+     public function __construct()
+        {
+          session(['url.intended' => url()->previous()]); // Agregue estas dos lineas (38 y 39) para que al loguear me redirija a la ruta anterior https://stackoverflow.com/questions/15389833/laravel-redirect-back-to-original-destination-after-login
+          $this->redirectTo = session()->get('url.intended');
+          $this->middleware('guest')->except('logout');
+        }
+
+     // Para que nos redirija a la pagina anterior dsp de loguearnos tuve que pisar este metodo https://stackoverflow.com/questions/42326430/how-to-redirect-to-previous-page-after-successful-register-in-laravel
+     protected function redirectTo()
+     {
+       return url()->previous();
+     }
 }

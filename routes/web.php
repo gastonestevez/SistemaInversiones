@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes(['register' => false]);
+Auth::routes();
 // https://stackoverflow.com/questions/42695917/laravel-5-4-disable-register-route
 // Deshabilitamos la ruta register ya que únicamente los admins van a poder crear usuarios.
 

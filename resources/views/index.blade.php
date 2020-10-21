@@ -137,11 +137,17 @@
         <!-- Etiqueta de Usuario (cambiar por un Iniciar Sesion cuando no este logueado) -->
         <div data-hover="1" data-delay="100" class="dropdown w-dropdown">
           <div class="navigation-item profile-nav w-dropdown-toggle">
-            <img src="/images/proifle.jpg" alt="" class="profile-pic">
-            <div class="text-block-303">Hola Emanuel!</div>
+            @if (Auth::user())
+              <img src="/storage/{{Auth::user()->avatar}}" alt="" class="profile-pic">
+              <div class="text-block-303">Hola {{Auth::user()->name}}!</div>
+            @else
+              <div class="text-block-303"><a href="/login" style="color: white;">Ingresar</a></div>
+            @endif
           </div>
 
+
           <!-- Navbar usuario logueado -->
+          @if (Auth::user())
           <nav class="nav-dropdown-list w-dropdown-list">
             <div class="webflow-diamond"></div>
             <div class="nav-drop-list-padding">
@@ -153,12 +159,15 @@
                 <div class="navigation-icon"></div>
                 <div>Soporte</div>
               </a>
-              <a href="#" class="navigation-item logout-link w-inline-block">
-                <div class="navigation-icon"></div>
-                <div>Log out</div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="navigation-item logout-link w-inline-block"><div class="navigation-icon"></div>Salir</button>
+                </form>
+                {{-- <div>Log out</div> --}}
               </a>
             </div>
           </nav>
+          @endif
         </div>
         <h3 class="heading sola">Bienvenido a tu billetera Emanuel!</h3>
       </div>
