@@ -25,34 +25,44 @@
   </head>
   <body>
 
+
     <div class="login-page-wrapper">
-      <a href="/login" class="login-nav-link">Iniciar Sesión</a>
+      <a href="/login" class="login-nav-link">Ingresar</a>
+      <div class="div-block-1807" style="margin-top:30px;">
+        <a href="/" class="button-52 w-button">Volver</a>
+      </div>
       <div class="login-container w-form">
+
+        @if($errors->any())
+          {!! implode('', $errors->all('<div>:message</div>')) !!}
+        @endif
+
         <h1 class="login-head">Registrarme a la billetera!</h1>
-        <form id="sign-up" name="wf-form-Sign-up-Form" data-name="Sign up Form" method="post" class="memberstack-form">
+        <form id="sign-up" class="memberstack-form" method="post" action="{{ route('register') }}" enctype="multipart/form-data">
+          @csrf
           <div class="field-row">
             <div class="field-wrapper first-name-wrapper">
-              <label for="node" class="signup-label">Nombre *</label>
-              <input type="text" maxlength="256" class="signup-field w-input" required autofocus>
+              <label for="name" class="signup-label">Nombre *</label>
+              <input id="name" type="text" name="name" class="signup-field w-input" required autofocus>
             </div>
             <div class="field-wrapper">
-              <label for="node" class="signup-label">Apellido *</label>
-              <input type="text" class="signup-field w-input" required>
+              <label for="last_name" class="signup-label">Apellido *</label>
+              <input id="last_name" type="text" name="last_name" class="signup-field w-input" required>
             </div>
           </div>
           <div class="field-row">
             <div class="field-wrapper first-name-wrapper">
-              <label for="node" class="signup-label">Numero de contacto</label>
-              <input type="tel" pattern="^[0-9]+" class="signup-field w-input">
+              <label for="number" class="signup-label">Numero de contacto</label>
+              <input id="number" name="number" type="tel" pattern="^[0-9]+" class="signup-field w-input">
             </div>
             <div class="field-wrapper">
-              <label for="node" class="signup-label">Email *</label>
-              <input type="text" maxlength="256" class="signup-field w-input" required>
+              <label for="email" class="signup-label">Email *</label>
+              <input id="email" name="email" type="text" class="signup-field w-input" required>
             </div>
           </div>
           <div class="div-block-404">
-            <label for="email" class="field-label-18">Foto de perfil</label>
-            <input type="file" name="avatar" value="">
+            <label for="avatar" class="field-label-18">Foto de perfil</label>
+            <input id="avatar" type="file" name="avatar" value="">
             {{-- <div class="div-block-402">
               <div class="div-block-1767">
                 <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" alt="">
@@ -63,18 +73,18 @@
           </div>
           <br>
           <div class="field-wrapper">
-            <label for="password-2" class="signup-label">Contraseña</label>
-            <input type="password" class="signup-field w-input" maxlength="256" name="password-2" data-name="Password 2" id="password-2" required="">
+            <label for="password" class="signup-label">Contraseña</label>
+            <input type="password" class="signup-field w-input" name="password" data-name="Password 2" id="password" required>
           </div>
           <div class="field-wrapper">
-            <label for="password-2" class="signup-label">Repetir Contraseña</label>
-            <input type="password" class="signup-field w-input" maxlength="256" name="password-2" data-name="Password 2" id="password-2" required="">
+            <label for="password_confirmation" class="signup-label">Repetir Contraseña</label>
+            <input type="password" class="signup-field w-input" name="password_confirmation" data-name="Password 2" id="password_confirmation" required>
           </div>
           {{-- <label class="w-checkbox gdpr-checkbox">
             <input type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox" required="" class="w-checkbox-input">
             <span for="checkbox" class="terms-text w-form-label"> I agree to the <a href="#" class="login-page-link">Terms</a> and <a href="#" class="login-page-link">Privacy Policy</a></span>
           </label> --}}
-          <input type="submit" value="Registrarme" data-wait="Please wait..." class="login-button w-button">
+          <button type="submit" data-wait="Please wait..." class="login-button w-button">Registrarme</button>
         </form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>

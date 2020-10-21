@@ -46,8 +46,6 @@ class AsesorController extends Controller
         $file = $foto->store('public'); // Esta ruta guarda al archivo con la ruta entera.
         $path = basename($file); // basename recorta la ruta y nos deja solo el nombre del archivo.
         $asesor->foto = $path; // le asigna la nueva ruta a la base de datos
-      } else {
-        $asesor->foto = "archivos/img/avatarpredeterminado.svg"; // le asigna la nueva ruta a la base de datos
       }
 
       $asesor->save();
@@ -109,13 +107,10 @@ class AsesorController extends Controller
 
     $asesor = Asesor::find($id);
 
-      // Busco la imagen del asesor almacenada en storage
-      $imagen_path = storage_path('app/public/') . $asesor->foto;
-      // Si esa imagen no es el avatar predeterminado la borro
-      if(basename($imagen_path) != "avatarpredeterminado.svg") {
-      // elimina la imagen de storage
-      unlink($imagen_path);
-      }
+    // Busco la imagen del asesor almacenada en storage
+    $image_path = storage_path('app/public/') . $asesor->foto;
+    // elimina la imagen de storage
+    unlink($image_path);
 
     // elimino el profesional de la base de datos
     $asesor->delete();
@@ -124,21 +119,19 @@ class AsesorController extends Controller
                     ->with('success', 'Asesor eliminado exitosamente');
   }
 
-  public function deleteimagen($id) {
+  public function deleteimage($id) {
 
     $asesor = Asesor::find($id);
 
     // Busco la imagen del asesor almacenada en storage
-    $imagen_path = storage_path('app/public/') . $asesor->foto;
-    // Si esa imagen no es el avatar predeterminado la borro
-    if(basename($imagen_path) != "avatarpredeterminado.svg") {
-      // elimina la imagen de storage
-      unlink($imagen_path);
-    } else {
-      return back()->with('error', 'No puedes eliminar el avatar predeterminado, elige otra imagen para cambiarlo');
-    }
+    $image_path = storage_path('app/public/') . $asesor->foto;
+      // verificamos si existe en la base de datos y en storage
+      if ($asesor->foto && file_exists($image_path)) {
+        // elimina la imagen de storage
+        unlink($image_path);
+      }
 
-    $asesor->foto = "archivos/img/avatarpredeterminado.svg"; // le asigna la nueva ruta a la base de datos
+    $asesor->foto = null;
 
     $asesor->save();
 

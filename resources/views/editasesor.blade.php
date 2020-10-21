@@ -80,20 +80,21 @@
 
       {{-- Foto del asesor --}}
       <div class="div-block-1767">
-        <img src="/storage/{{$asesor->foto}}" alt="{{$asesor->nombre}}" style="max-width: 300px;">
-        {{-- Borrar la foto --}}
-        <form class="" action="/deleteimagen/{{$asesor->id}}" method="post">
-          @method('delete')
-          @csrf
-          <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
-        </form>
+        {{-- Si el asesor tiene foto --}}
+        @if ($asesor->foto)
+          <img src="/storage/{{$asesor->foto}}" alt="{{$asesor->nombre}}" style="max-width: 300px; max-height: 150px;">
+          {{-- Borrar la foto --}}
+          <form class="" action="/asesor/deleteimage/{{$asesor->id}}" method="post">
+            @method('delete')
+            @csrf
+            <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
+          </form>
+        @else
+          <img src="/storage/archivos/img/avatarpredeterminado.svg" alt="{{$asesor->nombre}}" style="max-width: 300px;">
+        @endif
       </div>
 
       <br>
-      
-      @if (session('error'))
-        <p style="color:red; text-align: center;">{{session('error')}}</p>
-      @endif
 
       <br>
 

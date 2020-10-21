@@ -45,7 +45,7 @@ Route::put('/editasesor/{id}', 'AsesorController@update');
 
 Route::delete('/deleteasesor/{id}', 'AsesorController@destroy');
 
-Route::delete('/deleteimagen/{id}', 'AsesorController@deleteimagen');
+Route::delete('/asesor/deleteimage/{id}', 'AsesorController@deleteimage');
 
 // Proyectos
 
@@ -60,6 +60,14 @@ Route::get('/editproyecto/{slug}', 'ProyectoController@edit');
 Route::get('/editproyecto/{slug}', 'ProyectoController@update');
 
 Route::delete('/deleteproyecto/{slug}', 'ProyectoController@destroy');
+
+// Usuarios
+
+Route::get('/perfil/{id}', 'UserController@edit');
+
+Route::put('/perfil/{id}', 'UserController@update');
+
+Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage');
 
 
 // Borrar imagenes, documentos y logos de los proyectos

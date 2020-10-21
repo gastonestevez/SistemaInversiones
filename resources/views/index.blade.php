@@ -138,10 +138,14 @@
         <div data-hover="1" data-delay="100" class="dropdown w-dropdown">
           <div class="navigation-item profile-nav w-dropdown-toggle">
             @if (Auth::user())
-              <img src="/storage/{{Auth::user()->avatar}}" alt="" class="profile-pic">
+              @if (Auth::user()->avatar)
+                <img src="/storage/{{Auth::user()->avatar}}" alt="" class="profile-pic">
+              @else
+                <img src="/storage/archivos/img/avatarpredeterminado.svg" alt="" class="profile-pic" style="background-color: white;">
+              @endif
               <div class="text-block-303">Hola {{Auth::user()->name}}!</div>
             @else
-              <div class="text-block-303"><a href="/login" style="color: white;">Ingresar</a></div>
+              <div class="text-block-303"><a href="/login" style="color: white;">Ingresar </a> | <a href="/register" style="color: white;"> Registrarse</a></div>
             @endif
           </div>
 
@@ -151,7 +155,7 @@
           <nav class="nav-dropdown-list w-dropdown-list">
             <div class="webflow-diamond"></div>
             <div class="nav-drop-list-padding">
-              <a data-w-id="158abecf-f095-0ec8-7227-dd30dfa7c195" href="#" class="navigation-item dropdown-nav-item w-inline-block">
+              <a href="/perfil/{{Auth::user()->id}}" class="navigation-item dropdown-nav-item w-inline-block">
                 <div class="navigation-icon"></div>
                 <div>Perfil</div>
               </a>

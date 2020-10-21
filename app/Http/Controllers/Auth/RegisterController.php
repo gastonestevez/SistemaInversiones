@@ -49,9 +49,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+          'password' => 'min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
+          'name' =>'alpha|string|min:2|max:40|',
+          'email' => 'string|email|max:255|unique:users',
+          "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
+        ],
+        [
+          "required" => "Completar campos obligatorios",
+          "alpha" => "El campo nombre debe ser un texto",
+          "name.min" => "El nombre debe tener un minimo de :min caracteres",
+          "password.min" => "La clave debe tener un minimo de :min caracteres",
+          "max" => "El nombre debe tener un maximo de :max caracteres",
+          "confirmed" => "Las contraseñas no coinciden"
         ]);
     }
 
@@ -63,10 +72,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+
+      // Si adjuntan un avatar
+      if (isset($data['avatar'])) {
+
+        $file = $data['avatar']->store('public'); // Esta ruta guarda al archivo con la ruta entera.
+        $path = basename($file); // basename recorta la ruta y nos deja solo el nombre del archivo.
+      } else {
+        $path = "archivos/img/avatarpredeterminado.svg"; // le asigna la nueva ruta a la base de datos
+      }
+
+
         return User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'number' => $data['number'],
             'password' => Hash::make($data['password']),
+            'avatar' => $path,
+            'is_admin' => false
         ]);
     }
 }
