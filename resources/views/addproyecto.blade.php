@@ -128,53 +128,36 @@
                   <th class="field-label-30">Cargar Foto</th>
                 </tr>
               </thead>
+              
               <tbody id="table_unidad_body">
+                
                 <tr>
                   <th>
-                    <input type="text" maxlength="256" data-name="" name="referente" id="referente" class="text-field-15 w-input">
+                    <input type="text" maxlength="256" data-name="" name="referente[0][referente]" id="referente" class="text-field-15 w-input">
                   </th>
                   <th>
-                    <select id="tipo_de_referente" name="tipo_de_referente" class="w-select">
-                      <option value="asd">Seleccione un tipo</option>
+                    <select id="tipo_de_referente" name="referente[0][tipo_de_referente]" class="w-select">
+                      <option value="">Seleccione un tipo</option>
                       @foreach ($tipo_de_referentes as $tipo_de_referente)
                         <option value="{{$tipo_de_referente->id}}">{{$tipo_de_referente->tipo}}</option>
                       @endforeach
                     </select>
                   </th>
                   <th>
-                    <input id="foto_referente" type="file" name="foto_referente" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
+                    <input id="foto_referente" type="file" name="referente[0][foto_referente]" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
                   </th>
                   <th>
-                    <button style="margin: 0px 0px 11px;" type="button" name="button">X</button>
+                    <button id="deleteRef" onclick="onDeleteRef(this)" style="margin: 0px 0px 11px;" hidden name="referente[0][deleteRef]">X</button>
                   </th>
                 </tr>
 
-                <tr>
-                  <th>
-                    <input type="text" maxlength="256" data-name="" name="referente" id="referente" class="text-field-15 w-input">
-                  </th>
-                  <th>
-                    <select id="tipo_de_referente" name="tipo_de_referente" class="w-select">
-                      <option value="asd">Seleccione un tipo</option>
-                      @foreach ($tipo_de_referentes as $tipo_de_referente)
-                        <option value="{{$tipo_de_referente->id}}">{{$tipo_de_referente->tipo}}</option>
-                      @endforeach
-                    </select>
-                  </th>
-                  <th>
-                    <input id="foto_referente" type="file" name="foto_referente" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
-                  </th>
-                  <th>
-                    <button style="margin: 0px 0px 11px;" type="button" name="button">X</button>
-                  </th>
-                </tr>
               </tbody>
             </table>
 
             <br>
 
             <div style="width:50%;"id="w-node-3a3f3b505af0-dab82f42" class="div-block-1808">
-              <button id="agregar_referente" data-wait="Please wait..." class="submit-button-14 w-button">Agregar Referente</button
+              <button id="agregar_referente" class="submit-button-14 w-button">Agregar Referente</button>
             </div>
           </div>
 
@@ -225,46 +208,38 @@
     </script>
 
     <script type="text/javascript">
+    const agregarReferenteBoton = document.getElementById('agregar_referente');
+    const tableUnidadBody = document.getElementById('table_unidad_body');
+    const labels = document.getElementById('labels');
 
-    // agregar unidades
-    var agregar_unidad_button = document.getElementById('agregar_unidad');
-    var table_unidad_body = document.getElementById('table_unidad_body');
-    var labels = document.getElementById('labels');
-    var cantidad_unidades = 0;
-    var id_unidad = 1;
-    agregar_unidad_button.addEventListener('click',function(){
-      var table_tr = document.createElement('tr');
-      var array = ["[piso]","[m2]","[ambientes]","[baños]","[toilettes]","[dormitorios]","[precio]"]
-      for (var i = 0; i < 7; i++) {
-        var table_th = document.createElement('th');
-        var table_input = document.createElement('input');
-        var query = "unidad["+id_unidad+"]"+array[i];
-        table_input.setAttribute("style","width:70%; margin-top: 10px;")
-        table_input.setAttribute("type","number");
-        table_input.setAttribute('name',query);
-        labels.removeAttribute('hidden');
-        table_th.appendChild(table_input);
-        table_tr.appendChild(table_th);
-        table_unidad_body.appendChild(table_tr);
+    const setupTag = (htmlTag, label) => {
+      const type = {
+        ['deleteRef']: () => {htmlTag.removeAttribute('hidden')},
+        ['referente']: () => {htmlTag.value = null}
       }
-      var table_th = document.createElement('th');
-      var table_detele = document.createElement('button');
-      table_detele.innerHTML = "X";
-      table_th.appendChild(table_detele)
-      table_th.style = "padding-top: 11px;"
-      table_tr.appendChild(table_th)
-      table_unidad_body.appendChild(table_tr);
-      id_unidad++;
-      cantidad_unidades++;
-      table_detele.addEventListener('click',function(){
-        cantidad_unidades--;
-        this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-        if (cantidad_unidades===0) {
-          labels.setAttribute('hidden',true);
-        }
+      type[label] && type[label]();
+    }
+
+    const onDeleteRef = (event) => {
+      event.parentNode.parentNode.parentNode.removeChild(event.parentNode.parentNode);
+    }
+
+    agregarReferenteBoton.onclick = (event) => {
+      event.preventDefault(); 
+      const labels = ['referente','tipo_de_referente','foto_referente','deleteRef'];
+      const tableTr = document.createElement('tr');
+      const tableLength = tableUnidadBody.children.length;
+      labels.forEach( (label) => {
+        const tableTh = document.createElement('th');
+        const htmlTag = document.getElementById(label).cloneNode(true);
+        htmlTag.setAttribute('name',`referente[${tableLength}][${label}]`);
+        setupTag(htmlTag, label)
+        tableTh.appendChild(htmlTag);
+        tableTr.appendChild(tableTh);
       });
-    });
-  });
+      tableUnidadBody.appendChild(tableTr);
+    }
+
     </script>
   </body>
 </html>
