@@ -12,6 +12,7 @@
     <link href="/css/normalize.css" rel="stylesheet" type="text/css">
     <link href="/css/webflow.css" rel="stylesheet" type="text/css">
     <link href="/css/undefineds-stunning-project-1f65bd.webflow.css" rel="stylesheet" type="text/css">
+    <link href="/css/uikit.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -30,7 +31,48 @@
         background: url(https://uploads-ssl.webflow.com/5ef66c40c73a1f23b6a72987/5ef6bed92a2bee63b0334828_webdev-for-you-loading.svg) !important;
       }
     </style>
+    <style media="screen">
+    .uk-progress.progress-green::-webkit-progress-value
+      {
+        background: linear-gradient(96deg, #dfeffc, #707070);
+      }
+      .uk-progress.progress-green::-moz-progress-bar
+      {
+        background: linear-gradient(96deg, #dfeffc, #707070);
+      }
+      .uk-progress.progress-green::-ms-fill
+      {
+        background: linear-gradient(96deg, #dfeffc, #707070);
+      }
+
+      .contador
+      {
+        width: 40px;
+        height: 40px;
+        margin-right: auto;
+        margin-bottom: 0.25em;
+        margin-left: auto;
+        padding: 7px;
+        border-radius: 20px;
+        background-color: #dfeffc;
+        box-shadow: 4px 4px 5px -2px rgba(0, 0, 0, 0.1);
+        font-size: 18px;
+        font-weight: 700;
+      }
+    </style>
   </head>
+
+  {{-- @foreach ($proyectos as $proyecto)
+    @php
+    dd(empty($proyectos[4]->archivos->first()));
+    @endphp
+    @if (isset($proyecto->archivos))
+      @foreach ($proyecto->archivos as $archivo)
+        @if ($archivo->imagen)
+        @endif
+      @endforeach
+    @endif
+  @endforeach --}}
 
   <body class="body">
     <div class="page-wrapper">
@@ -282,7 +324,12 @@
                   <div class="div-block-1768">
                     <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
                       <div class="div-block-396">
-                        <div class="div-block-1769" style="background-image: url('/storage/{{$asesor->foto}}'); background-size: contain; background-repeat: no-repeat;"></div>
+                        <div class="div-block-1769"
+                        @if ($asesor->foto)
+                          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat;"
+                        @else
+                          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat;"
+                        @endif></div>
                         <div class="div-block-1771">
                           <div class="text-block-310">{{$asesor->rentabilidad}}%</div>
                           <div class="text-block-311">De rentabilidad aprox.</div>
@@ -338,81 +385,92 @@
               <div class="div-block-1796">
                 <a href="/addproyecto" class="button-35 w-button">Agregar un proyecto</a>
               </div>
+
+
               <div class="dash-row masonry">
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco">
-                    <div id="w-node-b493d5813210-66a11659" class="link-block-42">
-                      <div class="div-block-346">
-                        <div class="div-block-1802">
-                          <div class="div-block-1803"></div>
-                          <div class="div-block-1771">
-                            <div class="text-block-325-copy">Asesor asignado</div>
-                          </div>
-                          <div class="div-block-1798">
-                            <a href="#" data-w-id="cc162353-758c-ae2e-08df-8a81f616e85e" class="button-38 w-button">Chat</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <a href="landing-proyecto.html" class="div-block-397 w-inline-block">
-                      <div class="text-block-83">Diciembre 2020</div>
-                      <h2 class="heading-5">proyect title</h2>
-                      <div class="div-block-79">
-                        <div class="box-padding">
-                          <div class="progress-wrapper">
-                            <div class="progress-text-row">
-                              <div class="progress-text-column">
-                                <div class="progress-icon">
-                                  <div>1</div>
-                                </div>
-                                <div class="text-block-305">Busqueda</div>
-                              </div>
-                              <div class="progress-text-column">
-                                <div class="progress-icon">
-                                  <div>2</div>
-                                </div>
-                                <div class="text-block-306">Definicion</div>
-                              </div>
-                              <div class="progress-text-column">
-                                <div class="progress-icon">
-                                  <div>3</div>
-                                </div>
-                                <div class="text-block-307">Idea</div>
-                              </div>
-                              <div class="progress-text-column">
-                                <div class="progress-icon">
-                                  <div>4</div>
-                                </div>
-                                <div class="text-block-308">Prototipo</div>
-                              </div>
-                              <div class="progress-text-column">
-                                <div class="progress-icon">
-                                  <div>5</div>
-                                </div>
-                                <div class="text-block-309">Prueba</div>
+
+                @foreach ($proyectos as $proyecto)
+                  @php
+                  $contador = 1
+                  @endphp
+                  <div class="div-block-1768">
+                    <div class="div-block-345 proyect-card-header fondo-blanco">
+                      <div id="w-node-b493d5813210-66a11659" class="link-block-42">
+                        <div class="div-block-346">
+                          <div class="div-block-1802">
+                            <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat;"></div>
+                            <div class="div-block-1771">
+                              <div class="text-block-325-copy">Asesor asignado
+                                @if (isset($proyecto->asesor->nombre))
+                                  {{$proyecto->asesor->nombre}}
+                                @endif
                               </div>
                             </div>
-                            <div class="progress-bar-wrap-2">
-                              <div class="progress-bar-2"></div>
+                            <div class="div-block-1798">
+                              <a href="https://api.whatsapp.com/send?phone={{$proyecto->asesor->numero}}" target="_blank" class="button-38 w-button">Chat</a>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </a>
-                    <div class="div-block-396">
-                      <div class="div-block-1797">
-                        <div class="div-block-1770"></div>
-                      </div>
-                      <div class="div-block-1796">
-                        <a data-w-id="ba7e79bd-5c37-855a-18f3-4b7239cdfb70" href="#" class="button-35 w-button">Documentación</a>
-                      </div>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-35 w-button">Editar</a>
-                        <a href="#" class="button-35 w-button">Eliminar</a>
+                      <a href="landing-proyecto.html" class="div-block-397 w-inline-block">
+                        <div class="text-block-83">{{$proyecto->fecha}}</div>
+                        <h2 class="heading-5">{{$proyecto->titulo}}</h2>
+
+                        <div class="div-block-79" style="box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.19)">
+                          <div class="box-padding" style="display:flex; flex-direction: row; justify-content: space-around;">
+                            {{-- Agarro el array de estados y lo recorro --}}
+                            @foreach (estados($proyecto->estados) as $estado)
+                              <div style="display:flex; flex-direction: column;">
+                                {{-- Enumero los estados con la ayuda de una variable contador definida en la linea 393 --}}
+                                <span class="contador" style="display:flex; flex-direction: column; align-items: center; color: #707070;">{{$contador}}</span>
+                                {{-- Escribo los estados --}}
+                                <span style="font-size: 12px; text-align: center; color: #707070;">{{$estado}}</span>
+                              </div>
+                              @php
+                              $contador++
+                              @endphp
+                            @endforeach
+                          </div>
+                            <div style="margin: 0 auto; text-align: -webkit-center; width: 90%;">
+                              {{-- Coloco la barra de porcentaje --}}
+                              <progress class="uk-progress progress-green" value="{{$proyecto->porcentaje}}" max="100" style="border:2px solid #333; text-align: left;"></progress>
+                            </div>
+                        </div>
+                      </a>
+                      <div class="div-block-396">
+                        <div class="div-block-1797">
+                          <div class="div-block-1770"
+
+                          {{-- Busco si el array de archivos del proyecto tiene datos dentro --}}
+                          @if (!empty($proyecto->archivos->first()))
+                            {{-- Si tiene, recorro archivo por archivo --}}
+                            @foreach ($proyecto->archivos as $archivo)
+                              {{-- Si el archivo es una imagen la muestro --}}
+                              @if ($archivo->imagen)
+                                style="background-image: url('/storage/{{$archivo->imagen}}'); background-repeat: no-repeat;"
+                              @else
+                                {{-- Si no tiene archivos de imagen muestro una predeterminada --}}
+                                style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat;"
+                              @endif
+                            @endforeach
+                          @else
+                            {{-- Si el proyecto no tiene archivos de ningun tipo, muestro la imagen predeterminada --}}
+                            style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat;"
+                          @endif
+                          ></div>
+                        </div>
+                        <div class="div-block-1796">
+                          <a data-w-id="ba7e79bd-5c37-855a-18f3-4b7239cdfb70" href="#" class="button-35 w-button">Documentación</a>
+                        </div>
+                        <div class="div-block-1805">
+                          <a href="#" class="button-35 w-button">Editar</a>
+                          <a href="#" class="button-35 w-button">Eliminar</a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+
+                @endforeach
               </div>
             </div>
           </div>
@@ -644,6 +702,7 @@
     </div>
 
 
+
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f43d6794f715d3ebe1c4707" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
@@ -678,5 +737,7 @@
       });
       });
       </script>
+      <!-- UIkit JS -->
+      <script src="/js/uikit.js" type="text/javascript"></script>
   </body>
 </html>

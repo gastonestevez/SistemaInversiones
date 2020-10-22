@@ -42,17 +42,22 @@
         @endif
 
         <form id="addproyecto-form" name="addproyecto-form" data-name="Email Form" class="form-5" action="/addproyecto" method="post" enctype="multipart/form-data">
+          @csrf
           <div>
             <label for="titulo" class="field-label-29">Título</label>
             <input type="text" value="{{ old('titulo') }}" class="text-field-15 w-input" maxlength="256" name="titulo" data-name="Name" placeholder="" id="titulo" required autofocus>
           </div>
           <div>
             <label for="fecha" class="field-label-30">Fecha de entrega</label>
-            <input type="number" value="{{ old('fecha') }}" class="text-field-15 w-input" maxlength="256" name="fecha" data-name="Fecha De Entrega" placeholder="" id="fecha">
+            <input type="text" value="{{ old('fecha') }}" class="text-field-15 w-input" name="fecha" data-name="Fecha De Entrega" placeholder="" id="fecha">
           </div>
           <div>
             <label for="imagen_360" class="field-label-30">Imagen 360º (Embed)</label>
             <input type="text" value="{{ old('imagen_360') }}" maxlength="256" name="imagen_360"data-name="" id="imagen_360" class="text-field-15 w-input">
+          </div>
+          <div>
+            <label for="link_web" class="field-label-30">Link sitio web</label>
+            <input type="text" value="{{ old('link_web') }}" maxlength="256" name="link_web"data-name="" id="link_web" class="text-field-15 w-input">
           </div>
           <div>
             <label for="estados" class="field-label-30">Estados (separados por coma)</label>
@@ -60,20 +65,29 @@
           </div>
           <div>
             <label for="porcentaje" class="field-label-30">Porcentaje</label>
-            <input type="text" value="{{ old('porcentaje') }}" class="text-field-15 w-input" maxlength="256" name="porcentaje" data-name="porcentaje" placeholder="" id="porcentaje" required>
+            <input type="number" value="{{ old('porcentaje') }}" class="text-field-15 w-input" max="100" name="porcentaje" data-name="porcentaje" placeholder="" id="porcentaje" required>
           </div>
           <div>
             <label for="localidad_id" class="field-label-17">Localidad</label>
             <select id="localidad_id" name="localidad_id" class="w-select">
               <option value="">Seleccione una...</option>
               @foreach ($localidades as $localidad)
-                <option value="{{$localidad->id}}">{{$localidad->nombre}}</option>
+                <option value="{{$localidad->id}}" {{($localidad->id == old('localidad_id'))?'selected': '' }}>{{$localidad->nombre}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div>
+            <label for="asesor_id" class="field-label-17">Asignar un Asesor</label>
+            <select id="asesor_id" name="asesor_id" class="w-select" required>
+              <option value="">Seleccione un asesor...</option>
+              @foreach ($asesores as $asesor)
+                <option value="{{$asesor->id}}" {{($asesor->id == old('asesor_id'))?'selected': '' }}>{{$asesor->nombre}}</option>
               @endforeach
             </select>
           </div>
           <div>
             <label style="text-align:center;" for="destacado" class="field-label-30">Destacar</label>
-            <input type="checkbox" class="text-field-15 w-input" maxlength="256" name="destacado" data-name="porcentaje" placeholder="" id="destacado" required>
+            <input value="1" type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
           </div>
           <div id="imagenes" class="div-block-404">
             <label for="imagenes" class="field-label-32">Cargar Imágenes</label>
@@ -97,43 +111,22 @@
           <br><br>
 
           <label style="text-align:center;" for="referente" class="field-label-30">Referentes</label>
-          {{-- <div id="w-node-9b4e0133bb7d-dab82f42" class="div-block-1814">
-            <div>
-              <label for="referente" class="field-label-30">Nombre</label>
-              <input type="text" maxlength="256" data-name="" name="referente" id="referente" class="text-field-15 w-input">
-            </div>
-            <div>
-              <label for="tipo_de_referente" class="field-label-30">Tipo de Referente</label>
-              <select id="tipo_de_referente" name="tipo_de_referente" class="w-select">
-                <option value="">Tipo de referente...</option>
-                @foreach ($tipo_de_referentes as $tipo_de_referente)
-                  <option value="{{$tipo_de_referente->id}}">{{$tipo_de_referente->tipo}}</option>
-                @endforeach
-              </select>
-            </div>
-            <div id="foto_referente" class="div-block-404">
-              <label for="foto_referente" class="field-label-32">Cargar Foto</label>
-              <div class="div-block-1806">
-                <input id="foto_referente" type="file" name="foto_referente" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
-              </div>
-            </div>
-          </div> --}}
 
           <div class="uk-overflow-auto">
             <table class="uk-table uk-table-small uk-table-divider">
               <thead>
                 <tr id="labels" >
-                  <th class="field-label-30">Nombre</th>
+                  <th class="field-label-30">Nombre Completo</th>
                   <th class="field-label-30">Tipo de Referente</th>
                   <th class="field-label-30">Cargar Foto</th>
                 </tr>
               </thead>
-              
+
               <tbody id="table_unidad_body">
-                
+
                 <tr>
                   <th>
-                    <input type="text" maxlength="256" data-name="" name="referente[0][referente]" id="referente" class="text-field-15 w-input">
+                    <input type="text" maxlength="256" data-name="" name="referente[0][nombre_referente]" id="nombre_referente" class="text-field-15 w-input">
                   </th>
                   <th>
                     <select id="tipo_de_referente" name="referente[0][tipo_de_referente]" class="w-select">
@@ -164,7 +157,7 @@
           <br> <br>
 
           <div id="w-node-3a3f3b505af0-dab82f42" class="div-block-1808">
-            <input type="submit" value="Cargar Proyecto" data-wait="Please wait..." class="submit-button-14 w-button">
+            <button type="submit" data-wait="Please wait..." class="submit-button-14 w-button">Cargar Proyecto</button>
           </div>
         </form>
 
@@ -225,8 +218,8 @@
     }
 
     agregarReferenteBoton.onclick = (event) => {
-      event.preventDefault(); 
-      const labels = ['referente','tipo_de_referente','foto_referente','deleteRef'];
+      event.preventDefault();
+      const labels = ['nombre_referente','tipo_de_referente','foto_referente','deleteRef'];
       const tableTr = document.createElement('tr');
       const tableLength = tableUnidadBody.children.length;
       labels.forEach( (label) => {

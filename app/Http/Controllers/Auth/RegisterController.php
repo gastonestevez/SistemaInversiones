@@ -74,13 +74,13 @@ class RegisterController extends Controller
     {
 
 
-      // Si adjuntan un avatar
+      // // Si adjuntan un avatar
       if (isset($data['avatar'])) {
 
         $file = $data['avatar']->store('public'); // Esta ruta guarda al archivo con la ruta entera.
         $path = basename($file); // basename recorta la ruta y nos deja solo el nombre del archivo.
       } else {
-        $path = "archivos/img/avatarpredeterminado.svg"; // le asigna la nueva ruta a la base de datos
+        $path = null; // le asigna la nueva ruta a la base de datos
       }
 
 

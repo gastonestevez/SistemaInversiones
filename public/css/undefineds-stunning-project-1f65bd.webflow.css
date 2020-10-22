@@ -941,7 +941,7 @@ label {
   border-width: 0px;
   border-color: #dfeffc;
   border-radius: 15px;
-  box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.19);
+  /* box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.19); */
   -webkit-transition: border-width 500ms ease;
   transition: border-width 500ms ease;
 }
@@ -5974,7 +5974,7 @@ label {
   margin-bottom: 0px;
   border: 5px solid #dfeffc;
   border-radius: 15px;
-  background-image: url('../images/DSC00192.jpg');
+  /* background-image: url('../images/DSC00192.jpg'); */
   background-position: 50% 50%;
   background-size: cover;
   box-shadow: 7px 7px 20px 0 #fff;
@@ -6793,7 +6793,7 @@ label {
   border-width: 5px;
   border-color: #dfeffc;
   border-radius: 20px;
-  background-image: url('../images/0.jpg');
+  /* background-image: url('../images/0.jpg'); */
   background-position: 50% 50%;
   background-size: cover;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);

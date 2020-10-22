@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Asesor;
 use App\Archivo;
+use App\Proyecto;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
     public function index()
     {
       $asesores = Asesor::all();
-      $vac = compact('asesores');
+      $proyectos = Proyecto::all();
+      $vac = compact('asesores', 'proyectos');
 
       return view('index', $vac);
     }

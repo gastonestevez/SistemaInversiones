@@ -12,6 +12,11 @@ Manejar los valores de dinero con la milesima: EJ: 1.000 o 250.000. Hecho (ver A
 
 FALTA
 
+1)En addproyecto cuando agregamos otro referente se clona el campo nombre y el campo foto.
+2)Si no escriben ni un referente que no se guarde nada en la base de datos
+3)Hacer con JS que cuando Coloquen el nombre de un referente se vuelva required el campo tipo y viceversa
+4)Completar proyecto - documentos y ver si se puede hacer mas prolijo lo de mostrar la foto predeterminada
+
 API:
 -Completar el Exceptions -> handler con la view 404 que nos brindaron
 -Consultar lo de la expiracion del Token.
