@@ -15,7 +15,6 @@ class ProyectoController extends Controller
 
   public function new()
   {
-    
     $localidades = Localidad::all();
     $asesores = Asesor::all();
     $tipo_de_referentes = Tipo_de_referente::all();
