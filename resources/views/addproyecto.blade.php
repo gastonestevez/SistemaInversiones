@@ -44,7 +44,7 @@
         <form id="addproyecto-form" name="addproyecto-form" data-name="Email Form" class="form-5" action="/addproyecto" method="post" enctype="multipart/form-data">
           @csrf
           <div>
-            <label for="titulo" class="field-label-29">Título</label>
+            <label for="titulo" class="field-label-29">Título *</label>
             <input type="text" value="{{ old('titulo') }}" class="text-field-15 w-input" maxlength="256" name="titulo" data-name="Name" placeholder="" id="titulo" required autofocus>
           </div>
           <div>
@@ -60,11 +60,11 @@
             <input type="text" value="{{ old('link_web') }}" maxlength="256" name="link_web"data-name="" id="link_web" class="text-field-15 w-input">
           </div>
           <div>
-            <label for="estados" class="field-label-30">Estados (separados por coma)</label>
+            <label for="estados" class="field-label-30">Estados (separados por coma) *</label>
             <input type="text" value="{{ old('estados') }}" maxlength="256" data-name="" name="estados" id="estados" class="text-field-15 w-input" required>
           </div>
           <div>
-            <label for="porcentaje" class="field-label-30">Porcentaje</label>
+            <label for="porcentaje" class="field-label-30">Porcentaje *</label>
             <input type="number" value="{{ old('porcentaje') }}" class="text-field-15 w-input" max="100" name="porcentaje" data-name="porcentaje" placeholder="" id="porcentaje" required>
           </div>
           <div>
@@ -77,7 +77,7 @@
             </select>
           </div>
           <div>
-            <label for="asesor_id" class="field-label-17">Asignar un Asesor</label>
+            <label for="asesor_id" class="field-label-17">Asignar un Asesor *</label>
             <select id="asesor_id" name="asesor_id" class="w-select" required>
               <option value="">Seleccione un asesor...</option>
               @foreach ($asesores as $asesor)
@@ -126,10 +126,10 @@
 
                 <tr>
                   <th>
-                    <input type="text" maxlength="256" data-name="" name="referente[0][nombre_referente]" id="nombre_referente" class="text-field-15 w-input">
+                    <input type="text" maxlength="256" data-name="" name="referente[0][nombre_referente]" id="nombre_referente" class="text-field-15 w-input nombre_referente">
                   </th>
                   <th>
-                    <select id="tipo_de_referente" name="referente[0][tipo_de_referente]" class="w-select">
+                    <select id="tipo_de_referente" name="referente[0][tipo_de_referente]" class="w-select tipo_de_referente">
                       <option value="">Seleccione un tipo</option>
                       @foreach ($tipo_de_referentes as $tipo_de_referente)
                         <option value="{{$tipo_de_referente->id}}">{{$tipo_de_referente->tipo}}</option>
@@ -157,7 +157,7 @@
           <br> <br>
 
           <div id="w-node-3a3f3b505af0-dab82f42" class="div-block-1808">
-            <button type="submit" data-wait="Please wait..." class="submit-button-14 w-button">Cargar Proyecto</button>
+            <button type="submit" onclick="handleSubmit(event)" data-wait="Please wait..." class="submit-button-14 w-button">Cargar Proyecto</button>
           </div>
         </form>
 
@@ -205,10 +205,26 @@
     const tableUnidadBody = document.getElementById('table_unidad_body');
     const labels = document.getElementById('labels');
 
+    const handleSubmit = (e) => {
+      const nombreReferentes = Array.from(document.querySelectorAll('th > input.nombre_referente'));
+      const tipoReferentes = Array.from(document.querySelectorAll('th > select.tipo_de_referente'));
+      const hayCampoVacio =  !!(nombreReferentes.find( ({ value }) => !value) || tipoReferentes.find( ({ value }) => !value))
+      if(hayCampoVacio){
+        e.preventDefault();
+        const userResponse = confirm('Todos los referentes deben tener nombre y tipo obligatorio, caso contrario no se guardarán. ¿Desea continuar?')
+        if(userResponse){
+          document.getElementById('addproyecto-form').submit()
+        } 
+      }
+
+
+
+    }
     const setupTag = (htmlTag, label) => {
       const type = {
         ['deleteRef']: () => {htmlTag.removeAttribute('hidden')},
-        ['referente']: () => {htmlTag.value = null}
+        ['nombre_referente']: () => {htmlTag.value = null},
+        ['foto_referente']: () => {htmlTag.value = null}
       }
       type[label] && type[label]();
     }

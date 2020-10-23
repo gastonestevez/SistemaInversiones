@@ -23,7 +23,6 @@ class ProyectoController extends Controller
 
   public function store(Request $request)
   {
-
     $reglas = [
       "titulo" => "required|unique:proyectos",
       "imagenes" => "nullable|array",
@@ -141,29 +140,26 @@ class ProyectoController extends Controller
 
     foreach ($request->referente as $referente)
     {
-
-      $nuevo_referente = New Referente;
-      $nuevo_referente->nombre = $referente['nombre_referente'];
-      if (isset($referente['foto_referente'])) {
-        // guardo cada imagen en storage/public (no en la base de datos)
-        $file = $referente['foto_referente']->store('public');
-        // obtengo sus nombres
-        $path = basename($file);
-        $nuevo_referente->foto = $path;
+      if (isset($referente['nombre_referente']) && isset($referente['tipo_de_referente'])){
+        $nuevo_referente = New Referente;
+        $nuevo_referente->nombre = $referente['nombre_referente'];
+        if (isset($referente['foto_referente'])) {
+          // guardo cada imagen en storage/public (no en la base de datos)
+          $file = $referente['foto_referente']->store('public');
+          // obtengo sus nombres
+          $path = basename($file);
+          $nuevo_referente->foto = $path;
+        }
+        $nuevo_referente->tipo_de_referente_id = $referente['tipo_de_referente'];
+        // traigo el proyecto recien creado para obtener su ID
+        $lastProject = Proyecto::all()->last();
+        $projectId = $lastProject->id;
+        $nuevo_referente->proyecto_id = $projectId;
+        $nuevo_referente->save();
       }
-      $nuevo_referente->tipo_de_referente_id = $referente['tipo_de_referente'];
-
-      // traigo el proyecto recien creado para obtener su ID
-      $lastProject = Proyecto::all()->last();
-      $projectId = $lastProject->id;
-      $nuevo_referente->proyecto_id = $projectId;
-
-
-      $nuevo_referente->save();
     }
 
     return redirect('/')->with('success', 'Proyecto creado exitosamente');
-
   }
 
 }
