@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Thu Oct 15 2020 20:37:14 GMT+0000 (Coordinated Universal Time)  -->
+@foreach ($proyectos as $item)
+{{dd($item->archivos)}}
+@endforeach
 <html data-wf-page="5f43d67a5b9a601566a11659" data-wf-site="5f43d6794f715d3ebe1c4707">
   <head>
     <meta charset="utf-8">
@@ -460,7 +463,7 @@
                           ></div>
                         </div>
                         <div class="div-block-1796">
-                          <a data-w-id="ba7e79bd-5c37-855a-18f3-4b7239cdfb70" href="#" class="button-35 w-button">Documentación</a>
+                        <a onclick='handleDocuments(this)' id='doc{{$proyecto->id}}' href="#" class="button-35 w-button">Documentación</a>
                         </div>
                         <div class="div-block-1805">
                           <a href="#" class="button-35 w-button">Editar</a>
@@ -469,6 +472,30 @@
                       </div>
                     </div>
                   </div>
+
+
+                  <!-- Al cliquear el boton Documentos en la card de cada proyecto se despliega este popup. Popup documentos -->
+                  <div id='pop{{$proyecto->id}}' class="container pop-up">
+                    <div class="div-block-1765">
+                      <a data-w-id="8bfbcf97-6193-03e4-2120-65b63bde84d1" href="#" class="link">X</a>
+                    </div>
+                    <h3 class="heading-8">Documentos</h3>
+                    <div class="dash-row">
+                      
+                      @foreach ($proyecto->archivos as $archivo)
+                        <a href="documents/Project-proposal.pdf" class="white-box-2 link-box paper-box w-inline-block">
+                          <div class="box-padding paper-padding">
+                            <img src="/images/1.svg" alt="" class="doc-image">
+                            <h3 class="doc-heading">Propuesta</h3>
+                            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
+                            <div class="doc-date">27 January 2019</div>
+                          </div>
+                          <img src="/images/paper.svg" alt="" class="paper">
+                        </a>
+                      @endforeach
+                    </div>
+                  </div>
+
 
                 @endforeach
               </div>
@@ -646,63 +673,6 @@
       <a data-w-id="fd82e383-5e08-d5f8-0390-ea56e4d92787" href="#" class="text-block-304 w-inline-block">X</a>
     </div>
 
-    <!-- Al cliquear el boton Documentos en la card de cada proyecto se despliega este popup. Popup documentos -->
-    <div class="container pop-up">
-      <div class="div-block-1765">
-        <a data-w-id="8bfbcf97-6193-03e4-2120-65b63bde84d1" href="#" class="link">X</a>
-      </div>
-      <h3 class="heading-8">Documentos</h3>
-      <div class="dash-row">
-        <a href="documents/Project-proposal.pdf" class="white-box-2 link-box paper-box w-inline-block">
-          <div class="box-padding paper-padding">
-            <img src="/images/1.svg" alt="" class="doc-image">
-            <h3 class="doc-heading">Propuesta</h3>
-            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
-            <div class="doc-date">27 January 2019</div>
-          </div>
-          <img src="/images/paper.svg" alt="" class="paper">
-        </a>
-        <a href="documents/Project-proposal.pdf" class="white-box-2 link-box paper-box w-inline-block">
-          <div class="box-padding paper-padding">
-            <img src="/images/2.svg" alt="" class="doc-image">
-            <h3 class="doc-heading">Terminos</h3>
-            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
-            <div class="doc-date">27 January 2019</div>
-          </div>
-          <img src="/images/paper.svg" alt="" class="paper">
-        </a>
-        <a href="documents/Project-proposal.pdf" class="white-box-2 link-box paper-box w-inline-block">
-          <div class="box-padding paper-padding">
-            <img src="/images/3.svg" alt="" class="doc-image">
-            <h3 class="doc-heading">Presupuesto</h3>
-            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
-            <div class="doc-date">27 January 2019</div>
-          </div>
-          <img src="/images/paper.svg" alt="" class="paper">
-        </a>
-        <a href="documents/Terms-of-use.docx" class="white-box-2 link-box paper-box w-inline-block">
-          <div class="box-padding paper-padding">
-            <img src="/images/2.svg" alt="" class="doc-image">
-            <h3 class="doc-heading">Contrato</h3>
-            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
-            <div class="doc-date">27 January 2019</div>
-          </div>
-          <img src="/images/paper.svg" alt="" class="paper">
-        </a>
-        <a href="documents/Terms-of-use.docx" class="white-box-2 link-box paper-box w-inline-block">
-          <div class="box-padding paper-padding">
-            <img src="/images/3.svg" alt="" class="doc-image">
-            <h3 class="doc-heading">Miembros<br></h3>
-            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
-            <div class="doc-date">27 January 2019</div>
-          </div>
-          <img src="/images/paper.svg" alt="" class="paper">
-        </a>
-      </div>
-    </div>
-
-
-
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f43d6794f715d3ebe1c4707" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
@@ -739,5 +709,14 @@
       </script>
       <!-- UIkit JS -->
       <script src="/js/uikit.js" type="text/javascript"></script>
+
+    <script> 
+      const handleDocuments = (obj) => {
+        const id = obj.id
+        const popId = `pop${id.split('doc')[1]}`
+        const popup = document.getElementById(popId)
+        popup.style.display = 'block'
+      } 
+    </script>
   </body>
 </html>
