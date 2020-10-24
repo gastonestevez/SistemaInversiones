@@ -57,9 +57,9 @@ Route::post('/addproyecto', 'ProyectoController@store');
 
 Route::get('/editproyecto/{slug}', 'ProyectoController@edit');
 
-Route::post('/editproyecto/{slug}', 'ProyectoController@update');
+Route::put('/editproyecto/{slug}', 'ProyectoController@update');
 
-Route::delete('/deleteproyecto/{slug}', 'ProyectoController@destroy');
+Route::delete('/deleteproyecto/{id}', 'ProyectoController@destroy');
 
 // Usuarios
 
@@ -72,8 +72,8 @@ Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage');
 
 // Borrar imagenes, documentos y logos de los proyectos
 
-Route::post('/deletelogo/{id}', 'HomeController@deletelogo');
+Route::delete('/archivos/deletelogo/{id}', 'ArchivosController@deletelogo');
 
-Route::post('/deletedocumento/{id}', 'HomeController@deleteplano');
+Route::delete('/archivos/deletedocumento/{id}', 'ArchivosController@deleteplano');
 
-Route::delete('/deleteimage/{id}', 'HomeController@deleteImage');
+Route::delete('/archivos/deleteimage/{id}', 'ArchivosController@deleteimage');

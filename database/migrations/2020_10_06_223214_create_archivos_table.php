@@ -22,7 +22,7 @@ class CreateArchivosTable extends Migration
             $table->timestamps();
 
             $table->bigInteger('proyecto_id')->unsigned()->nullable();
-            $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

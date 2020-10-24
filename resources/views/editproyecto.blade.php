@@ -44,6 +44,7 @@
         <form id="editproyecto-form" name="editproyecto-form" class="form-5" action="/editproyecto/{{$proyecto->slug}}" method="post" enctype="multipart/form-data">
           @method('put')
           @csrf
+          <input type="hidden" name="id" value="{{$proyecto->id}}">
           <div>
             <label for="titulo" class="field-label-29">Título *</label>
             <input type="text" value="{{ old('titulo', $proyecto->titulo) }}" class="text-field-15 w-input" maxlength="256" name="titulo" data-name="Name" placeholder="" id="titulo" required autofocus>
@@ -62,7 +63,7 @@
           </div>
           <div>
             <label for="estados" class="field-label-30">Estados (separados por coma) *</label>
-            <input type="text" value="{{ old('estados', $proyecto->estado) }}" name="estados" id="estados" class="text-field-15 w-input" required>
+            <input type="text" value="{{ old('estados', $proyecto->estados) }}" name="estados" id="estados" class="text-field-15 w-input" required>
           </div>
           <div>
             <label for="porcentaje" class="field-label-30">Porcentaje *</label>
@@ -89,24 +90,6 @@
           <div>
             <label style="text-align:center;" for="destacado" class="field-label-30">Destacar</label>
             <input value="{{$proyecto->destacado}}" @if($proyecto->destacado) checked @endif type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
-          </div>
-          <div id="imagenes" class="div-block-404">
-            <label for="imagenes" class="field-label-32">Cargar Imágenes</label>
-            <div class="div-block-1806">
-              <input id="imagenes" type="file" name="imagenes[]" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
-            </div>
-          </div>
-          <div id="logos" class="div-block-404">
-            <label for="logos" class="field-label-32">Cargar Logos</label>
-            <div class="div-block-1806">
-              <input id="logos" type="file" name="logos[]" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
-            </div>
-          </div>
-          <div id="documentos" class="div-block-404">
-            <label for="documentos" class="field-label-32">Cargar Documentos</label>
-            <div class="div-block-1806">
-              <input id="documentos" type="file" name="documentos[]" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
-            </div>
           </div>
 
           <br><br>
@@ -163,9 +146,85 @@
           <br> <br>
 
           <div id="w-node-3a3f3b505af0-dab82f42" class="div-block-1808">
-            <button type="submit" onclick="handleSubmit(event)" data-wait="Please wait..." class="submit-button-14 w-button">Cargar Proyecto</button>
+            <button style="display:none;" id="editproyecto" type="submit" onclick="handleSubmit(event)" data-wait="Please wait..." class="submit-button-14 w-button">Editar Proyecto</button>
           </div>
+
+          <div id="imagenes" class="div-block-404">
+            <label for="imagenes" class="field-label-32">Cargar Imágenes</label>
+            <div class="div-block-1806">
+              <input id="imagenes" type="file" name="imagenes[]" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
+            </div>
+          </div>
+          <div id="logos" class="div-block-404">
+            <label for="logos" class="field-label-32">Cargar Logos</label>
+            <div class="div-block-1806">
+              <input id="logos" type="file" name="logos[]" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
+            </div>
+          </div>
+          <div id="documentos" class="div-block-404">
+            <label for="documentos" class="field-label-32">Cargar Documentos</label>
+            <div class="div-block-1806">
+              <input id="documentos" type="file" name="documentos[]" data-wait="Please wait..." class="submit-button-15 w-button" multiple>
+            </div>
+          </div>
+
         </form>
+
+
+        @if(tieneImagenes($proyecto))
+          <label style="text-align: center;" for="documentos" class="field-label-32">Imágenes</label>
+        @endif
+        {{-- Busco las imagenes del proyecto --}}
+        @foreach (imagenesProyecto($proyecto) as $imagen)
+          <div class="div-block-1767">
+            {{-- Si el proyecto tiene foto --}}
+              <img src="/storage/{{$imagen['path']}}" alt="" style="max-width: 300px; max-height: 150px;">
+              {{-- Borrar la foto --}}
+              <form action="/archivos/deleteimage/{{$imagen['id']}}" method="post">
+                @method('delete')
+                @csrf
+                <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
+              </form>
+          </div>
+        @endforeach
+
+        @if(tieneLogos($proyecto))
+        <label style="text-align: center;" for="documentos" class="field-label-32">Logos</label>
+        @endif
+        {{-- Busco los logos del proyecto --}}
+        @foreach(logosProyecto($proyecto) as $logo)
+          <div class="div-block-1767">
+            {{-- Si el proyecto tiene foto --}}
+              <img src="/storage/{{$logo['path']}}" alt="" style="max-width: 300px; max-height: 150px;">
+              {{-- Borrar el logo --}}
+              <form action="/archivos/deletelogo/{{$logo['id']}}" method="post">
+                @method('delete')
+                @csrf
+                <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
+              </form>
+          </div>
+        @endforeach
+
+        @if(tieneDocumentos($proyecto))
+          <label style="textalign: center;r" for="documentos" class="field-label-32">Documentos</label>
+        @endif
+        {{-- Busco los documentos del proyecto --}}
+        @foreach(documentosProyecto($proyecto) as $documento)
+          <div class="div-block-1767">
+            {{-- Si el proyecto tiene documentos --}}
+              <a href="/storage/{{$documento['path']}}" alt="" style="max-width: 300px; max-height: 150px;" target="_blank">{{$documento['nombre_archivo']}}</a>
+              {{-- Borrar el documento --}}
+              <form action="/archivos/deletedocumento/{{$documento['id']}}" method="post">
+                @method('delete')
+                @csrf
+                <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
+              </form>
+          </div>
+        @endforeach
+
+        <br><br>
+
+        <label for="editproyecto" class="submit-button-17 w-button" style="text-align:center; font-weight: 500;">Editar Proyecto</label>
 
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>

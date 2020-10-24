@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Thu Oct 15 2020 20:37:14 GMT+0000 (Coordinated Universal Time)  -->
-@foreach ($proyectos as $item)
-{{dd($item->archivos)}}
-@endforeach
+
 <html data-wf-page="5f43d67a5b9a601566a11659" data-wf-site="5f43d6794f715d3ebe1c4707">
   <head>
     <meta charset="utf-8">
@@ -64,18 +62,6 @@
       }
     </style>
   </head>
-
-  {{-- @foreach ($proyectos as $proyecto)
-    @php
-    dd(empty($proyectos[4]->archivos->first()));
-    @endphp
-    @if (isset($proyecto->archivos))
-      @foreach ($proyecto->archivos as $archivo)
-        @if ($archivo->imagen)
-        @endif
-      @endforeach
-    @endif
-  @endforeach --}}
 
   <body class="body">
     <div class="page-wrapper">
@@ -444,30 +430,33 @@
                         <div class="div-block-1797">
                           <div class="div-block-1770"
 
-                          {{-- Busco si el array de archivos del proyecto tiene datos dentro --}}
-                          @if (!empty($proyecto->archivos->first()))
-                            {{-- Si tiene, recorro archivo por archivo --}}
-                            @foreach ($proyecto->archivos as $archivo)
-                              {{-- Si el archivo es una imagen la muestro --}}
-                              @if ($archivo->imagen)
-                                style="background-image: url('/storage/{{$archivo->imagen}}'); background-repeat: no-repeat;"
-                              @else
-                                {{-- Si no tiene archivos de imagen muestro una predeterminada --}}
-                                style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat;"
-                              @endif
+                          {{-- Consulto si el proyecto tiene imagenes --}}
+                          @if (tieneImagenes($proyecto))
+                            @foreach (imagenesProyecto($proyecto) as $imagen)
+                              style="background-image: url('/storage/{{$imagen['path']}}'); background-repeat: no-repeat;"
                             @endforeach
                           @else
-                            {{-- Si el proyecto no tiene archivos de ningun tipo, muestro la imagen predeterminada --}}
+                            {{-- Si no tiene archivos de imagen muestro una predeterminada --}}
                             style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat;"
                           @endif
+
                           ></div>
                         </div>
                         <div class="div-block-1796">
                         <a onclick='handleDocuments(this)' id='doc{{$proyecto->id}}' href="#" class="button-35 w-button">Documentación</a>
                         </div>
                         <div class="div-block-1805">
-                          <a href="#" class="button-35 w-button">Editar</a>
-                          <a href="#" class="button-35 w-button">Eliminar</a>
+
+                          {{-- Editar Proyecto --}}
+                          <a href="/editproyecto/{{$proyecto->slug}}" class="button-35 w-button">Editar</a>
+
+                          {{-- Eliminar Proyecto --}}
+                          <form action="/deleteproyecto/{{$proyecto->id}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button class="button-35 w-button" type="submit">Eliminar</button>
+                          </form>
+
                         </div>
                       </div>
                     </div>
@@ -481,7 +470,7 @@
                     </div>
                     <h3 class="heading-8">Documentos</h3>
                     <div class="dash-row">
-                      
+
                       @foreach ($proyecto->archivos as $archivo)
                         <a href="documents/Project-proposal.pdf" class="white-box-2 link-box paper-box w-inline-block">
                           <div class="box-padding paper-padding">
@@ -710,13 +699,13 @@
       <!-- UIkit JS -->
       <script src="/js/uikit.js" type="text/javascript"></script>
 
-    <script> 
+    <script>
       const handleDocuments = (obj) => {
         const id = obj.id
         const popId = `pop${id.split('doc')[1]}`
         const popup = document.getElementById(popId)
         popup.style.display = 'block'
-      } 
+      }
     </script>
   </body>
 </html>
