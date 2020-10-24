@@ -15,6 +15,7 @@ FALTA
 4)Completar proyecto - documentos y ver si se puede hacer mas prolijo lo de mostrar la foto predeterminada
 5)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
 6)Hacer funcional los inversores de los asesores. Usar una funcion como helper para hacer un count???
+7)Crear una billetera cada vez que se crea un usuario
 
 
 API:

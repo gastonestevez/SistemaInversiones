@@ -13,9 +13,9 @@ class BilleterasSeeder extends Seeder
     {
       DB::table('billeteras')->insert([
         [
-          'inversion_inicial' => '0',
-          'total' => '0',
-          'rentabilidad' => '0',
+          'inversion_inicial' => '8000',
+          'total' => '15000',
+          'rentabilidad' => '30000',
         ],
         [
           'inversion_inicial' => '2222',

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Thu Oct 15 2020 20:37:14 GMT+0000 (Coordinated Universal Time)  -->
-
 <html data-wf-page="5f43d67a5b9a601566a11659" data-wf-site="5f43d6794f715d3ebe1c4707">
   <head>
     <meta charset="utf-8">
@@ -204,7 +203,9 @@
           </nav>
           @endif
         </div>
-        <h3 class="heading sola">Bienvenido a tu billetera Emanuel!</h3>
+        @if (Auth::user())
+          <h3 class="heading sola">Bienvenido a tu billetera {{(Auth::user()->name)}}</h3>
+        @endif
       </div>
 
       <!-- Mitad de la pagina -->
@@ -212,10 +213,12 @@
 
           <!-- Menu de las tabs -->
         <div class="navigation-menu w-tab-menu">
-          <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link w--current">
-            <div class="navigation-icon"></div>
-            <div class="text-block-138">Mi billetera</div>
-          </a>
+          @if (Auth::user())
+            <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link w--current">
+              <div class="navigation-icon"></div>
+              <div class="text-block-138">Mi billetera</div>
+            </a>
+          @endif
           <a data-w-tab="Project" class="navigation-item w-inline-block w-tab-link">
             <div class="navigation-icon"></div>
             <div class="text-block-137 asesores">Asesores</div>
@@ -224,45 +227,51 @@
             <div class="navigation-icon"></div>
             <div class="text-block-134">Proyectos</div>
           </a>
-          <a data-w-tab="usuarios" class="navigation-item w-inline-block w-tab-link">
-            <div class="navigation-icon"></div>
-            <div class="text-block-326">Usuarios</div>
-          </a>
+          @if (Auth::user())
+            @if (Auth::user()->is_admin)
+            <a data-w-tab="usuarios" class="navigation-item w-inline-block w-tab-link">
+              <div class="navigation-icon"></div>
+              <div class="text-block-326">Usuarios</div>
+            </a>
+            @endif
+          @endif
         </div>
 
         <!-- Espacio donde va el contenido de las tabs -->
         <div class="dash-tab-wrapper w-tab-content">
 
           <!-- Billetera -->
+          @if (Auth::user())
           <div data-w-tab="Overview" class="dashboard-section w-tab-pane w--tab-active">
             <div class="container">
-              <h3 class="heading-6">Estos son tus estadísticas, <span>Emanuel</span>!</h3>
+                <h3 class="heading-6">Estos son tus estadísticas, <span>{{(Auth::user()->name)}}</span>!</h3>
+
               <div class="dash-row">
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span>25,000</span></h3>
+                    <h3 class="large-number">$<span>{{precio(Auth::user()->billetera->inversion_inicial)}}</span></h3>
                     <div class="text-block-316">Inversión inicial</div>
                   </div>
                 </div>
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span ms-data="spend">5,030</span></h3>
+                    <h3 class="large-number">$<span ms-data="spend">{{precio(Auth::user()->billetera->total)}}</span></h3>
                     <div class="text-block-318">Total invertido ( 2 proyectos)</div>
                   </div>
                 </div>
                 <div class="white-box third">
                   <div class="box-padding _3">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number _2">$<span ms-data="spend" class="text-span-2">5,030</span></h3>
+                    <h3 class="large-number _2">$<span ms-data="spend" class="text-span-2">{{precio(Auth::user()->billetera->rentabilidad)}}</span></h3>
                     <div class="text-block-145">Rentabilidad esperada</div>
                   </div>
                 </div>
                 <div class="white-box third mobile-full-box">
                   <div class="box-padding">
                     <div class="colorful-icon purple"></div>
-                    <h3 class="large-number">21 Junio 2020</h3>
+                    <h3 class="large-number">{{Auth::user()->created_at}}</h3>
                     <div class="text-block-317">Fecha de inicio</div>
                   </div>
                 </div>
@@ -300,6 +309,7 @@
               </div>
             </div>
           </div>
+          @endif
 
           <!-- Asesores -->
           <div data-w-tab="Project" class="dashboard-section w-tab-pane">

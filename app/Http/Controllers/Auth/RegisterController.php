@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Billetera;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -93,5 +94,11 @@ class RegisterController extends Controller
             'avatar' => $path,
             'is_admin' => false
         ]);
+
+        // $billetera = New Billetera();
+        // $billetera->inversion_inicial = 0;
+        // $billetera->total = 0;
+        // $billetera->rentabilidad = 0;
+        // $billetera->save();
     }
 }
