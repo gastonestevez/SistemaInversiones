@@ -478,24 +478,41 @@
                     <div class="div-block-1765">
                       <a data-w-id="8bfbcf97-6193-03e4-2120-65b63bde84d1" href="#" class="link">X</a>
                     </div>
-                    <h3 class="heading-8">Documentos</h3>
+                    
+                    <h3 class="heading-8">{{count($proyecto->archivos) ? 'Documentos' : 'Sin documentos'}}</h3>
                     <div class="dash-row">
 
                       @foreach ($proyecto->archivos as $archivo)
-                        <a href="documents/Project-proposal.pdf" class="white-box-2 link-box paper-box w-inline-block">
+                        @php
+                          $format = 'docx';
+                          if(isset($archivo->documento)){
+                            $icon = '/images/doc.svg';
+                            $regexs = [
+                              'pdf' => '/^.*\.(pdf)$/i',
+                              'doc' => '/^.*\.(doc|docx)$/i',
+                              'sheet' => '/^.*\.(xls|xlsx)$/i',
+                            ];
+                            foreach ($regexs as $ext => $reg) {
+                              if(preg_match($reg, $archivo->documento)){
+                                $icon = '/images/'.$ext.'.svg';
+                              }
+                            }
+                          } 
+                          $link = $archivo->documento ?: '#';
+                          $created_at = $archivo->created_at ? (new DateTime($archivo->created_at))->format('d-m-Y') : 'Sin fecha';
+
+                        @endphp
+                        <a href="{{$link}}" class="white-box-2 link-box paper-box w-inline-block">
                           <div class="box-padding paper-padding">
-                            <img src="/images/1.svg" alt="" class="doc-image">
-                            <h3 class="doc-heading">Propuesta</h3>
-                            <div class="doc-description">Este brief es una descripción del documento.<br> Click para descargar</div>
-                            <div class="doc-date">27 January 2019</div>
+                            <img src="{{$icon}}" alt="" class="doc-image">
+                            <h3 class="doc-heading">{{ $archivo->nombre_documento}}</h3>
+                            <div class="doc-date">{{$created_at}}</div>
                           </div>
                           <img src="/images/paper.svg" alt="" class="paper">
                         </a>
                       @endforeach
                     </div>
                   </div>
-
-
                 @endforeach
               </div>
             </div>
