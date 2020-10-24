@@ -162,4 +162,16 @@ class ProyectoController extends Controller
     return redirect('/')->with('success', 'Proyecto creado exitosamente');
   }
 
+  public function edit(String $slug)
+  {
+    $proyecto = Proyecto::where('slug', '=', $slug)->first();
+    $localidades = Localidad::all();
+    $asesores = Asesor::all();
+    $referentes = Referente::where('proyecto_id', '=', $proyecto->id)->get();
+    $tipo_de_referentes = Tipo_de_referente::all();
+    $vac = compact('proyecto', 'asesores', 'localidades', 'referentes', 'tipo_de_referentes');
+
+    return view('/editproyecto', $vac);
+  }
+
 }

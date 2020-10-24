@@ -57,7 +57,7 @@ Route::post('/addproyecto', 'ProyectoController@store');
 
 Route::get('/editproyecto/{slug}', 'ProyectoController@edit');
 
-Route::get('/editproyecto/{slug}', 'ProyectoController@update');
+Route::post('/editproyecto/{slug}', 'ProyectoController@update');
 
 Route::delete('/deleteproyecto/{slug}', 'ProyectoController@destroy');
 

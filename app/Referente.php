@@ -8,10 +8,10 @@ class Referente extends Model
 {
 
   public $guarded = [];
-  
+
   public function proyecto()
   {
-    return $this->belongsTo("App\Proyecto", "proyecto_id");
+    return $this->hasMany("App\Proyecto", "proyecto_id");
   }
 
   public function tipoDeReferente()
