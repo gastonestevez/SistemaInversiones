@@ -4,10 +4,10 @@ FALTA
 
 AVISARLE A TATO QUE CAMBIE EL ALIAS DEL PIVOT de inversion a invertido
 
-1)Completar proyecto - documentos y ver si se puede hacer mas prolijo lo de mostrar la foto predeterminada
+1)Completar proyecto - documentos y ver si se puede hacer mas prolijo lo de mostrar la foto predeterminada -> UNLOCKED
 2)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-3)Terminar UPDATE Proyecto . Hacer request all y ver el tema de los referentes. Tambien agegarle cruces para borrar los actuales
-4)Pedirles cambiar el Slider de destacados. No cambia de card, va siempre a la misma
+3)Terminar UPDATE Proyecto . Hacer request all y ver el tema de los referentes. Tambien agegarle cruces para borrar los actuales -> UNLOCKED
+4)Pedirles cambiar el Slider de destacados. No cambia de card, va siempre a la misma -> UNLOCKED
 5)Sumarle a la billetera el detalle de cuanto invirtio en cada proyecto
 
 

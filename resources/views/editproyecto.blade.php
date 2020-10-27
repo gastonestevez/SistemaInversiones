@@ -113,24 +113,27 @@
 
                 <tr>
                   <th>
-                    <input value="{{$referente->nombre}}" type="text" maxlength="256" data-name="" name="referente[0][nombre_referente]" id="nombre_referente" class="text-field-15 w-input nombre_referente">
+                    <input value="{{$referente->nombre}}" type="text" maxlength="256" data-name="" name="referente[{{$loop->index}}][nombre_referente]" id="nombre_referente" class="text-field-15 w-input nombre_referente">
                   </th>
                   <th>
-                    <select id="tipo_de_referente" name="referente[0][tipo_de_referente]" class="w-select tipo_de_referente">
-                      <option value="">Seleccione un tipo</option>
+                    <select id="tipo_de_referente" name="referente[{{$loop->index}}][tipo_de_referente]" class="w-select tipo_de_referente">
+                      <option value="0">Seleccione un tipo</option>
                       @foreach ($tipo_de_referentes as $tipo_de_referente)
                         <option value="{{$tipo_de_referente->id}}" {{($tipo_de_referente->id == $referente->tipo_de_referente_id)?'selected': '' }}>{{$tipo_de_referente->tipo}}</option>
                       @endforeach
                     </select>
                   </th>
                   <th>
-                    <input id="foto_referente" type="file" name="referente[0][foto_referente]" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
+                  
+                    <img src="/storage/{{$referente->foto}}" style="max-width: 50px; max-height: 50px" alt="">
+                    <input id="foto_referente" type="file" name="referente[{{$loop->index}}][foto_referente]" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
+                  
                   </th>
                   <th>
-                    <button id="deleteRef" onclick="onDeleteRef(this)" style="margin: 0px 0px 11px;" hidden name="referente[0][deleteRef]">X</button>
+                    <button id="deleteRef" onclick="onDeleteRef(this)" style="margin: 0px 0px 11px;" hidden name="referente[{{$loop->index}}][deleteRef]">X</button>
                   </th>
                 </tr>
-
+                  <input type="hidden" name="referente[{{$loop->index}}][id]" value="{{$referente->id}}">
                   @endforeach
 
               </tbody>
@@ -278,7 +281,7 @@
         e.preventDefault();
         const userResponse = confirm('Todos los referentes deben tener nombre y tipo obligatorio, caso contrario no se guardarán. ¿Desea continuar?')
         if(userResponse){
-          document.getElementById('addproyecto-form').submit()
+          document.getElementById('editproyecto-form').submit()
         }
       }
 
@@ -289,7 +292,8 @@
       const type = {
         ['deleteRef']: () => {htmlTag.removeAttribute('hidden')},
         ['nombre_referente']: () => {htmlTag.value = null},
-        ['foto_referente']: () => {htmlTag.value = null}
+        ['foto_referente']: () => {htmlTag.value = null},
+        ['tipo_de_referente']: () => {htmlTag.value = null}
       }
       type[label] && type[label]();
     }

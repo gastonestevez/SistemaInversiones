@@ -172,14 +172,12 @@ class ProyectoController extends Controller
     $referentes = Referente::where('proyecto_id', '=', $proyecto->id)->get();
     $tipo_de_referentes = Tipo_de_referente::all();
     $vac = compact('proyecto', 'asesores', 'localidades', 'referentes', 'tipo_de_referentes');
-
+    
     return view('/editproyecto', $vac);
   }
-
+  
   public function update(Request $request, string $slug)
   {
-    dd($request->all());
-
     $reglas = [
       "titulo" => "required|unique:proyectos,titulo,$request->id",  // https://stackoverflow.com/questions/28662283/validating-a-unique-slug-on-update-in-laravel-5/28663498
       "imagenes" => "nullable|array",
@@ -223,7 +221,6 @@ class ProyectoController extends Controller
     $proyecto->asesor_id = $request->asesor_id;
 
     $proyecto->save();
-
     //si suben una o mas imagenes, entonces comenzamos el proceso de guardado. obtengo el array de imagenes
     if ($request->imagenes)
     {
@@ -292,6 +289,51 @@ class ProyectoController extends Controller
 
           // guardo el objeto archivo instanciado en la base de datos
           $archivo->save();
+      }
+    }
+    foreach ($request->referente as $referente)
+    {
+      // Si no se envia nombre y tipo de referente, el registro no se guarda.
+      if (isset($referente['nombre_referente']) && isset($referente['tipo_de_referente'])){
+        // Se buscan referentes que ya existan
+        $updateReferente = isset($referente['id']) ? Referente::find($referente['id']) : null;
+        if(isset($updateReferente)){
+          // Si el referente existe, reemplazamos con los nuevos valores.
+          $updateReferente->nombre = $referente['nombre_referente'];
+          $updateReferente->tipo_de_referente_id = $referente['tipo_de_referente'];
+          // Si se envia una foto, borramos la anterior y guardamos la nueva.
+          if(isset($referente['foto_referente'])){
+            
+            
+            // dd(isset($request->referente[1]['foto_referente']));
+            //dd($referente["foto_referente"]);
+            $image_path = storage_path('app/public/') . $updateReferente->foto;
+            if ($updateReferente->foto && file_exists($image_path)) {
+              unlink($image_path);
+            }
+            $ruta = $referente["foto_referente"]->store("public"); // Esta ruta guarda al archivo con la ruta entera.
+            $nombreDelArchivo = basename($ruta); // basename recorta la ruta y nos deja solo el nombre del archivo.
+            $updateReferente->foto = $nombreDelArchivo; // le asigna la nueva ruta a la base de datos
+          }
+          $updateReferente->save();
+        } else {
+          $nuevo_referente = New Referente;
+          $nuevo_referente->nombre = $referente['nombre_referente'];
+          if (isset($referente['foto_referente'])) {
+            // guardo cada imagen en storage/public (no en la base de datos)
+            $file = $referente['foto_referente']->store('public');
+            // obtengo sus nombres
+            $path = basename($file);
+            $nuevo_referente->foto = $path;
+          }
+          $nuevo_referente->tipo_de_referente_id = $referente['tipo_de_referente'];
+          // traigo el proyecto recien creado para obtener su ID
+          $lastProject = Proyecto::all()->last();
+          $projectId = $lastProject->id;
+          $nuevo_referente->proyecto_id = $projectId;
+          $nuevo_referente->save();
+        }
+
       }
     }
 
