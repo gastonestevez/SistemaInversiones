@@ -2587,7 +2587,7 @@ label {
 
 .testimonial-image {
   width: 100%;
-  height: 100%;
+  height: 300px;
   background-color: transparent;
   -o-object-fit: cover;
   object-fit: cover;

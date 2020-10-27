@@ -18,7 +18,7 @@ class AsesorController extends Controller
     $asesor = Asesor::find($id);
     $vac = compact('asesor');
 
-    return view('/asesor');
+    return view('/asesor', $vac);
   }
 
   public function store(Request $request)

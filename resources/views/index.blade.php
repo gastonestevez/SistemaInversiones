@@ -62,6 +62,12 @@
     </style>
   </head>
 
+  {{-- @foreach ($proyectosDestacados as $destacado) --}}
+    {{-- @foreach (imagenesProyecto($destacado) as $imagen) --}}
+      {{-- {{(dd(imagenesProyecto($destacado)[0]))}}; --}}
+    {{-- @endforeach --}}
+  {{-- @endforeach --}}
+
   <body class="body">
     <div class="page-wrapper">
 
@@ -78,8 +84,9 @@
                   <div class="slide-horizontal w-slide">
                     <div class="testimonial-card">
                       <div class="testimonial-image-wrap">
-                        <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle">
-                        <img src="/storage/{{imagenesProyecto($destacado)[0]['path']}}" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/{{imagenesProyecto($destacado)[1]['path']}} 500w, /storage/{{imagenesProyecto($destacado)[1]['path']}} 1080w, /storage/{{imagenesProyecto($destacado)[1]['path']}} 1600w, /storage/{{imagenesProyecto($destacado)[1]['path']}}" class="testimonial-image">
+                        {{-- No esta encontrando el archivo .svg --}}
+                        {{-- <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle"> --}}
+                          <img src="/storage/{{imagenesProyecto($destacado)[0]['path']}}" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/{{imagenesProyecto($destacado)[0]['path']}} 500w, /storage/{{imagenesProyecto($destacado)[0]['path']}} 1080w, /storage/{{imagenesProyecto($destacado)[0]['path']}} 1600w, /storage/{{imagenesProyecto($destacado)[0]['path']}}" class="testimonial-image">
                         <a href="#" class="play-button w-inline-block w-lightbox">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef15892712517_play-button%20(1).svg" alt="" class="play-icon">
                           <script type="application/json" class="w-json">{
