@@ -24,9 +24,9 @@ class Proyecto extends Model
     return $this->hasMany("App\Actualizacion", "proyecto_id");
   }
 
-  public function referente()
+  public function referentes()
   {
-    return $this->belongsTo("App\Referente");
+    return $this->hasMany("App\Referente");
   }
 
   public function usuarios()
@@ -34,7 +34,7 @@ class Proyecto extends Model
     // https://styde.net/pivot-tables-con-eloquent-en-laravel/ para agregar pivots
     return $this->belongsToMany("App\User", "usuarios_proyectos", "proyecto_id", "user_id")
     ->withPivot('inversion')
-    ->as('inversion');
+    ->as('invertido');
   }
 
   public function asesor()

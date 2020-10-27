@@ -11,7 +11,7 @@ class Referente extends Model
 
   public function proyecto()
   {
-    return $this->hasMany("App\Proyecto", "proyecto_id");
+    return $this->belongsTo("App\Proyecto", "proyecto_id");
   }
 
   public function tipoDeReferente()

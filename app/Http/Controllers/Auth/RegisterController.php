@@ -85,6 +85,7 @@ class RegisterController extends Controller
       }
 
 
+
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
@@ -93,12 +94,28 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'avatar' => $path,
             'is_admin' => false
-        ]);
+        ],
+      );
 
-        // $billetera = New Billetera();
-        // $billetera->inversion_inicial = 0;
-        // $billetera->total = 0;
-        // $billetera->rentabilidad = 0;
-        // $billetera->save();
     }
+
+    // Para crear un objeto billetera luego de crear un usuario tuvimos que sobreescribir esta funcion https://stackoverflow.com/questions/53214074/laravel-action-after-registration-of-user
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+          $billetera = New Billetera();
+          $billetera->inversion_inicial = 0;
+          $billetera->total = 0;
+          $billetera->rentabilidad = 0;
+
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
 }

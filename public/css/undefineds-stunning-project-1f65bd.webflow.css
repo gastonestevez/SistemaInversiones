@@ -624,7 +624,9 @@ label {
 .profile-pic {
   overflow: hidden;
   width: auto;
-  height: 7vh;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
   max-width: none;
   margin-right: 0.75em;
   border-radius: 50%;
@@ -2715,6 +2717,8 @@ label {
 
 .author-image {
   width: 50px;
+  height: 50px;
+  object-fit: cover;
   margin-right: 14px;
   border-radius: 100px;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.14);
@@ -8468,8 +8472,9 @@ label {
     font-size: 16px;
   }
   .profile-pic {
-    width: auto;
+    width: 100px;
     height: 100px;
+    object-fit: cover;
     max-width: none;
     min-height: auto;
   }

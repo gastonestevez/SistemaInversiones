@@ -33,7 +33,7 @@
     <div class="div-block-1807" style="margin-top:30px;">
       <a href="/" class="button-52 w-button">Volver</a>
     </div>
-    
+
     <div class="login-container w-form">
       <div class="login-container"></div>
 
@@ -47,7 +47,7 @@
         @csrf
         <div class="field-wrapper">
           <label for="email" class="signup-label">Email</label>
-          <input id="email" type="email" name="email" class="signup-field w-input" required autofocus>
+          <input id="email" value="{{old('email')}}" type="email" name="email" class="signup-field w-input" required autofocus>
         </div>
         <div class="field-wrapper">
           <label for="password" class="signup-label">Contraseña</label>

@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Proyecto;
+use Carbon\Carbon;
 
   // https://stackoverflow.com/questions/35332784/how-to-call-a-controller-function-inside-a-view-in-laravel-5
   // https://styde.net/como-crear-helpers-personalizados-en-laravel/
@@ -98,6 +99,48 @@ use App\Proyecto;
       return false;
     }
   }
+
+  // Convierte la fecha del created_at en una fecha con formato: 'Diciembre 2020'
+  function fecha($date)
+  {
+    Carbon::setLocale('es');
+    $date = $date->isoFormat('MMMM YYYY');
+    // $date = $date->toDateString();
+    // $date = $date->toFormattedDateString();
+
+    return $date;
+  }
+
+  // Pregunta si hay un usuario logueado y si ese usuario es administrador da true
+  function isAdmin(){
+    if(Auth::user())
+    {
+      if(Auth::user()->is_admin){
+        return true;
+      }
+    }
+      return false;
+  }
+
+  function inversores($asesor)
+  {
+
+    // Creo una variable contador de inversores
+    $cantidadDeInversores = 0;
+
+    // Recorro cada proyecto del asesor
+    foreach ($asesor->proyectos as $proyecto) {
+      // Recorro los referentes de cada proyecto
+      foreach ($proyecto->referentes as $referente) {
+        // Si el referente es un inversor lo sumo a la variable cantidadDeInversores
+        if ($referente->tipo_de_referente_id == 3) {
+          $cantidadDeInversores = $cantidadDeInversores + 1;
+        }
+      }
+    }
+    return $cantidadDeInversores;
+  }
+
 
 
 ?>

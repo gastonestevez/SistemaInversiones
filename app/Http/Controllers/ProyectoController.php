@@ -178,6 +178,7 @@ class ProyectoController extends Controller
 
   public function update(Request $request, string $slug)
   {
+    dd($request->all());
 
     $reglas = [
       "titulo" => "required|unique:proyectos,titulo,$request->id",  // https://stackoverflow.com/questions/28662283/validating-a-unique-slug-on-update-in-laravel-5/28663498

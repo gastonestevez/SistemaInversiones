@@ -73,83 +73,49 @@
           <div class="column-wrap">
             <div data-delay="4000" data-animation="cross" data-autoplay="1" data-duration="500" data-infinite="1" class="slider-horizontal arriba w-slider">
               <div class="mask-horizontal w-slider-mask">
-                <div class="slide-horizontal w-slide">
-                  <div class="testimonial-card">
-                    <div class="testimonial-image-wrap">
-                      <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle">
-                      <img src="/images/slide-img-02.jpg" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="images/slide-img-02-p-500.jpeg 500w, images/slide-img-02-p-1080.jpeg 1080w, images/slide-img-02-p-1600.jpeg 1600w, images/slide-img-02.jpg 1650w" class="testimonial-image">
-                      <a href="#" class="play-button w-inline-block w-lightbox">
-                        <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef15892712517_play-button%20(1).svg" alt="" class="play-icon">
-                        <script type="application/json" class="w-json">{
-                          "items": [
-                            {
-                              "type": "video",
-                              "originalUrl": "https://vimeo.com/130820761",
-                              "url": "https://vimeo.com/130820761",
-                              "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F130820761%3Fapp_id%3D122963&dntp=1&url=https%3A%2F%2Fvimeo.com%2F130820761&image=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F522826368_1280.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=vimeo\" width=\"940\" height=\"529\" scrolling=\"no\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
-                              "thumbnailUrl": "https://i.vimeocdn.com/video/522826368_1280.jpg",
-                              "width": 940,
-                              "height": 529
-                            }
-                          ]
-                          }
-                      </script>
-                    </a>
-                  </div>
-                    <div class="horizontal-content-block">
-                      <div class="horizontal-fixed-height">
-                        <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
-                        <h4 class="horizontal-quote-h4">There are many different ways a business can display customer testimonials — And when determining the best approach...</h4>
-                      </div>
 
-                      <!-- Autor div -->
-                      <div class="author-block">
-                        <img src="/images/avatar.png" alt="" class="author-image">
-                        <div>
-                          <h4 class="author-name">Sam Kennedy</h4>
-                          <div class="author-job">Marketing Lead, Twitter</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="slide-horizontal w-slide">
-                  <div class="testimonial-card">
-                    <div class="testimonial-image-wrap">
-                      <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle">
-                      <img src="/images/slide-img.jpg" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="images/slide-img-p-1080.jpeg 1080w, images/slide-img-p-1600.jpeg 1600w, images/slide-img.jpg 1651w" class="testimonial-image">
-                      <a href="#" class="play-button w-inline-block w-lightbox">
-                        <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef15892712517_play-button%20(1).svg" alt="" class="play-icon">
-                        <script type="application/json" class="w-json">{
-                        "items": [
-                            {
-                            "type": "video",
-                            "originalUrl": "https://vimeo.com/130820761",
-                            "url": "https://vimeo.com/130820761",
-                            "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F130820761%3Fapp_id%3D122963&dntp=1&url=https%3A%2F%2Fvimeo.com%2F130820761&image=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F522826368_1280.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=vimeo\" width=\"940\" height=\"529\" scrolling=\"no\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
-                            "thumbnailUrl": "https://i.vimeocdn.com/video/522826368_1280.jpg",
-                            "width": 940,
-                            "height": 529
-                            }
+                @foreach ($proyectosDestacados as $destacado)
+                  <div class="slide-horizontal w-slide">
+                    <div class="testimonial-card">
+                      <div class="testimonial-image-wrap">
+                        <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle">
+                        <img src="/storage/{{imagenesProyecto($destacado)[0]['path']}}" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/{{imagenesProyecto($destacado)[1]['path']}} 500w, /storage/{{imagenesProyecto($destacado)[1]['path']}} 1080w, /storage/{{imagenesProyecto($destacado)[1]['path']}} 1600w, /storage/{{imagenesProyecto($destacado)[1]['path']}}" class="testimonial-image">
+                        <a href="#" class="play-button w-inline-block w-lightbox">
+                          <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef15892712517_play-button%20(1).svg" alt="" class="play-icon">
+                          <script type="application/json" class="w-json">{
+                            "items": [
+                              {
+                                "type": "video",
+                                "originalUrl": "https://vimeo.com/130820761",
+                                "url": "https://vimeo.com/130820761",
+                                "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F130820761%3Fapp_id%3D122963&dntp=1&url=https%3A%2F%2Fvimeo.com%2F130820761&image=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F522826368_1280.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=vimeo\" width=\"940\" height=\"529\" scrolling=\"no\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
+                                "thumbnailUrl": "https://i.vimeocdn.com/video/522826368_1280.jpg",
+                                "width": 940,
+                                "height": 529
+                              }
                             ]
-                          }
+                            }
                         </script>
                       </a>
                     </div>
-                    <div class="horizontal-content-block">
-                      <div class="horizontal-fixed-height"><img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef16359712522_2.svg" alt="" class="horizontal-logo">
-                        <h4 class="horizontal-quote-h4">To show the value of what you have to offer, why not let your happy customers do the talking? It&#x27;s a simple but powerful tool for establishing trust...</h4>
-                      </div>
-                      <div class="author-block">
-                        <img src="/images/avatar-03.png" alt="" class="author-image">
-                        <div>
-                          <h4 class="author-name">Thomas Lee</h4>
-                          <div class="author-job">Marketing Lead, Oculus</div>
+                      <div class="horizontal-content-block">
+                        <div class="horizontal-fixed-height">
+                          <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
+                          <h4 class="horizontal-quote-h4">There are many different ways a business can display customer testimonials — And when determining the best approach...</h4>
+                        </div>
+
+                        <!-- Autor div -->
+                        <div class="author-block">
+                          <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                          <div>
+                            <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
+                            <div class="author-job"><a href="https://api.whatsapp.com/send?phone={{$destacado->asesor->numero}}" target="_blank" style="color: rgba(21, 28, 52, 0.5);">Contactame</a></div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                @endforeach
               </div>
 
               <!-- Flechas comando -->
@@ -214,26 +180,26 @@
           <!-- Menu de las tabs -->
         <div class="navigation-menu w-tab-menu">
           @if (Auth::user())
-            <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link w--current">
+            <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(Auth::user()) w--current @endif">
               <div class="navigation-icon"></div>
               <div class="text-block-138">Mi billetera</div>
             </a>
           @endif
-          <a data-w-tab="Project" class="navigation-item w-inline-block w-tab-link">
+          <a data-w-tab="Project" class="navigation-item w-inline-block w-tab-link @if(!Auth::user()) w--current @endif ">
             <div class="navigation-icon"></div>
             <div class="text-block-137 asesores">Asesores</div>
           </a>
           <a data-w-tab="Assets" class="navigation-item w-inline-block w-tab-link">
+            @if (Auth::user())
             <div class="navigation-icon"></div>
-            <div class="text-block-134">Proyectos</div>
+              <div class="text-block-134">Proyectos</div>
+            @endif
           </a>
-          @if (Auth::user())
-            @if (Auth::user()->is_admin)
+          @if (isAdmin())
             <a data-w-tab="usuarios" class="navigation-item w-inline-block w-tab-link">
               <div class="navigation-icon"></div>
               <div class="text-block-326">Usuarios</div>
             </a>
-            @endif
           @endif
         </div>
 
@@ -271,7 +237,7 @@
                 <div class="white-box third mobile-full-box">
                   <div class="box-padding">
                     <div class="colorful-icon purple"></div>
-                    <h3 class="large-number">{{Auth::user()->created_at}}</h3>
+                    <h3 class="large-number" style="text-transform: capitalize;">{{fecha(Auth::user()->created_at)}}</h3>
                     <div class="text-block-317">Fecha de inicio</div>
                   </div>
                 </div>
@@ -314,9 +280,14 @@
           <!-- Asesores -->
           <div data-w-tab="Project" class="dashboard-section w-tab-pane">
             <div class="container">
-              <div class="div-block-1796">
-                <a href="/addasesor" class="button-39 w-button">Agregar un asesor</a>
-              </div>
+
+              @if (isAdmin())
+                  <div class="div-block-1796">
+                    <a href="/addasesor" class="button-39 w-button">Agregar un asesor</a>
+                  </div>
+              @endif
+
+
               <div class="dash-row masonry-copy">
 
                 @foreach ($asesores as $asesor)
@@ -353,7 +324,7 @@
                                   </div>
                                   <div class="progress-text-column">
                                     <div class="progress-icon">
-                                      <div class="text-block-314">40</div>
+                                      <div class="text-block-314">{{inversores($asesor)}}</div>
                                     </div>
                                     <div class="text-block-313">Inversores</div>
                                   </div>
@@ -381,14 +352,16 @@
           <!-- Proyectos -->
           <div data-w-tab="Assets" class="dashboard-section w-tab-pane">
             <div class="container">
-              <div class="div-block-1796">
-                <a href="/addproyecto" class="button-35 w-button">Agregar un proyecto</a>
-              </div>
+              @if (isAdmin())
+                <div class="div-block-1796">
+                  <a href="/addproyecto" class="button-35 w-button">Agregar un proyecto</a>
+                </div>
+              @endif
 
 
               <div class="dash-row masonry">
 
-                @foreach ($proyectos as $proyecto)
+                @forelse ($proyectos as $proyecto)
                   @php
                   $contador = 1
                   @endphp
@@ -478,7 +451,7 @@
                     <div class="div-block-1765">
                       <a data-w-id="8bfbcf97-6193-03e4-2120-65b63bde84d1" href="#" class="link">X</a>
                     </div>
-                    
+
                     <h3 class="heading-8">{{count($proyecto->archivos) ? 'Documentos' : 'Sin documentos'}}</h3>
                     <div class="dash-row">
 
@@ -497,7 +470,7 @@
                                 $icon = '/images/'.$ext.'.svg';
                               }
                             }
-                          } 
+                          }
                           $link = $archivo->documento ?: '#';
                           $created_at = $archivo->created_at ? (new DateTime($archivo->created_at))->format('d-m-Y') : 'Sin fecha';
 
@@ -513,7 +486,9 @@
                       @endforeach
                     </div>
                   </div>
-                @endforeach
+                @empty
+                  <p style="text-align:center;">No se ha invertido en ningún proyecto</p>
+                @endforelse
               </div>
             </div>
           </div>
@@ -528,86 +503,25 @@
                 <a href="acreditar-una-inversion.html" data-w-id="76a10f6e-0f77-e8e6-649d-5de28950c0a4" class="button-39 w-button">Acreditar una inversión</a>
               </div>
               <div class="div-block-1816">
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del Usuario</h2>
-                        <div class="div-block-79"></div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a><a href="#" class="button-39 w-button">Eliminar</a>
+
+                @foreach ($users as $user)
+                  <div class="div-block-1768">
+                    <div class="div-block-345 proyect-card-header fondo-blanco-copy">
+                      <div class="link-block-42">
+                        <a href="landing-asesores.html" class="div-block-397 w-inline-block">
+                          <div class="text-block-83">{{fecha($user->created_at)}}</div>
+                          <h2 class="heading-5">{{$user->name}}</h2>
+                          <div class="div-block-79"></div>
+                        </a>
+                        <div class="div-block-1805">
+                          <a href="#" class="button-39 w-button">Editar</a>
+                          <a href="#" class="button-39 w-button">Eliminar</a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del Usuario</h2>
-                        <div class="div-block-79"></div>
-                      </a>
-                      <div class="div-block-1805"><a href="#" class="button-39 w-button">Editar</a><a href="#" class="button-39 w-button">Eliminar</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del Usuario</h2>
-                        <div class="div-block-79"></div>
-                      </a>
-                      <div class="div-block-1805"><a href="#" class="button-39 w-button">Editar</a><a href="#" class="button-39 w-button">Eliminar</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del Usuario</h2>
-                        <div class="div-block-79"></div>
-                      </a>
-                      <div class="div-block-1805"><a href="#" class="button-39 w-button">Editar</a><a href="#" class="button-39 w-button">Eliminar</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del Usuario</h2>
-                        <div class="div-block-79"></div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a>
-                        <a href="#" class="button-39 w-button">Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-block-1768">
-                  <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                    <div class="link-block-42">
-                      <a href="landing-asesores.html" class="div-block-397 w-inline-block">
-                        <div class="text-block-83">Diciembre 2020</div>
-                        <h2 class="heading-5">nombre del Usuario</h2>
-                        <div class="div-block-79"></div>
-                      </a>
-                      <div class="div-block-1805">
-                        <a href="#" class="button-39 w-button">Editar</a>
-                        <a href="#" class="button-39 w-button">Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                @endforeach
+
               </div>
             </div>
           </div>

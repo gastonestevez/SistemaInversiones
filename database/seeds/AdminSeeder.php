@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
           'is_admin' => true,
           'email' => 'dakota@gmail.com',
           'password' => Hash::make('asdfasdf'),
+          'created_at' => '2020-01-02 07:57:53',
         ],
         [
           'name' => 'Usuario 1',
@@ -30,6 +31,7 @@ class AdminSeeder extends Seeder
           'is_admin' => false,
           'email' => 'usuario1@gmail.com',
           'password' => Hash::make('123456'),
+          'created_at' => '2020-01-02 07:57:53',
         ],
         [
           'name' => 'Usuario 2',
@@ -39,6 +41,7 @@ class AdminSeeder extends Seeder
           'is_admin' => false,
           'email' => 'usuario2@gmail.com',
           'password' => Hash::make('123456'),
+          'created_at' => '2020-01-02 07:57:53',
         ],
         [
           'name' => 'Usuario 3',
@@ -48,6 +51,7 @@ class AdminSeeder extends Seeder
           'is_admin' => false,
           'email' => 'usuario3@gmail.com',
           'password' => Hash::make('123456'),
+          'created_at' => '2020-01-02 07:57:53',
         ],
       ]);
     }

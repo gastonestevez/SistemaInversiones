@@ -13,8 +13,8 @@ class BilleterasSeeder extends Seeder
     {
       DB::table('billeteras')->insert([
         [
-          'inversion_inicial' => '8000',
-          'total' => '15000',
+          'inversion_inicial' => '15000',
+          'total' => '8000',
           'rentabilidad' => '30000',
         ],
         [
@@ -23,13 +23,13 @@ class BilleterasSeeder extends Seeder
           'rentabilidad' => '0',
         ],
         [
-          'inversion_inicial' => '70000',
-          'total' => '350000',
+          'inversion_inicial' => '350000',
+          'total' => '70000',
           'rentabilidad' => '0',
         ],
         [
-          'inversion_inicial' => '74000',
-          'total' => '300000',
+          'inversion_inicial' => '300000',
+          'total' => '74000',
           'rentabilidad' => '0',
         ],
       ]);

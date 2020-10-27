@@ -212,7 +212,7 @@
         @foreach(documentosProyecto($proyecto) as $documento)
           <div class="div-block-1767">
             {{-- Si el proyecto tiene documentos --}}
-              <a href="/storage/{{$documento['path']}}" alt="" style="max-width: 300px; max-height: 150px;" target="_blank">{{$documento['nombre_archivo']}}</a>
+              <a href="/storage/{{$documento['path']}}" alt="" style="text-decoration: underline; max-width: 300px; max-height: 150px;" target="_blank">{{$documento['nombre_archivo']}}</a>
               {{-- Borrar el documento --}}
               <form action="/archivos/deletedocumento/{{$documento['id']}}" method="post">
                 @method('delete')
