@@ -8,7 +8,7 @@ class Tipo_de_referente extends Model
 {
 
   public $guarded = [];
-  
+
   public $table = 'tipo_de_referentes';
 
   public function referentes()

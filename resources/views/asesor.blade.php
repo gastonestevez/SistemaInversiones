@@ -12,6 +12,7 @@
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
   <link href="/css/webflow.css" rel="stylesheet" type="text/css">
   <link href="/css/undefineds-stunning-project-1f65bd.webflow.css" rel="stylesheet" type="text/css">
+  <link href="/css/uikit.css" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -24,6 +25,20 @@
   <!-- REPLACE ↑↑ -->
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <style media="screen">
+  .uk-progress.progress-green::-webkit-progress-value
+    {
+      background: linear-gradient(96deg, #dfeffc, #707070);
+    }
+    .uk-progress.progress-green::-moz-progress-bar
+    {
+      background: linear-gradient(96deg, #dfeffc, #707070);
+    }
+    .uk-progress.progress-green::-ms-fill
+    {
+      background: linear-gradient(96deg, #dfeffc, #707070);
+    }
+  </style>
 </head>
 <body class="body-2">
   <div class="div-block-1773">
@@ -48,7 +63,7 @@
                   </div>
                   <div class="progress-text-column">
                     <div class="progress-icon-2">
-                      <div class="text-block-314">{{inversores($asesor)}}</div>
+                      <div class="text-block-314">{{cantidadInversores($asesor)}}</div>
                     </div>
                     <div class="text-block-321">Inversores</div>
                   </div>
@@ -59,6 +74,18 @@
           <div class="div-block-1801">
             <a href="https://api.whatsapp.com/send?phone={{$asesor->numero}}" target="_blank" class="button-36-copy w-button">Chat</a>
           </div>
+
+          @if (isAdmin())
+            <div class="div-block-1805">
+              <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
+              <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
+                @method('delete')
+                @csrf
+                <input type="submit" class="button-39 w-button" value="Eliminar">
+              </form>
+            </div>
+          @endif
+
         </div>
       </div>
     </div>
@@ -71,23 +98,35 @@
 
       @foreach ($asesor->proyectos as $proyecto)
         <div class="div-block-1782">
-          <div class="div-block-1780">
-            <div class="div-block-1781"></div>
-            <h1 class="heading-33">{{$proyecto->titulo}}</h1>
-            <div class="div-block-1771">
-              <div class="text-block-319">15%</div>
-              <div class="text-block-320">De rentabilidad aprox.</div>
+          <a href="/proyecto/{{$proyecto->slug}}">
+            <div class="div-block-1780">
+              <div class="div-block-1781"
+              {{-- Consulto si el proyecto tiene imagenes --}}
+              @if (tieneImagenes($proyecto))
+                @foreach (imagenesProyecto($proyecto) as $imagen)
+                  style="background-image: url('/storage/{{$imagen['path']}}'); background-position: center; background-repeat: no-repeat;"
+                @endforeach
+              @else
+                {{-- Si no tiene archivos de imagen muestro una predeterminada --}}
+                style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat; background-position: center;"
+              @endif
+             ></div>
+              <h1 class="heading-33">{{$proyecto->titulo}}</h1>
+              <div class="div-block-1771">
+                <div class="text-block-319">15%</div>
+                <div class="text-block-320">De rentabilidad aprox.</div>
+              </div>
+                <progress class="uk-progress progress-green" value="{{$proyecto->porcentaje}}" max="100" style="border:2px solid #333; text-align: left;"></progress>
             </div>
-            <div class="progress-bar-wrap-3">
-              <div class="progress-bar-2"></div>
-            </div>
-          </div>
+          </a>
         </div>
       @endforeach
 
     </div>
   </div>
-  <div class="div-block-1793"><a href="home.html" class="button-37 w-button">volver a mi billetera</a></div>
+  <div class="div-block-1793">
+    <a href="/" class="button-37 w-button">volver a mi billetera</a>
+  </div>
   <div class="w-embed">
     <style>
       .h4-asesores {
@@ -116,5 +155,7 @@
         }
     })
   </script>
+  <!-- UIkit JS -->
+  <script src="/js/uikit.js" type="text/javascript"></script>
 </body>
 </html>

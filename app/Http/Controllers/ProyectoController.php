@@ -21,6 +21,15 @@ class ProyectoController extends Controller
     return view('/addproyecto', compact('asesores','localidades', 'tipo_de_referentes'));
   }
 
+  public function show(String $slug)
+  {
+    $proyecto = Proyecto::where('slug', '=', $slug)->first();
+    $tipo_de_referentes = tipo_de_referente::all();
+    $vac = compact('proyecto', 'tipo_de_referentes');
+
+    return view('/proyecto', $vac);
+  }
+
   public function store(Request $request)
   {
 
@@ -172,10 +181,10 @@ class ProyectoController extends Controller
     $referentes = Referente::where('proyecto_id', '=', $proyecto->id)->get();
     $tipo_de_referentes = Tipo_de_referente::all();
     $vac = compact('proyecto', 'asesores', 'localidades', 'referentes', 'tipo_de_referentes');
-    
+
     return view('/editproyecto', $vac);
   }
-  
+
   public function update(Request $request, string $slug)
   {
     $reglas = [
@@ -303,8 +312,8 @@ class ProyectoController extends Controller
           $updateReferente->tipo_de_referente_id = $referente['tipo_de_referente'];
           // Si se envia una foto, borramos la anterior y guardamos la nueva.
           if(isset($referente['foto_referente'])){
-            
-            
+
+
             // dd(isset($request->referente[1]['foto_referente']));
             //dd($referente["foto_referente"]);
             $image_path = storage_path('app/public/') . $updateReferente->foto;

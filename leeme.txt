@@ -4,11 +4,10 @@ FALTA
 
 AVISARLE A TATO QUE CAMBIE EL ALIAS DEL PIVOT de inversion a invertido
 
-1)Completar proyecto - documentos y ver si se puede hacer mas prolijo lo de mostrar la foto predeterminada -> UNLOCKED
-2)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-3)Terminar UPDATE Proyecto . Hacer request all y ver el tema de los referentes. Tambien agegarle cruces para borrar los actuales -> UNLOCKED
-4)Pedirles cambiar el Slider de destacados. No cambia de card, va siempre a la misma -> UNLOCKED
-5)Sumarle a la billetera el detalle de cuanto invirtio en cada proyecto
+1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
+2)Creamos etiqueta A en slider de proyectos destacados y que te lleve al proyecto??
+3)Crear CRUD de Actualizaciones, Billeteras, Tipo de Referente, Localidad
+4)Crear emails transaccionales
 
 
 API:
@@ -17,11 +16,9 @@ API:
 -Que es bearer?
 -Por que tenemos que hacer ese foreach de la linea 37 de ApiMiscEndpointsController
 
-CRUD User -> al editar usuario permitir cambiar la clave
+CRUD User
 CRUD Actualizacion
-CRUD Proyectos -> ojo con los valores unique (titulo y slug)
 CRUD Billeteras
-CRUD Referente
 CRUD Tipo de Referente
 CRUD Localidad
 
