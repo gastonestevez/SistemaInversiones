@@ -182,13 +182,15 @@
     <div class="div-block-1794">
       <div data-animation="slide" data-duration="500" data-infinite="1" class="slider-17 w-slider">
         <div class="mask-3 w-slider-mask">
+          @foreach ($proyecto->actualizaciones as $actualizacion)
           <div class="w-slide">
             <div class="div-block-1792">
               <div class="text-block-322">27/08/2020</div>
               <div class="text-block-323">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-              <div class="text-block-324">Nombre de la empresa</div>
+              <div class="text-block-324">{{$actualizacion->nombre_empresa}}</div>
             </div>
           </div>
+        @endforeach
           <div class="w-slide"></div>
         </div>
         <div class="w-slider-arrow-left">

@@ -86,6 +86,14 @@
             </select>
           </div>
           <div>
+            <label for="actualizacion" class="field-label-30">Escribir una actualización</label>
+            <textarea class="text-field-15 w-input" id="actualizacion" value="{{old('actualizacion')}}" name="actualizacion" rows="8" cols="80"></textarea>
+          </div>
+          <div>
+            <label for="nombre_empresa" class="field-label-29">Autor de la actualización</label>
+            <input type="text" value="{{ old('nombre_empresa') }}" class="text-field-15 w-input" maxlength="256" name="nombre_empresa" data-name="Name" placeholder="" id="nombre_empresa">
+          </div>
+          <div>
             <label style="text-align:center;" for="destacado" class="field-label-30">Destacar</label>
             <input value="1" type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
           </div>
@@ -214,7 +222,7 @@
         const userResponse = confirm('Todos los referentes deben tener nombre y tipo obligatorio, caso contrario no se guardarán. ¿Desea continuar?')
         if(userResponse){
           document.getElementById('addproyecto-form').submit()
-        } 
+        }
       }
 
 

@@ -110,14 +110,16 @@
                           </script>
                         </a>
                       </div>
-                      <div class="horizontal-content-block">
+                      <div class="horizontal-content-block" style="align-items: center;">
                         <div class="horizontal-fixed-height">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
-                          <h4 class="horizontal-quote-h4">There are many different ways a business can display customer testimonials — And when determining the best approach...</h4>
+                          <h4 class="horizontal-quote-h4">{{$destacado->titulo}}</h4>
+                          <h4 class="text-block-83">{{$destacado->localidad->nombre}}</h4>
+                          <h4 class="text-block-83">{{$destacado->fecha}}</h4>
                         </div>
 
                         <!-- Autor div -->
-                        <div class="author-block">
+                        <div class="author-block" style="margin-right: auto;">
                           <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
                           <div>
                             <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>

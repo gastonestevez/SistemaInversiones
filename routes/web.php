@@ -61,6 +61,8 @@ Route::put('/editproyecto/{slug}', 'ProyectoController@update');
 
 Route::delete('/deleteproyecto/{id}', 'ProyectoController@destroy');
 
+Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizacion');
+
 // Usuarios
 
 Route::get('/perfil/{id}', 'UserController@edit');

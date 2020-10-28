@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Proyecto;
 use App\Asesor;
+use App\Actualizacion;
 use App\Archivo;
 use App\Localidad;
 use App\Referente;
@@ -170,6 +171,16 @@ class ProyectoController extends Controller
       }
     }
 
+    // Si escriben una actualizacion
+    if ($request->actualizacion) {
+      $actualizacion = New actualizacion();
+      $actualizacion->descripcion = $request->actualizacion;
+      $actualizacion->nombre_empresa = $request->nombre_empresa;
+      $actualizacion->proyecto_id = $proyecto->id;
+
+      $actualizacion->save();
+    }
+
     return redirect('/')->with('success', 'Proyecto creado exitosamente');
   }
 
@@ -300,50 +311,63 @@ class ProyectoController extends Controller
           $archivo->save();
       }
     }
-    foreach ($request->referente as $referente)
-    {
-      // Si no se envia nombre y tipo de referente, el registro no se guarda.
-      if (isset($referente['nombre_referente']) && isset($referente['tipo_de_referente'])){
-        // Se buscan referentes que ya existan
-        $updateReferente = isset($referente['id']) ? Referente::find($referente['id']) : null;
-        if(isset($updateReferente)){
-          // Si el referente existe, reemplazamos con los nuevos valores.
-          $updateReferente->nombre = $referente['nombre_referente'];
-          $updateReferente->tipo_de_referente_id = $referente['tipo_de_referente'];
-          // Si se envia una foto, borramos la anterior y guardamos la nueva.
-          if(isset($referente['foto_referente'])){
+
+    if (isset($request->referente)) {
+      foreach ($request->referente as $referente)
+      {
+        // Si no se envia nombre y tipo de referente, el registro no se guarda.
+        if (isset($referente['nombre_referente']) && isset($referente['tipo_de_referente'])){
+          // Se buscan referentes que ya existan
+          $updateReferente = isset($referente['id']) ? Referente::find($referente['id']) : null;
+          if(isset($updateReferente)){
+            // Si el referente existe, reemplazamos con los nuevos valores.
+            $updateReferente->nombre = $referente['nombre_referente'];
+            $updateReferente->tipo_de_referente_id = $referente['tipo_de_referente'];
+            // Si se envia una foto, borramos la anterior y guardamos la nueva.
+            if(isset($referente['foto_referente'])){
 
 
-            // dd(isset($request->referente[1]['foto_referente']));
-            //dd($referente["foto_referente"]);
-            $image_path = storage_path('app/public/') . $updateReferente->foto;
-            if ($updateReferente->foto && file_exists($image_path)) {
-              unlink($image_path);
+              // dd(isset($request->referente[1]['foto_referente']));
+              //dd($referente["foto_referente"]);
+              $image_path = storage_path('app/public/') . $updateReferente->foto;
+              if ($updateReferente->foto && file_exists($image_path)) {
+                unlink($image_path);
+              }
+              $ruta = $referente["foto_referente"]->store("public"); // Esta ruta guarda al archivo con la ruta entera.
+              $nombreDelArchivo = basename($ruta); // basename recorta la ruta y nos deja solo el nombre del archivo.
+              $updateReferente->foto = $nombreDelArchivo; // le asigna la nueva ruta a la base de datos
             }
-            $ruta = $referente["foto_referente"]->store("public"); // Esta ruta guarda al archivo con la ruta entera.
-            $nombreDelArchivo = basename($ruta); // basename recorta la ruta y nos deja solo el nombre del archivo.
-            $updateReferente->foto = $nombreDelArchivo; // le asigna la nueva ruta a la base de datos
+            $updateReferente->save();
+          } else {
+            $nuevo_referente = New Referente;
+            $nuevo_referente->nombre = $referente['nombre_referente'];
+            if (isset($referente['foto_referente'])) {
+              // guardo cada imagen en storage/public (no en la base de datos)
+              $file = $referente['foto_referente']->store('public');
+              // obtengo sus nombres
+              $path = basename($file);
+              $nuevo_referente->foto = $path;
+            }
+            $nuevo_referente->tipo_de_referente_id = $referente['tipo_de_referente'];
+            // traigo el proyecto recien creado para obtener su ID
+            $lastProject = Proyecto::all()->last();
+            $projectId = $lastProject->id;
+            $nuevo_referente->proyecto_id = $projectId;
+            $nuevo_referente->save();
           }
-          $updateReferente->save();
-        } else {
-          $nuevo_referente = New Referente;
-          $nuevo_referente->nombre = $referente['nombre_referente'];
-          if (isset($referente['foto_referente'])) {
-            // guardo cada imagen en storage/public (no en la base de datos)
-            $file = $referente['foto_referente']->store('public');
-            // obtengo sus nombres
-            $path = basename($file);
-            $nuevo_referente->foto = $path;
-          }
-          $nuevo_referente->tipo_de_referente_id = $referente['tipo_de_referente'];
-          // traigo el proyecto recien creado para obtener su ID
-          $lastProject = Proyecto::all()->last();
-          $projectId = $lastProject->id;
-          $nuevo_referente->proyecto_id = $projectId;
-          $nuevo_referente->save();
-        }
 
+        }
       }
+    }
+
+    // Si escriben una actualizacion
+    if ($request->actualizacion) {
+      $actualizacion = New actualizacion();
+      $actualizacion->descripcion = $request->actualizacion;
+      $actualizacion->nombre_empresa = $request->nombre_empresa;
+      $actualizacion->proyecto_id = $proyecto->id;
+
+      $actualizacion->save();
     }
 
     return redirect('/')->with('success', 'Proyecto Editado exitosamente');
@@ -395,6 +419,15 @@ class ProyectoController extends Controller
 
     return redirect('/')
           ->with('status', 'Proyecto eliminado exitosamente');
+  }
+
+  public function deleteactualizacion(int $id)
+  {
+    dd($id);
+    $actualizacion = Actualizacion::find($id);
+    $actualizacion->delete();
+
+    return redirect()->back()->with('status', 'Actualizacion Eliminada correctamente');
   }
 
 }

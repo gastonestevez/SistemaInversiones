@@ -88,6 +88,26 @@
             </select>
           </div>
           <div>
+            <label for="actualizacion" class="field-label-30">Escribir una nueva actualización</label>
+            <textarea class="text-field-15 w-input" id="actualizacion" value="{{old('actualizacion')}}" name="actualizacion" rows="8" cols="80"></textarea>
+          </div>
+          <div>
+            <label for="nombre_empresa" class="field-label-29">Autor de la actualización</label>
+            <input type="text" value="{{ old('nombre_empresa') }}" class="text-field-15 w-input" maxlength="256" name="nombre_empresa" data-name="Name" placeholder="" id="nombre_empresa">
+          </div>
+          <label for="actualizacion" class="field-label-30">Actualizaciones existentes  </label>
+          @foreach ($proyecto->actualizaciones as $actualizacion)
+            <div>
+              <p>{{$actualizacion->descripcion}}</p>
+              <p>{{$actualizacion->nombre_empresa}}</p>
+              <form action="/deleteactualizacion/{{$actualizacion->id}}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit">Eliminar</button>
+              </form>
+            </div>
+          @endforeach
+          <div>
             <label style="text-align:center;" for="destacado" class="field-label-30">Destacar</label>
             <input value="{{$proyecto->destacado}}" @if($proyecto->destacado) checked @endif type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
           </div>
@@ -124,10 +144,10 @@
                     </select>
                   </th>
                   <th>
-                  
+
                     <img src="/storage/{{$referente->foto}}" style="max-width: 50px; max-height: 50px" alt="">
                     <input id="foto_referente" type="file" name="referente[{{$loop->index}}][foto_referente]" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
-                  
+
                   </th>
                   <th>
                     <button id="deleteRef" onclick="onDeleteRef(this)" style="margin: 0px 0px 11px;" hidden name="referente[{{$loop->index}}][deleteRef]">X</button>
@@ -251,7 +271,7 @@
     </div>
 
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f43d6794f715d3ebe1c4707" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="js/webflow.js" type="text/javascript"></script>
+    <script src="/js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
     <div memberstack-template="Client Dashboard Template"></div>
     <!-- Crisp + MemberStack -->

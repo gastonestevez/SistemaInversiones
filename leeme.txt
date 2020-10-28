@@ -5,9 +5,10 @@ FALTA
 AVISARLE A TATO QUE CAMBIE EL ALIAS DEL PIVOT de inversion a invertido
 
 1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-2)Creamos etiqueta A en slider de proyectos destacados y que te lleve al proyecto??
-3)Crear CRUD de Actualizaciones, Billeteras, Tipo de Referente, Localidad
+2)Crear etiqueta A en slider de proyectos destacados (linea 78 de index.blade) y que te lleve al proyecto (/proyecto/{{$proyecto->slug}}). Tato save me, no pude hacerlo.. se me rompe
+3)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera, CRUD de Tipo de Referente, CRUD de Localidad
 4)Crear emails transaccionales
+5)Lograr eliminar una actualizacion (editproyecto.blade)
 
 
 API:
