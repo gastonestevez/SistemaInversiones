@@ -28,11 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-      
+
       $asesores = Asesor::all();
       $users = User::all();
       $proyectos = Proyecto::all();
-      $proyectosDestacados = Proyecto::where('destacado', '=', 1)->get();
+      $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
 
       // Si hay un usuario logueado veo que proyectos traer
       if (Auth::user()) {

@@ -1,7 +1,5 @@
 <?php
 
-use App\User;
-use App\Proyecto;
 use Carbon\Carbon;
 
   // https://stackoverflow.com/questions/35332784/how-to-call-a-controller-function-inside-a-view-in-laravel-5
@@ -122,7 +120,7 @@ use Carbon\Carbon;
       return false;
   }
 
-  function inversores($asesor)
+  function cantidadInversores($asesor)
   {
 
     // Creo una variable contador de inversores
@@ -139,6 +137,17 @@ use Carbon\Carbon;
       }
     }
     return $cantidadDeInversores;
+  }
+
+  function referentes($proyecto, $tipo_de_referente_id)
+  {
+    $arrayReferentes = [];
+    foreach($proyecto->referentes as $referente) {
+      if ($referente->tipo_de_referente_id == $tipo_de_referente_id) {
+        $arrayReferentes[] = $referente;
+      }
+    }
+    return $arrayReferentes;
   }
 
 

@@ -62,6 +62,13 @@
     </style>
   </head>
 
+  {{-- @foreach (Auth::user()->proyectos as $proyecto)
+    @php
+      dump($proyecto->invertido)
+    @endphp
+  @endforeach
+  {{dd('stop')}}; --}}
+
   <body class="body">
     <div class="page-wrapper">
 
@@ -78,8 +85,13 @@
                   <div class="slide-horizontal w-slide">
                     <div class="testimonial-card">
                       <div class="testimonial-image-wrap">
-                        <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle">
-                        <img src="/storage/{{imagenesProyecto($destacado)[0]['path']}}" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/{{imagenesProyecto($destacado)[1]['path']}} 500w, /storage/{{imagenesProyecto($destacado)[1]['path']}} 1080w, /storage/{{imagenesProyecto($destacado)[1]['path']}} 1600w, /storage/{{imagenesProyecto($destacado)[1]['path']}}" class="testimonial-image">
+                        {{-- No esta encontrando el archivo .svg --}}
+                        {{-- <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle"> --}}
+                        @if (tieneImagenes($destacado))
+                          <img src="/storage/{{imagenesProyecto($destacado)[0]['path']}}" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/{{imagenesProyecto($destacado)[0]['path']}} 500w, /storage/{{imagenesProyecto($destacado)[0]['path']}} 1080w, /storage/{{imagenesProyecto($destacado)[0]['path']}} 1600w, /storage/{{imagenesProyecto($destacado)[0]['path']}}" class="testimonial-image">
+                        @else
+                          <img src="/storage/archivos/img/proyectoimagendefault.jpg" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/archivos/img/proyectoimagendefault.jpg 500w, /storage/archivos/img/proyectoimagendefault.jpg 1080w, /storage/archivos/img/proyectoimagendefault.jpg 1600w, /storage/archivos/img/proyectoimagendefault.jpg" class="testimonial-image">
+                        @endif
                         <a href="#" class="play-button w-inline-block w-lightbox">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef15892712517_play-button%20(1).svg" alt="" class="play-icon">
                           <script type="application/json" class="w-json">{
@@ -95,17 +107,19 @@
                               }
                             ]
                             }
-                        </script>
-                      </a>
-                    </div>
-                      <div class="horizontal-content-block">
+                          </script>
+                        </a>
+                      </div>
+                      <div class="horizontal-content-block" style="align-items: center;">
                         <div class="horizontal-fixed-height">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
-                          <h4 class="horizontal-quote-h4">There are many different ways a business can display customer testimonials — And when determining the best approach...</h4>
+                          <h4 class="horizontal-quote-h4">{{$destacado->titulo}}</h4>
+                          <h4 class="text-block-83">{{$destacado->localidad->nombre}}</h4>
+                          <h4 class="text-block-83">{{$destacado->fecha}}</h4>
                         </div>
 
                         <!-- Autor div -->
-                        <div class="author-block">
+                        <div class="author-block" style="margin-right: auto;">
                           <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
                           <div>
                             <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
@@ -272,6 +286,22 @@
                     </div>
                   </div>
                 </div>
+
+                <div style="width: 100%; text-align: center;">
+                  <h3 class="heading-6">Proyectos en los que se invirtió</h3>
+                </div>
+
+                @foreach (Auth::user()->proyectos as $proyecto)
+                  <div class="white-box third">
+                    <div class="box-padding">
+                      <div class="colorful-icon green"></div>
+                      <h3 class="large-number">$<span ms-data="spend">{{precio($proyecto->invertido->inversion)}}</span></h3>
+                      <div class="text-block-318">{{$proyecto->titulo}}</div>
+                      <div class="text-block-318">{{fecha($proyecto->invertido->created_at)}}</div>
+                    </div>
+                  </div>
+                @endforeach
+
               </div>
             </div>
           </div>
@@ -296,9 +326,9 @@
                       <div class="div-block-396">
                         <div class="div-block-1769"
                         @if ($asesor->foto)
-                          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat;"
+                          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat; background-position: center;"
                         @else
-                          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat;"
+                          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
                         @endif></div>
                         <div class="div-block-1771">
                           <div class="text-block-310">{{$asesor->rentabilidad}}%</div>
@@ -324,7 +354,7 @@
                                   </div>
                                   <div class="progress-text-column">
                                     <div class="progress-icon">
-                                      <div class="text-block-314">{{inversores($asesor)}}</div>
+                                      <div class="text-block-314">{{cantidadInversores($asesor)}}</div>
                                     </div>
                                     <div class="text-block-313">Inversores</div>
                                   </div>
@@ -333,14 +363,16 @@
                             </div>
                           </div>
                         </a>
-                        <div class="div-block-1805">
-                          <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
-                          <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <input type="submit" class="button-39 w-button" value="Eliminar">
-                          </form>
-                        </div>
+                        @if (isAdmin())
+                          <div class="div-block-1805">
+                            <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
+                            <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
+                              @method('delete')
+                              @csrf
+                              <input type="submit" class="button-39 w-button" value="Eliminar">
+                            </form>
+                          </div>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -370,7 +402,7 @@
                       <div id="w-node-b493d5813210-66a11659" class="link-block-42">
                         <div class="div-block-346">
                           <div class="div-block-1802">
-                            <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat;"></div>
+                            <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"></div>
                             <div class="div-block-1771">
                               <div class="text-block-325-copy">Asesor asignado
                                 @if (isset($proyecto->asesor->nombre))
@@ -384,7 +416,7 @@
                           </div>
                         </div>
                       </div>
-                      <a href="landing-proyecto.html" class="div-block-397 w-inline-block">
+                      <a href="/proyecto/{{$proyecto->slug}}" class="div-block-397 w-inline-block">
                         <div class="text-block-83">{{$proyecto->fecha}}</div>
                         <h2 class="heading-5">{{$proyecto->titulo}}</h2>
 
@@ -416,11 +448,11 @@
                           {{-- Consulto si el proyecto tiene imagenes --}}
                           @if (tieneImagenes($proyecto))
                             @foreach (imagenesProyecto($proyecto) as $imagen)
-                              style="background-image: url('/storage/{{$imagen['path']}}'); background-repeat: no-repeat;"
+                              style="background-image: url('/storage/{{$imagen['path']}}'); background-repeat: no-repeat; background-position: center;"
                             @endforeach
                           @else
                             {{-- Si no tiene archivos de imagen muestro una predeterminada --}}
-                            style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat;"
+                            style="background-image: url('/storage/archivos/img/proyectoimagendefault.jpg'); background-repeat: no-repeat; background-position: center;"
                           @endif
 
                           ></div>
