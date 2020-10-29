@@ -33,7 +33,7 @@ class HomeController extends Controller
       $users = User::all();
       $proyectos = Proyecto::all();
       $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
-
+      //dd($proyectos);
       // Si hay un usuario logueado veo que proyectos traer
       if (Auth::user()) {
         // Si es admin traigo todos los proyectos existentes
