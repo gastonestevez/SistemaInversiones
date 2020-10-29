@@ -5,10 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Proyecto;
 use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+  public function show(int $id)
+  {
+    $users = User::all();
+    $user = User::find($id);
+    $proyectos = $user->proyectos;
+    $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
+
+    $vac = compact('user', 'users', 'proyectosDestacados', 'proyectos');
+
+    return view('/usuario', $vac);
+  }
 
   public function edit(int $id)
   {

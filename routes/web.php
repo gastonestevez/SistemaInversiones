@@ -71,6 +71,8 @@ Route::put('/perfil/{id}', 'UserController@update');
 
 Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage');
 
+Route::get('/usuario/{id}', 'UserController@show');
+
 
 // Borrar imagenes, documentos y logos de los proyectos
 

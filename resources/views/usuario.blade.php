@@ -4,7 +4,7 @@
 <html data-wf-page="5f43d67a5b9a601566a11659" data-wf-site="5f43d6794f715d3ebe1c4707">
   <head>
     <meta charset="utf-8">
-    <title>Home |</title>
+    <title>Usuario |</title>
     <meta content="preview" property="og:title">
     <meta content="preview" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -62,13 +62,6 @@
     </style>
   </head>
 
-  {{-- @foreach (Auth::user()->proyectos as $proyecto)
-    @php
-      dump($proyecto->invertido)
-    @endphp
-  @endforeach
-  {{dd('stop')}}; --}}
-
   <body class="body">
     <div class="page-wrapper">
 
@@ -87,7 +80,7 @@
                       <div class="testimonial-image-wrap">
                         {{-- No esta encontrando el archivo .svg --}}
                         {{-- <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef144be71252b_angle.svg" alt="" class="horizontal-angle"> --}}
-                        @if (tieneImagenes($destacado))
+                        @if(tieneImagenes($destacado))
                           <img src="/storage/{{imagenesProyecto($destacado)[0]['path']}}" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/{{imagenesProyecto($destacado)[0]['path']}} 500w, /storage/{{imagenesProyecto($destacado)[0]['path']}} 1080w, /storage/{{imagenesProyecto($destacado)[0]['path']}} 1600w, /storage/{{imagenesProyecto($destacado)[0]['path']}}" class="testimonial-image">
                         @else
                           <img src="/storage/archivos/img/proyectoimagendefault.jpg" alt="Testimonial Image" sizes="(max-width: 479px) 437.20001220703125px, (max-width: 767px) 91vw, (max-width: 991px) 38vw, (max-width: 1919px) 39vw, 40vw" srcset="/storage/archivos/img/proyectoimagendefault.jpg 500w, /storage/archivos/img/proyectoimagendefault.jpg 1080w, /storage/archivos/img/proyectoimagendefault.jpg 1600w, /storage/archivos/img/proyectoimagendefault.jpg" class="testimonial-image">
@@ -123,7 +116,9 @@
                           <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
                           <div>
                             <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
-                            <div class="author-job"><a href="https://api.whatsapp.com/send?phone={{$destacado->asesor->numero}}" target="_blank" style="color: rgba(21, 28, 52, 0.5);">Contactame</a></div>
+                            <div class="author-job">
+                              <a href="https://api.whatsapp.com/send?phone={{$destacado->asesor->numero}}" target="_blank" style="color: rgba(21, 28, 52, 0.5);">Contactame</a>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -162,25 +157,25 @@
 
           <!-- Navbar usuario logueado -->
           @if (Auth::user())
-          <nav class="nav-dropdown-list w-dropdown-list">
-            <div class="webflow-diamond"></div>
-            <div class="nav-drop-list-padding">
-              <a href="/perfil/{{Auth::user()->id}}" class="navigation-item dropdown-nav-item w-inline-block">
-                <div class="navigation-icon"></div>
-                <div>Perfil</div>
-              </a>
-              <a href="#" class="navigation-item dropdown-nav-item w-inline-block">
-                <div class="navigation-icon"></div>
-                <div>Soporte</div>
-              </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button class="navigation-item logout-link w-inline-block"><div class="navigation-icon"></div>Salir</button>
-                </form>
-                {{-- <div>Log out</div> --}}
-              </a>
-            </div>
-          </nav>
+            <nav class="nav-dropdown-list w-dropdown-list">
+              <div class="webflow-diamond"></div>
+              <div class="nav-drop-list-padding">
+                <a href="/perfil/{{Auth::user()->id}}" class="navigation-item dropdown-nav-item w-inline-block">
+                  <div class="navigation-icon"></div>
+                  <div>Perfil</div>
+                </a>
+                <a href="#" class="navigation-item dropdown-nav-item w-inline-block">
+                  <div class="navigation-icon"></div>
+                  <div>Soporte</div>
+                </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                      @csrf
+                      <button class="navigation-item logout-link w-inline-block"><div class="navigation-icon"></div>Salir</button>
+                  </form>
+                  {{-- <div>Log out</div> --}}
+                </a>
+              </div>
+            </nav>
           @endif
         </div>
         @if (Auth::user())
@@ -194,17 +189,11 @@
           <!-- Menu de las tabs -->
         <div class="navigation-menu w-tab-menu">
           @if (Auth::user())
-            @if (!isAdmin())
-              <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(Auth::user()) w--current @endif">
-                <div class="navigation-icon"></div>
-                <div class="text-block-138">Mi billetera</div>
-              </a>
-            @endif
+            <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(Auth::user()) w--current @endif">
+              <div class="navigation-icon"></div>
+              <div class="text-block-138">Billetera de {{$user->name}}</div>
+            </a>
           @endif
-          <a data-w-tab="Project" class="navigation-item w-inline-block w-tab-link @if(!Auth::user()) w--current @endif ">
-            <div class="navigation-icon"></div>
-            <div class="text-block-137 asesores">Asesores</div>
-          </a>
           <a data-w-tab="Assets" class="navigation-item w-inline-block w-tab-link">
             @if (Auth::user())
             <div class="navigation-icon"></div>
@@ -223,37 +212,36 @@
         <div class="dash-tab-wrapper w-tab-content">
 
           <!-- Billetera -->
-          @if (Auth::user())
           <div data-w-tab="Overview" class="dashboard-section w-tab-pane w--tab-active">
             <div class="container">
-                <h3 class="heading-6">Estos son tus estadísticas, <span>{{(Auth::user()->name)}}</span>!</h3>
+                <h3 class="heading-6">Estos son las estadísticas de <span>{{$user->name}}</span>!</h3>
 
               <div class="dash-row">
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span>{{precio(Auth::user()->billetera->inversion_inicial)}}</span></h3>
+                    <h3 class="large-number">$<span>{{precio($user->billetera->inversion_inicial)}}</span></h3>
                     <div class="text-block-316">Inversión inicial</div>
                   </div>
                 </div>
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span ms-data="spend">{{precio(Auth::user()->billetera->total)}}</span></h3>
+                    <h3 class="large-number">$<span ms-data="spend">{{precio($user->billetera->total)}}</span></h3>
                     <div class="text-block-318">Total invertido ( 2 proyectos)</div>
                   </div>
                 </div>
                 <div class="white-box third">
                   <div class="box-padding _3">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number _2">$<span ms-data="spend" class="text-span-2">{{precio(Auth::user()->billetera->rentabilidad)}}</span></h3>
+                    <h3 class="large-number _2">$<span ms-data="spend" class="text-span-2">{{precio($user->billetera->rentabilidad)}}</span></h3>
                     <div class="text-block-145">Rentabilidad esperada</div>
                   </div>
                 </div>
                 <div class="white-box third mobile-full-box">
                   <div class="box-padding">
                     <div class="colorful-icon purple"></div>
-                    <h3 class="large-number" style="text-transform: capitalize;">{{fecha(Auth::user()->created_at)}}</h3>
+                    <h3 class="large-number" style="text-transform: capitalize;">{{fecha($user->created_at)}}</h3>
                     <div class="text-block-317">Fecha de inicio</div>
                   </div>
                 </div>
@@ -290,12 +278,13 @@
                 </div>
 
                 <div style="width: 100%; text-align: center;">
-                  @if (count(Auth::user()->proyectos()))
+                  {{-- Si tiene proyectos asociados significa que invirtio --}}
+                  @if (count($user->proyectos))
                     <h3 class="heading-6">Proyectos en los que invirtió</h3>
                   @endif
                 </div>
 
-                @foreach (Auth::user()->proyectos as $proyecto)
+                @foreach ($user->proyectos as $proyecto)
                   <div class="white-box third">
                     <div class="box-padding">
                       <div class="colorful-icon green"></div>
@@ -309,91 +298,10 @@
               </div>
             </div>
           </div>
-          @endif
-
-          <!-- Asesores -->
-          <div data-w-tab="Project" class="dashboard-section w-tab-pane">
-            <div class="container">
-
-              @if (isAdmin())
-                  <div class="div-block-1796">
-                    <a href="/addasesor" class="button-39 w-button">Agregar un asesor</a>
-                  </div>
-              @endif
-
-
-              <div class="dash-row masonry-copy">
-
-                @foreach ($asesores as $asesor)
-                  <div class="div-block-1768">
-                    <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
-                      <div class="div-block-396">
-                        <div class="div-block-1769"
-                        @if ($asesor->foto)
-                          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat; background-position: center;"
-                        @else
-                          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
-                        @endif></div>
-                        <div class="div-block-1771">
-                          <div class="text-block-310">{{$asesor->rentabilidad}}%</div>
-                          <div class="text-block-311">De rentabilidad aprox.</div>
-                        </div>
-                        <div class="div-block-1798">
-                          <a href="#" data-w-id="b08037e4-5345-c4df-7e05-de57c2e4423a" class="button-35 w-button">Chat</a>
-                        </div>
-                      </div>
-                      <div class="link-block-42">
-                        <a href="/asesor/{{$asesor->id}}" class="div-block-397 w-inline-block">
-                          <div class="text-block-83">Diciembre 2020</div>
-                          <h2 class="heading-5">{{$asesor->nombre}}</h2>
-                          <div class="div-block-79">
-                            <div class="box-padding">
-                              <div class="progress-wrapper">
-                                <div class="progress-text-row">
-                                  <div class="progress-text-column">
-                                    <div class="progress-icon">
-                                      <div class="text-block-315">{{count($asesor->proyectos)}}</div>
-                                    </div>
-                                    <div class="text-block-312">Proyectos</div>
-                                  </div>
-                                  <div class="progress-text-column">
-                                    <div class="progress-icon">
-                                      <div class="text-block-314">{{cantidadInversores($asesor)}}</div>
-                                    </div>
-                                    <div class="text-block-313">Inversores</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                        @if (isAdmin())
-                          <div class="div-block-1805">
-                            <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
-                            <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
-                              @method('delete')
-                              @csrf
-                              <input type="submit" class="button-39 w-button" value="Eliminar">
-                            </form>
-                          </div>
-                        @endif
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-            </div>
-          </div>
 
           <!-- Proyectos -->
           <div data-w-tab="Assets" class="dashboard-section w-tab-pane">
             <div class="container">
-              @if (isAdmin())
-                <div class="div-block-1796">
-                  <a href="/addproyecto" class="button-35 w-button">Agregar un proyecto</a>
-                </div>
-              @endif
-
 
               <div class="dash-row masonry">
 
