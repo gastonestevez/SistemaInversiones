@@ -13,6 +13,9 @@
     <link href="/css/webflow.css" rel="stylesheet" type="text/css">
     <link href="/css/undefineds-stunning-project-1f65bd.webflow.css" rel="stylesheet" type="text/css">
     <link href="/css/uikit.css" rel="stylesheet" type="text/css">
+    <link href="/css/undefineds-stunning-project-1f65bd.webflow.css" rel="stylesheet" type="text/css">
+    <link href="/css/uikit.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -65,12 +68,6 @@
     </style>
   </head>
 
-  {{-- @foreach (Auth::user()->proyectos as $proyecto)
-    @php
-      dump($proyecto->invertido)
-    @endphp
-  @endforeach
-  {{dd('stop')}}; --}}
 
   <body class="body">
     <div class="page-wrapper">
@@ -215,9 +212,17 @@
             @endif
           </a>
           @if (isAdmin())
-            <a data-w-tab="usuarios" class="navigation-item w-inline-block w-tab-link">
+            <a data-w-tab="usuarios" class="navigation-item w-inline-block w-tab-link w--current">
               <div class="navigation-icon"></div>
               <div class="text-block-326">Usuarios</div>
+            </a>
+            <a class="navigation-item w-inline-block w-tab-link">
+              <div class="navigation-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="text-block-326">Localidades</div>
+            </a>
+            <a class="navigation-item w-inline-block w-tab-link">
+              <div class="navigation-icon"><i class="fas fa-users"></i></div>
+              <div class="text-block-326">Referentes</div>
             </a>
           @endif
         </div>
@@ -227,9 +232,9 @@
 
           <!-- Billetera -->
           @if (Auth::user())
-          <div data-w-tab="Overview" class="dashboard-section w-tab-pane w--tab-active">
+          <div data-w-tab="Overview" class="dashboard-section w-tab-pane @if(!isAdmin())w--tab-active @endif">
             <div class="container">
-                <h3 class="heading-6">Estos son tus estadísticas, <span>{{(Auth::user()->name)}}</span>!</h3>
+                <h3 class="heading-6">Billetera y estadísticas de <span>{{(Auth::user()->name)}}</span></h3>
 
               <div class="dash-row">
                 <div class="white-box third">
@@ -293,7 +298,7 @@
                 </div>
 
                 <div style="width: 100%; text-align: center;">
-                  @if (count(Auth::user()->proyectos()))
+                  @if (count(Auth::user()->proyectos))
                     <h3 class="heading-6">Proyectos en los que invirtió</h3>
                   @endif
                 </div>
@@ -533,7 +538,7 @@
           </div>
 
           <!-- Usuarios -->
-          <div data-w-tab="usuarios" class="w-tab-pane">
+          <div data-w-tab="usuarios" class="w-tab-pane @if(isAdmin())w--tab-active @endif">
             <div class="div-block-1815">
               <div class="div-block-1796">
                 <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Agregar un usuario</a>

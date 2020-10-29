@@ -13,6 +13,7 @@
     <link href="/css/webflow.css" rel="stylesheet" type="text/css">
     <link href="/css/undefineds-stunning-project-1f65bd.webflow.css" rel="stylesheet" type="text/css">
     <link href="/css/uikit.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -29,6 +30,9 @@
     <style>
       .gumroad-loading-indicator i {
         background: url(https://uploads-ssl.webflow.com/5ef66c40c73a1f23b6a72987/5ef6bed92a2bee63b0334828_webdev-for-you-loading.svg) !important;
+      }
+      .slide-horizontal {
+        cursor: pointer;
       }
     </style>
     <style media="screen">
@@ -75,7 +79,7 @@
               <div class="mask-horizontal w-slider-mask">
 
                 @foreach ($proyectosDestacados as $destacado)
-                  <div class="slide-horizontal w-slide">
+                  <div class="slide-horizontal w-slide" onclick="handleSlideClick('{{$destacado->slug}}')">
                     <div class="testimonial-card">
                       <div class="testimonial-image-wrap">
                         {{-- No esta encontrando el archivo .svg --}}
@@ -189,6 +193,10 @@
           <!-- Menu de las tabs -->
         <div class="navigation-menu w-tab-menu">
           @if (Auth::user())
+            <a href="/" class="navigation-item">
+              <div class="navigation-icon"><i class="far fa-arrow-alt-circle-left"></i></div>
+              <div class="text-block-138">Volver a Usuarios</div>
+            </a>
             <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(Auth::user()) w--current @endif">
               <div class="navigation-icon"></div>
               <div class="text-block-138">Billetera de {{$user->name}}</div>
@@ -197,15 +205,9 @@
           <a data-w-tab="Assets" class="navigation-item w-inline-block w-tab-link">
             @if (Auth::user())
             <div class="navigation-icon"></div>
-              <div class="text-block-134">Proyectos</div>
+              <div class="text-block-134">Proyectos de {{$user->name}}</div>
             @endif
           </a>
-          @if (isAdmin())
-            <a data-w-tab="usuarios" class="navigation-item w-inline-block w-tab-link">
-              <div class="navigation-icon"></div>
-              <div class="text-block-326">Usuarios</div>
-            </a>
-          @endif
         </div>
 
         <!-- Espacio donde va el contenido de las tabs -->
@@ -214,7 +216,22 @@
           <!-- Billetera -->
           <div data-w-tab="Overview" class="dashboard-section w-tab-pane w--tab-active">
             <div class="container">
-                <h3 class="heading-6">Estos son las estadísticas de <span>{{$user->name}}</span>!</h3>
+
+              {{-- Editar billetera,editar inversiones hechas o realizar una inversion --}}
+              <div class="div-block-1796">
+                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Acreditar dinero</a>
+              </div>
+              <div class="div-block-1796">
+                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Realizar una inversión</a>
+              </div>
+              <div class="div-block-1796">
+                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Editar Inversiones</a>
+              </div>
+              <div class="div-block-1796">
+                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Editar Billetera</a>
+              </div>
+
+                <h3 class="heading-6">Billetera y estadísticas de <span>{{$user->name}}</span></h3>
 
               <div class="dash-row">
                 <div class="white-box third">
@@ -294,6 +311,7 @@
                     </div>
                   </div>
                 @endforeach
+
 
               </div>
             </div>
@@ -431,44 +449,12 @@
                     </div>
                   </div>
                 @empty
-                  <p style="text-align:center;">No se ha invertido en ningún proyecto</p>
+                  <p style="text-align:center;">{{$user->name}} {{$user->last_name}} no ha invertido en ningún proyecto</p>
                 @endforelse
               </div>
             </div>
           </div>
 
-          <!-- Usuarios -->
-          <div data-w-tab="usuarios" class="w-tab-pane">
-            <div class="div-block-1815">
-              <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Agregar un usuario</a>
-              </div>
-              <div class="div-block-1796">
-                <a href="acreditar-una-inversion.html" data-w-id="76a10f6e-0f77-e8e6-649d-5de28950c0a4" class="button-39 w-button">Acreditar una inversión</a>
-              </div>
-              <div class="div-block-1816">
-
-                @foreach ($users as $user)
-                  <div class="div-block-1768">
-                    <div class="div-block-345 proyect-card-header fondo-blanco-copy">
-                      <div class="link-block-42">
-                        <a href="/usuario/{{$user->id}}" class="div-block-397 w-inline-block">
-                          <div class="text-block-83">{{fecha($user->created_at)}}</div>
-                          <h2 class="heading-5">{{$user->name}}</h2>
-                          <div class="div-block-79"></div>
-                        </a>
-                        <div class="div-block-1805">
-                          <a href="#" class="button-39 w-button">Editar</a>
-                          <a href="#" class="button-39 w-button">Eliminar</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
-
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -590,6 +576,10 @@
         const popId = `pop${id.split('doc')[1]}`
         const popup = document.getElementById(popId)
         popup.style.display = 'block'
+      }
+
+      const handleSlideClick = (slug) => {
+        window.location.pathname = `/proyecto/${slug}`
       }
     </script>
   </body>
