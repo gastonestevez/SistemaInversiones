@@ -98,7 +98,7 @@
           <label for="actualizacion" class="field-label-30">Actualizaciones existentes  </label>
           <div>
             <label style="text-align:center;" for="destacado" class="field-label-30">Destacar</label>
-            <input value="{{$proyecto->destacado}}" @if($proyecto->destacado) checked @endif type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
+            <input value="1" @if($proyecto->destacado) checked @endif type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
           </div>
 
           <br><br>

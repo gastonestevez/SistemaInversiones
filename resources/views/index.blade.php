@@ -30,6 +30,9 @@
       .gumroad-loading-indicator i {
         background: url(https://uploads-ssl.webflow.com/5ef66c40c73a1f23b6a72987/5ef6bed92a2bee63b0334828_webdev-for-you-loading.svg) !important;
       }
+      .slide-horizontal {
+        cursor: pointer;
+      }
     </style>
     <style media="screen">
     .uk-progress.progress-green::-webkit-progress-value
@@ -82,7 +85,7 @@
               <div class="mask-horizontal w-slider-mask">
 
                 @foreach ($proyectosDestacados as $destacado)
-                  <div class="slide-horizontal w-slide">
+                  <div class="slide-horizontal w-slide" onclick="handleSlideClick('{{$destacado->slug}}')">
                     <div class="testimonial-card">
                       <div class="testimonial-image-wrap">
                         {{-- No esta encontrando el archivo .svg --}}
@@ -114,7 +117,7 @@
                         <div class="horizontal-fixed-height">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
                           <h4 class="horizontal-quote-h4">{{$destacado->titulo}}</h4>
-                          <h4 class="text-block-83">{{$destacado->localidad->nombre}}</h4>
+                          <h4 class="text-block-83">{{$destacado->localidad ? $destacado->localidad->nombre : ''}}</h4>
                           <h4 class="text-block-83">{{$destacado->fecha}}</h4>
                         </div>
 
@@ -683,6 +686,11 @@
         const popup = document.getElementById(popId)
         popup.style.display = 'block'
       }
+
+      const handleSlideClick = (slug) => {
+        window.location.pathname = `/proyecto/${slug}`
+      }
+
     </script>
   </body>
 </html>
