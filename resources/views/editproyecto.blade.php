@@ -96,17 +96,6 @@
             <input type="text" value="{{ old('nombre_empresa') }}" class="text-field-15 w-input" maxlength="256" name="nombre_empresa" data-name="Name" placeholder="" id="nombre_empresa">
           </div>
           <label for="actualizacion" class="field-label-30">Actualizaciones existentes  </label>
-          @foreach ($proyecto->actualizaciones as $actualizacion)
-            <div>
-              <p>{{$actualizacion->descripcion}}</p>
-              <p>{{$actualizacion->nombre_empresa}}</p>
-              <form action="/deleteactualizacion/{{$actualizacion->id}}" method="post">
-                @csrf
-                @method('delete')
-                <button type="submit">Eliminar</button>
-              </form>
-            </div>
-          @endforeach
           <div>
             <label style="text-align:center;" for="destacado" class="field-label-30">Destacar</label>
             <input value="{{$proyecto->destacado}}" @if($proyecto->destacado) checked @endif type="checkbox" class="text-field-15 w-input" name="destacado" data-name="porcentaje" id="destacado" @if(old('destacado') == 1) checked='checked'@endif>
@@ -229,7 +218,7 @@
         @endforeach
 
         @if(tieneDocumentos($proyecto))
-          <label style="textalign: center;r" for="documentos" class="field-label-32">Documentos</label>
+          <label style="text-align: center;" for="documentos" class="field-label-32">Documentos</label>
         @endif
         {{-- Busco los documentos del proyecto --}}
         @foreach(documentosProyecto($proyecto) as $documento)
@@ -242,6 +231,20 @@
                 @csrf
                 <input type="submit" class="link-32" value="x" style="cursor:pointer; border:none; color: black;">
               </form>
+          </div>
+        @endforeach
+
+        <br><br>
+
+        @foreach ($proyecto->actualizaciones as $actualizacion)
+          <div>
+            <p>{{$actualizacion->descripcion}}</p>
+            <p>{{$actualizacion->nombre_empresa}}</p>
+            <form action="/deleteactualizacion/{{$actualizacion->id}}" method="post">
+              @csrf
+              @method('delete')
+              <button type="submit">Eliminar</button>
+            </form>
           </div>
         @endforeach
 
