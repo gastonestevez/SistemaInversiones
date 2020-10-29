@@ -65,7 +65,8 @@ Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizaci
 
 // Usuarios
 
-Route::get('/perfil/{id}', 'UserController@edit');
+Route::get('/perfil/{id}', 'UserController@edit')->middleware('isAdmin');
+Route::get('/perfil', 'UserController@edit')->middleware('isAuth');
 
 Route::put('/perfil/{id}', 'UserController@update');
 

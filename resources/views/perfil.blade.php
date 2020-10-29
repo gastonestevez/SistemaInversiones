@@ -74,6 +74,12 @@
           <label for="avatar" class="field-label-18">Foto de perfil</label>
           <input id="avatar" type="file" name="avatar" class="submit-button-15 w-button">
         </div>
+        @if(Auth::User()->is_admin)
+          <div class="field-wrapper">
+            <label for="is_admin" class="field-label-18">Rol de administrador</label>
+            <input type="checkbox" value="1" class="text-field w-input" name="is_admin" id="is_admin" @if($user->is_admin) checked @endif>
+          </div>
+        @endif
         <button id="editperfil" type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button" style="display:none">Editar</button>
       </form>
 

@@ -168,7 +168,7 @@
           <nav class="nav-dropdown-list w-dropdown-list">
             <div class="webflow-diamond"></div>
             <div class="nav-drop-list-padding">
-              <a href="/perfil/{{Auth::user()->id}}" class="navigation-item dropdown-nav-item w-inline-block">
+              <a href="/perfil" class="navigation-item dropdown-nav-item w-inline-block">
                 <div class="navigation-icon"></div>
                 <div>Perfil</div>
               </a>
@@ -300,7 +300,7 @@
                       <div class="colorful-icon green"></div>
                       <h3 class="large-number">$<span ms-data="spend">{{precio($proyecto->invertido->inversion)}}</span></h3>
                       <div class="text-block-318">{{$proyecto->titulo}}</div>
-                      <div class="text-block-318">{{fecha($proyecto->invertido->created_at)}}</div>
+                      <div class="text-block-318">{{$proyecto->invertido->created_at ? fecha($proyecto->invertido->created_at) : ''}}</div>
                     </div>
                   </div>
                 @endforeach
@@ -549,8 +549,8 @@
                           <div class="div-block-79"></div>
                         </a>
                         <div class="div-block-1805">
-                          <a href="#" class="button-39 w-button">Editar</a>
-                          <a href="#" class="button-39 w-button">Eliminar</a>
+                          <a href="/perfil/{{$user->id}}" class="button-39 w-button">Editar</a>
+                          {{-- <a href="#" class="button-39 w-button">Eliminar</a> --}}
                         </div>
                       </div>
                     </div>

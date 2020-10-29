@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
-  public function edit(int $id)
+  public function edit(int $id = 0)
   {
-    $user = User::find($id);
+    
+    $user = User::find($id ?: Auth::user()->id);
     $vac = compact('user');
 
     return view('/perfil', $vac);
@@ -67,12 +69,12 @@ class UserController extends Controller
     {
       $user->password = Hash::make($request['new_password']);
     }
-
-    $user->is_admin = ($request->admin) ? $request->admin : 0;
+    
+    $user->is_admin = ($request['is_admin']) ?: 0;
 
     $user->save();
 
-    return redirect()->back()->with('success', 'Usuario actualizado exitosamente');
+    return redirect('/')->with('success', 'Usuario actualizado exitosamente');
 
   }
 
