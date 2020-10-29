@@ -273,6 +273,28 @@
       </style>
     </div>
 
+    <div id="mockReferent" style="display: none;">
+      <tr>
+        <th>
+          <input type="text" maxlength="256" data-name="" name="referente[0][nombre_referente]" id="nombre_referente" class="text-field-15 w-input nombre_referente">
+        </th>
+        <th>
+          <select id="tipo_de_referente" name="referente[0][tipo_de_referente]" class="w-select tipo_de_referente">
+            <option value="">Seleccione un tipo</option>
+            @foreach ($tipo_de_referentes as $tipo_de_referente)
+              <option value="{{$tipo_de_referente->id}}">{{$tipo_de_referente->tipo}}</option>
+            @endforeach
+          </select>
+        </th>
+        <th>
+          <input id="foto_referente" type="file" name="referente[0][foto_referente]" data-wait="Please wait..." class="submit-button-15 w-button" style="transform: scale(0.60);">
+        </th>
+        <th>
+          <button id="deleteRef" onclick="onDeleteRef(this)" style="margin: 0px 0px 11px;" hidden name="referente[0][deleteRef]">X</button>
+        </th>
+      </tr>
+    </div>
+
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f43d6794f715d3ebe1c4707" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="/js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
