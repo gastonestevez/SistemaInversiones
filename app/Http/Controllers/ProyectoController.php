@@ -423,7 +423,7 @@ class ProyectoController extends Controller
 
   public function deleteactualizacion(int $id)
   {
-    dd($id);
+          
     $actualizacion = Actualizacion::find($id);
     $actualizacion->delete();
 

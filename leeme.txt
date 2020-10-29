@@ -2,12 +2,12 @@
 
 FALTA
 
-AVISARLE A TATO QUE CAMBIE EL ALIAS DEL PIVOT de inversion a invertido
-
 1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-2)Crear etiqueta A en slider de proyectos destacados (linea 78 de index.blade) y que te lleve al proyecto (/proyecto/{{$proyecto->slug}}). Tato save me, no pude hacerlo.. se me rompe
-3)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera, CRUD de Tipo de Referente, CRUD de Localidad
-4)Crear emails transaccionales
+2)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera, CRUD de Tipo de Referente, CRUD de Localidad
+3)Crear emails transaccionales
+4)Hacer confirms a todos los botones de eliminar
+5)Hacer el handleSlideClick para las cards de Asesores, Usuarios y Proyectos
+6)Sumarle el plugin de Cliengo
 
 
 API:
@@ -19,6 +19,8 @@ API:
 CRUD User
 CRUD Actualizacion
 CRUD Billeteras
+CRUD Acreditacion de dinero
+CRUD Inversion
 CRUD Tipo de Referente
 CRUD Localidad
 
