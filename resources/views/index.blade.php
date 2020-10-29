@@ -117,7 +117,7 @@
                         <div class="horizontal-fixed-height">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
                           <h4 class="horizontal-quote-h4">{{$destacado->titulo}}</h4>
-                          <h4 class="text-block-83">{{$destacado->localidad->nombre}}</h4>
+                          <h4 class="text-block-83">{{$destacado->localidad ? $destacado->localidad->nombre : ''}}</h4>
                           <h4 class="text-block-83">{{$destacado->fecha}}</h4>
                         </div>
 
@@ -686,7 +686,7 @@
       const handleSlideClick = (slug) => {
         window.location.pathname = `/proyecto/${slug}`
       }
-      
+
     </script>
   </body>
 </html>
