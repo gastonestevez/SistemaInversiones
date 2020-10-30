@@ -3,7 +3,7 @@
 FALTA
 
 1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-2)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera, CRUD de Tipo de Referente, CRUD de Localidad
+2)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera, CRUD de Tipo de Referente
 3)Crear emails transaccionales
 4)Hacer confirms a todos los botones de eliminar
 5)Hacer el handleSlideClick para las cards de Asesores, Usuarios y Proyectos
@@ -22,7 +22,6 @@ CRUD Billeteras
 CRUD Acreditacion de dinero
 CRUD Inversion
 CRUD Tipo de Referente
-CRUD Localidad
 
 
 Rutas del Panel de administrador

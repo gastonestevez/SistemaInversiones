@@ -216,7 +216,7 @@
               <div class="navigation-icon"></div>
               <div class="text-block-326">Usuarios</div>
             </a>
-            <a class="navigation-item w-inline-block w-tab-link">
+            <a href="/localidades" class="navigation-item w-inline-block">
               <div class="navigation-icon"><i class="fas fa-map-marker-alt"></i></div>
               <div class="text-block-326">Localidades</div>
             </a>

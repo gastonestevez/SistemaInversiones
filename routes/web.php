@@ -66,6 +66,7 @@ Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizaci
 // Usuarios
 
 Route::get('/perfil/{id}', 'UserController@edit')->middleware('isAdmin');
+
 Route::get('/perfil', 'UserController@edit')->middleware('isAuth');
 
 Route::put('/perfil/{id}', 'UserController@update');
@@ -73,6 +74,16 @@ Route::put('/perfil/{id}', 'UserController@update');
 Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage');
 
 Route::get('/usuario/{id}', 'UserController@show');
+
+// Localidades
+
+Route::get('/localidades', 'LocalidadController@directory');
+
+Route::post('/addlocalidad', 'LocalidadController@store');
+
+Route::put('/editlocalidad/{id}', 'LocalidadController@update');
+
+Route::delete('/deletelocalidad/{id}', 'LocalidadController@destroy');
 
 
 // Borrar imagenes, documentos y logos de los proyectos
