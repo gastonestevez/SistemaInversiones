@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Billetera;
 use App\Proyecto;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\Acreditacion; // Por email con detalle de acreditacion de dinero
 
 class UserController extends Controller
@@ -133,11 +135,11 @@ class UserController extends Controller
 
     $user->save();
 
-    return back()->with('status', 'Avatar Eliminada correctamente');
+    return redirect()->back()->with('status', 'Avatar Eliminada correctamente');
 
   }
 
-  public function acreditar(int $id)
+  public function acreditar(int $id, Request $request)
   {
 
     $billetera = Billetera::find($id);
@@ -146,9 +148,9 @@ class UserController extends Controller
     $billetera->total = $billetera->total + $request->monto;
     $billetera->save();
 
-    Mail::send(new PurchaseMail($request,$payment));
+    Mail::send(new Acreditacion($request));
 
-    return back()->with('status', 'Acreditación realizada correctamente');
+    return redirect()->back()->with('status', 'Acreditación realizada correctamente');
 
   }
 
@@ -156,7 +158,7 @@ class UserController extends Controller
   // {
   //   dd($request->all());
   //
-  //   if ($request->monto > $billetera->inversion_inicial - $billetera->total) {
+  //   if ($request->monto > $billetera->total - $billetera->inversion_inicial) {
   //     return back()->with('error', 'No puede invertir más dinero del que que posee en su billetera');
   //   }
   //

@@ -31,6 +31,10 @@ Route::get('/ping','AuthenticationController@ping');
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Admin
+
+Route::put('/acreditar-dinero/{id}', 'UserController@acreditar');
+
 // Asesores
 
 Route::get('/asesor/{id}', 'AsesorController@show');

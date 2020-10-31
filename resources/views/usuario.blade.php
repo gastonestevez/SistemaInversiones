@@ -490,21 +490,14 @@
               <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
                 <div class="div-block-405"></div>
                 <div class="form-block-copy w-form">
-                  <form id="acreditar-dinero" class="form-5" action="/acreditar-dinero" method="post">
+                  <form id="acreditar-dinero" class="form-5" action="/acreditar-dinero/{{$user->id}}" method="post">
+                    @method('put')
                     @csrf
                     <div>
                       <label for="monto" class="field-label-32">Monto de Acreditación</label>
                       <input type="text" maxlength="256" name="monto" id="monto" class="text-field-16 w-input" required autofocus>
                       <input type="hidden" name="name" value="{{$user->name}}">
-                    </div>
-                    <div>
-                      <label for="email" class="field-label-32">Proyecto</label>
-                      <select id="field-2" name="field-2" class="w-select">
-                        <option value="">Elija un proyecto...</option>
-                        @foreach ($todosLosProyectos as $proyecto)
-                          <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
-                        @endforeach
-                      </select>
+                      <input type="hidden" name="email" value="{{$user->email}}">
                     </div>
                     <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
                       <input type="submit" value="Acreditar" data-wait="Please wait..." class="submit-button-17 w-button">
