@@ -8,6 +8,7 @@ use App\User;
 use App\Proyecto;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\Acreditacion; // Por email con detalle de acreditacion de dinero
 
 class UserController extends Controller
 {
@@ -16,17 +17,24 @@ class UserController extends Controller
   {
     $users = User::all();
     $user = User::find($id);
+    // dd($user->proyectos);
+    $todosLosProyectos = Proyecto::all();
     $proyectos = $user->proyectos;
     $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
+    // Si no hay ni un proyecto destacado, mostramos los proyectos comunes
+    if (!count($proyectosDestacados)) {
+      $proyectosDestacados = Proyecto::all()->random()->limit(5)->get();
+    }
 
-    $vac = compact('user', 'users', 'proyectosDestacados', 'proyectos');
+
+    $vac = compact('user', 'users', 'proyectosDestacados', 'proyectos', 'todosLosProyectos');
 
     return view('/usuario', $vac);
   }
 
   public function edit(int $id = 0)
   {
-    
+
     $user = User::find($id ?: Auth::user()->id);
     $vac = compact('user');
 
@@ -82,7 +90,7 @@ class UserController extends Controller
     {
       $user->password = Hash::make($request['new_password']);
     }
-    
+
     $user->is_admin = ($request['is_admin']) ?: 0;
 
     $user->save();
@@ -111,7 +119,8 @@ class UserController extends Controller
                     ->with('success', 'Usuario eliminado exitosamente');
   }
 
-  public function deleteimage($id) {
+  public function deleteimage($id)
+  {
 
     $user = User::find($id);
 
@@ -127,5 +136,46 @@ class UserController extends Controller
     return back()->with('status', 'Avatar Eliminada correctamente');
 
   }
+
+  public function acreditar(int $id)
+  {
+
+    $billetera = Billetera::find($id);
+
+    // Le sumamos el monto acreditado al total que hay en la billetera actualmente
+    $billetera->total = $billetera->total + $request->monto;
+    $billetera->save();
+
+    Mail::send(new PurchaseMail($request,$payment));
+
+    return back()->with('status', 'Acreditación realizada correctamente');
+
+  }
+
+  // public function invertir(Request $request, int $id)
+  // {
+  //   dd($request->all());
+  //
+  //   if ($request->monto > $billetera->inversion_inicial - $billetera->total) {
+  //     return back()->with('error', 'No puede invertir más dinero del que que posee en su billetera');
+  //   }
+  //
+  //   $user = User::find($id);
+  //   $billetera = $user->billetera;
+  //
+  //   $inversion = $request->monto;
+  //   $proyecto = $request->proyecto_id;
+  //   $user = $user->id;
+  //
+  //   if ($request->monto > $billetera->inversion_inicial - $billetera->total) {
+  //
+  //     $user->proyectos()->attach([
+  //       $proyecto->inversiones->invertido
+  //       $car2->id,
+  //     ]);
+  //   }
+  // }
+
+
 
 }

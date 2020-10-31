@@ -13,24 +13,28 @@ class UsuariosProyectosSeeder extends Seeder
     {
       DB::table('usuarios_proyectos')->insert([
         [
-          'inversion' => '2222',
+          'invertido' => '2222',
           'proyecto_id' => '1',
           'user_id' => '2',
+          'created_at' => '2020-01-02 07:57:53',
         ],
         [
-          'inversion' => '35000',
+          'invertido' => '35000',
           'proyecto_id' => '2',
           'user_id' => '3',
+          'created_at' => '2020-01-02 07:57:53',
         ],
         [
-          'inversion' => '35000',
+          'invertido' => '35000',
           'proyecto_id' => '3',
           'user_id' => '3',
+          'created_at' => '2020-01-02 07:57:53',
         ],
         [
-          'inversion' => '74000',
+          'invertido' => '74000',
           'proyecto_id' => '3',
           'user_id' => '4',
+          'created_at' => '2020-01-02 07:57:53',
         ],
       ]);
     }

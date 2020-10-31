@@ -3,11 +3,13 @@
 FALTA
 
 1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-2)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera, CRUD de Tipo de Referente
+1 bis) Que el admin pueda registrar un usuario (al final de la function store va a enviarse un email transaccional avisandole al usuario)
+2)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera
 3)Crear emails transaccionales
 4)Hacer confirms a todos los botones de eliminar
 5)Hacer el handleSlideClick para las cards de Asesores, Usuarios y Proyectos
 6)Sumarle el plugin de Cliengo
+7)Terminar funcion invertir y borrar inversion
 
 
 API:

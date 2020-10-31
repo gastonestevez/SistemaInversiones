@@ -18,7 +18,7 @@
     <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
     <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
     <link href="/images/webclip.png" rel="apple-touch-icon">
     <!-- REPLACE ↓↓ -->
     <!--  Temporary Memberstack Code  -->
@@ -63,6 +63,29 @@
         font-size: 18px;
         font-weight: 700;
       }
+    </style>
+    <style media="screen">
+    .carga-de-proyectos {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      min-height: 90vh;
+      padding: 0;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
     </style>
   </head>
 
@@ -192,41 +215,40 @@
 
           <!-- Menu de las tabs -->
         <div class="navigation-menu w-tab-menu">
-          @if (Auth::user())
             <a href="/" class="navigation-item">
               <div class="navigation-icon"><i class="far fa-arrow-alt-circle-left"></i></div>
-              <div class="text-block-138">Volver a Usuarios</div>
+              <div class="text-block-138">Atrás</div>
             </a>
-            <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(Auth::user()) w--current @endif">
-              <div class="navigation-icon"></div>
+            <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(isAdmin()) w--current @endif">
+              <div class="navigation-icon"><i class="fas fa-dollar-sign"></i></div>
               <div class="text-block-138">Billetera de {{$user->name}}</div>
             </a>
-          @endif
           <a data-w-tab="Assets" class="navigation-item w-inline-block w-tab-link">
-            @if (Auth::user())
             <div class="navigation-icon"></div>
               <div class="text-block-134">Proyectos de {{$user->name}}</div>
-            @endif
+          </a>
+          <a href="/perfil/{{$user->id}}" class="navigation-item">
+            <div class="navigation-icon"><i class="fas fa-user"></i></div>
+            <div class="text-block-138">Perfil</div>
+          </a>
+          <a data-w-tab="acreditar-dinero" class="navigation-item w-inline-block w-tab-link">
+            <div class="navigation-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+              <div class="text-block-134">Acreditar dinero</div>
+          </a>
+          <a data-w-tab="invertir" class="navigation-item w-inline-block w-tab-link">
+            <div class="navigation-icon"><i class="fas fa-hand-holding-usd"></i></div>
+            <div class="text-block-138">Invertir</div>
           </a>
         </div>
 
         <!-- Espacio donde va el contenido de las tabs -->
-        <div class="dash-tab-wrapper w-tab-content">
+        <div class="dash-tab-wrapper w-tab-content" style="padding-bottom:0;">
 
           <!-- Billetera -->
           <div data-w-tab="Overview" class="dashboard-section w-tab-pane w--tab-active">
             <div class="container">
 
-              {{-- Editar billetera,editar inversiones hechas o realizar una inversion --}}
-              <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Acreditar dinero</a>
-              </div>
-              <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Realizar una inversión</a>
-              </div>
-              <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Editar Inversiones</a>
-              </div>
+              {{-- Editar billetera --}}
               <div class="div-block-1796">
                 <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Editar Billetera</a>
               </div>
@@ -245,7 +267,7 @@
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
                     <h3 class="large-number">$<span ms-data="spend">{{precio($user->billetera->total)}}</span></h3>
-                    <div class="text-block-318">Total invertido ( 2 proyectos)</div>
+                    <div class="text-block-318">Total invertido</div>
                   </div>
                 </div>
                 <div class="white-box third">
@@ -297,20 +319,27 @@
                 <div style="width: 100%; text-align: center;">
                   {{-- Si tiene proyectos asociados significa que invirtio --}}
                   @if (count($user->proyectos))
-                    <h3 class="heading-6">Proyectos en los que invirtió</h3>
+                    <h3 class="heading-6">Inversiones Realizadas</h3>
                   @endif
                 </div>
 
                 @foreach ($user->proyectos as $proyecto)
-                  <div class="white-box third">
+                  <div class="white-box third" style="position:relative;">
                     <div class="box-padding">
                       <div class="colorful-icon green"></div>
-                      <h3 class="large-number">$<span ms-data="spend">{{precio($proyecto->invertido->inversion)}}</span></h3>
+                      <h3 class="large-number">$<span ms-data="spend">{{precio($proyecto->inversiones->invertido)}}</span></h3>
                       <div class="text-block-318">{{$proyecto->titulo}}</div>
-                      <div class="text-block-318">{{fecha($proyecto->invertido->created_at)}}</div>
+                      <div class="text-block-318">{{fecha($proyecto->inversiones->created_at)}}</div>
+                      <form action="/deleteinversion/{{$proyecto->id}}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button style="position:absolute; top: 2%; right: 6%; background-color: white;" type="submit" name="button">X</button>
+                      </form>
                     </div>
                   </div>
                 @endforeach
+
+
 
 
               </div>
@@ -452,6 +481,69 @@
                   <p style="text-align:center;">{{$user->name}} {{$user->last_name}} no ha invertido en ningún proyecto</p>
                 @endforelse
               </div>
+            </div>
+          </div>
+
+          <div data-w-tab="acreditar-dinero" class="dashboard-section w-tab-pane">
+            <div class="container">
+
+              <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
+                <div class="div-block-405"></div>
+                <div class="form-block-copy w-form">
+                  <form id="acreditar-dinero" class="form-5" action="/acreditar-dinero" method="post">
+                    @csrf
+                    <div>
+                      <label for="monto" class="field-label-32">Monto de Acreditación</label>
+                      <input type="text" maxlength="256" name="monto" id="monto" class="text-field-16 w-input" required autofocus>
+                      <input type="hidden" name="name" value="{{$user->name}}">
+                    </div>
+                    <div>
+                      <label for="email" class="field-label-32">Proyecto</label>
+                      <select id="field-2" name="field-2" class="w-select">
+                        <option value="">Elija un proyecto...</option>
+                        @foreach ($todosLosProyectos as $proyecto)
+                          <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
+                      <input type="submit" value="Acreditar" data-wait="Please wait..." class="submit-button-17 w-button">
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div data-w-tab="invertir" class="dashboard-section w-tab-pane">
+            <div class="container">
+
+              <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
+                <div class="div-block-405"></div>
+                <div class="form-block-copy w-form">
+                  <form id="invertir" class="form-5" action="/invertir" method="post">
+                    @csrf
+                    <div>
+                      <label for="invertido" class="field-label-32">Monto de inversión</label>
+                      <small>Monto disponible: ${{montoDisponible($user)}}</small>
+                      <input type="number" max="{{$user->billetera->inversion_inicial - $user->billetera->total}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
+                    </div>
+                    <div>
+                      <label for="proyecto_id" class="field-label-32">Proyecto</label>
+                      <select id="proyecto_id" name="proyecto_id" class="w-select" required>
+                        <option value="">Seleccione una opción...</option>
+                        @foreach ($todosLosProyectos as $proyecto)
+                          <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
+                      <input type="submit" value="Invertir" data-wait="Please wait..." class="submit-button-17 w-button">
+                    </div>
+                  </form>
+
             </div>
           </div>
 

@@ -150,6 +150,15 @@ use Carbon\Carbon;
     return $arrayReferentes;
   }
 
+  // Chequea cuanto dinero disponible tiene el usuario para invertir
+  function montoDisponible($user)
+  {
+    $billetera = $user->billetera;
+    $montoDisponible = precio($billetera->inversion_inicial - $billetera->total);
+
+    return $montoDisponible;
+  }
+
 
 
 ?>

@@ -85,6 +85,16 @@ Route::put('/editlocalidad/{id}', 'LocalidadController@update');
 
 Route::delete('/deletelocalidad/{id}', 'LocalidadController@destroy');
 
+// Referentes
+
+Route::get('/referentes', 'ReferenteController@directory');
+
+Route::post('/addreferente', 'ReferenteController@store');
+
+Route::put('/editreferente/{id}', 'ReferenteController@update');
+
+Route::delete('/deletereferente/{id}', 'ReferenteController@destroy');
+
 
 // Borrar imagenes, documentos y logos de los proyectos
 

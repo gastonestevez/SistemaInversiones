@@ -20,7 +20,6 @@
     <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
     <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/images/webclip.png" rel="apple-touch-icon">
     <!-- REPLACE ↓↓ -->
     <!--  Temporary Memberstack Code  -->
@@ -196,7 +195,7 @@
           @if (Auth::user())
             @if (!isAdmin())
               <a data-w-tab="Overview" class="navigation-item w-inline-block w-tab-link @if(Auth::user()) w--current @endif">
-                <div class="navigation-icon"></div>
+                <div class="navigation-icon"><i class="fas fa-dollar-sign"></i></div>
                 <div class="text-block-138">Mi billetera</div>
               </a>
             @endif
@@ -220,7 +219,7 @@
               <div class="navigation-icon"><i class="fas fa-map-marker-alt"></i></div>
               <div class="text-block-326">Localidades</div>
             </a>
-            <a class="navigation-item w-inline-block w-tab-link">
+            <a href="/referentes" class="navigation-item w-inline-block">
               <div class="navigation-icon"><i class="fas fa-users"></i></div>
               <div class="text-block-326">Referentes</div>
             </a>
@@ -248,7 +247,7 @@
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
                     <h3 class="large-number">$<span ms-data="spend">{{precio(Auth::user()->billetera->total)}}</span></h3>
-                    <div class="text-block-318">Total invertido ( 2 proyectos)</div>
+                    <div class="text-block-318">Total invertido</div>
                   </div>
                 </div>
                 <div class="white-box third">
@@ -299,7 +298,7 @@
 
                 <div style="width: 100%; text-align: center;">
                   @if (count(Auth::user()->proyectos))
-                    <h3 class="heading-6">Proyectos en los que invirtió</h3>
+                    <h3 class="heading-6">Inversiones Realizadas</h3>
                   @endif
                 </div>
 
@@ -307,9 +306,9 @@
                   <div class="white-box third">
                     <div class="box-padding">
                       <div class="colorful-icon green"></div>
-                      <h3 class="large-number">$<span ms-data="spend">{{precio($proyecto->invertido->inversion)}}</span></h3>
+                      <h3 class="large-number">$<span ms-data="spend">{{precio($proyecto->inversiones->invertido)}}</span></h3>
                       <div class="text-block-318">{{$proyecto->titulo}}</div>
-                      <div class="text-block-318">{{$proyecto->invertido->created_at ? fecha($proyecto->invertido->created_at) : ''}}</div>
+                      <div class="text-block-318">{{$proyecto->inversiones->created_at ? fecha($proyecto->inversiones->created_at) : ''}}</div>
                     </div>
                   </div>
                 @endforeach
@@ -542,9 +541,6 @@
             <div class="div-block-1815">
               <div class="div-block-1796">
                 <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Agregar un usuario</a>
-              </div>
-              <div class="div-block-1796">
-                <a href="acreditar-una-inversion.html" data-w-id="76a10f6e-0f77-e8e6-649d-5de28950c0a4" class="button-39 w-button">Acreditar una inversión</a>
               </div>
               <div class="div-block-1816">
 

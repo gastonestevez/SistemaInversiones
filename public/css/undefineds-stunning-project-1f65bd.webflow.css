@@ -698,9 +698,11 @@ label {
 }
 
 .dropdown {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   left: auto;
-  top: 104%;
+  /* top: 104%; */
+  top: 4%;
   right: 0%;
   bottom: auto;
   z-index: 11;

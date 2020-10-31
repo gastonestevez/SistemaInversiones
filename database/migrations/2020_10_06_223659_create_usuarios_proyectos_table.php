@@ -15,7 +15,7 @@ class CreateUsuariosProyectosTable extends Migration
     {
         Schema::create('usuarios_proyectos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('inversion');
+            $table->integer('invertido');
             $table->timestamps();
 
             $table->bigInteger('proyecto_id')->unsigned()->nullable();
