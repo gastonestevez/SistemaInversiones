@@ -31,81 +31,86 @@ Route::get('/ping','AuthenticationController@ping');
 
 Route::get('/', 'HomeController@index')->name('home');
 
-// Admin
-
-Route::put('/acreditar-dinero/{id}', 'UserController@acreditar');
-
-Route::put('/invertir/{id}', 'UserController@invertir');
 
 // Asesores
 
 Route::get('/asesor/{id}', 'AsesorController@show');
 
-Route::get('/addasesor', 'AsesorController@new');
+Route::get('/addasesor', 'AsesorController@new')->middleware('admin');
 
-Route::post('/addasesor', 'AsesorController@store');
+Route::post('/addasesor', 'AsesorController@store')->middleware('admin');
 
-Route::get('/editasesor/{id}', 'AsesorController@edit');
+Route::get('/editasesor/{id}', 'AsesorController@edit')->middleware('admin');
 
-Route::put('/editasesor/{id}', 'AsesorController@update');
+Route::put('/editasesor/{id}', 'AsesorController@update')->middleware('admin');
 
-Route::delete('/deleteasesor/{id}', 'AsesorController@destroy');
+Route::delete('/deleteasesor/{id}', 'AsesorController@destroy')->middleware('admin');
 
-Route::delete('/asesor/deleteimage/{id}', 'AsesorController@deleteimage');
+Route::delete('/asesor/deleteimage/{id}', 'AsesorController@deleteimage')->middleware('admin');
 
 // Proyectos
 
 Route::get('/proyecto/{slug}', 'ProyectoController@show');
 
-Route::get('/addproyecto', 'ProyectoController@new');
+Route::get('/addproyecto', 'ProyectoController@new')->middleware('admin');
 
-Route::post('/addproyecto', 'ProyectoController@store');
+Route::post('/addproyecto', 'ProyectoController@store')->middleware('admin');
 
-Route::get('/editproyecto/{slug}', 'ProyectoController@edit');
+Route::get('/editproyecto/{slug}', 'ProyectoController@edit')->middleware('admin');
 
-Route::put('/editproyecto/{slug}', 'ProyectoController@update');
+Route::put('/editproyecto/{slug}', 'ProyectoController@update')->middleware('admin');
 
-Route::delete('/deleteproyecto/{id}', 'ProyectoController@destroy');
+Route::delete('/deleteproyecto/{id}', 'ProyectoController@destroy')->middleware('admin');
 
-Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizacion');
+Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizacion')->middleware('admin');
 
 // Usuarios
 
-Route::get('/perfil/{id}', 'UserController@edit')->middleware('isAdmin');
+Route::get('/perfil/{id}', 'UserController@edit')->middleware('admin');
 
-Route::get('/perfil', 'UserController@edit')->middleware('isAuth');
+Route::get('/perfil', 'UserController@edit')->middleware('auth');
 
-Route::put('/perfil/{id}', 'UserController@update');
+Route::put('/perfil/{id}', 'UserController@update')->middleware('admin');
 
-Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage');
+Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage')->middleware('auth');
 
-Route::get('/usuario/{id}', 'UserController@show');
+Route::get('/usuario/{id}', 'UserController@show')->middleware('admin');
+
+Route::put('/acreditar-dinero/{id}', 'UserController@acreditar')->middleware('admin');
+
+Route::put('/invertir/{id}', 'UserController@invertir')->middleware('admin');
+
+// Billetera
+
+Route::get('/billetera/{id}', 'BilleteraController@edit')->middleware('admin');
+
+Route::put('/billetera/{id}', 'BilleteraController@update')->middleware('admin');
 
 // Localidades
 
-Route::get('/localidades', 'LocalidadController@directory');
+Route::get('/localidades', 'LocalidadController@directory')->middleware('admin');
 
-Route::post('/addlocalidad', 'LocalidadController@store');
+Route::post('/addlocalidad', 'LocalidadController@store')->middleware('admin');
 
-Route::put('/editlocalidad/{id}', 'LocalidadController@update');
+Route::put('/editlocalidad/{id}', 'LocalidadController@update')->middleware('admin');
 
-Route::delete('/deletelocalidad/{id}', 'LocalidadController@destroy');
+Route::delete('/deletelocalidad/{id}', 'LocalidadController@destroy')->middleware('admin');
 
 // Referentes
 
-Route::get('/referentes', 'ReferenteController@directory');
+Route::get('/referentes', 'ReferenteController@directory')->middleware('admin');
 
-Route::post('/addreferente', 'ReferenteController@store');
+Route::post('/addreferente', 'ReferenteController@store')->middleware('admin');
 
-Route::put('/editreferente/{id}', 'ReferenteController@update');
+Route::put('/editreferente/{id}', 'ReferenteController@update')->middleware('admin');
 
-Route::delete('/deletereferente/{id}', 'ReferenteController@destroy');
+Route::delete('/deletereferente/{id}', 'ReferenteController@destroy')->middleware('admin');
 
 
 // Borrar imagenes, documentos y logos de los proyectos
 
-Route::delete('/archivos/deletelogo/{id}', 'ArchivosController@deletelogo');
+Route::delete('/archivos/deletelogo/{id}', 'ArchivosController@deletelogo')->middleware('admin');
 
-Route::delete('/archivos/deletedocumento/{id}', 'ArchivosController@deleteplano');
+Route::delete('/archivos/deletedocumento/{id}', 'ArchivosController@deleteplano')->middleware('admin');
 
-Route::delete('/archivos/deleteimage/{id}', 'ArchivosController@deleteimage');
+Route::delete('/archivos/deleteimage/{id}', 'ArchivosController@deleteimage')->middleware('admin');

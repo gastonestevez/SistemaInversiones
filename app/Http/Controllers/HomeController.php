@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
 
       $asesores = Asesor::all();
-      $users = User::all();
+      $users = User::orderBy('name')->get();
       $proyectos = Proyecto::all();
       $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
       // Si no hay ni un proyecto destacado, mostramos los proyectos comunes

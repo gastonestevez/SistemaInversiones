@@ -17,7 +17,7 @@
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
     <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
     <script src="/js/uikit.js" charset="utf-8"></script>
-    
+
     <link href="/images/webclip.png" rel="apple-touch-icon">
     <link rel="stylesheet" href="/css/uikit.css">
     <!-- REPLACE ↓↓ -->
@@ -200,8 +200,10 @@
           </div>
         @endforeach
 
+        <br>
+
         @if(tieneLogos($proyecto))
-        <label style="text-align: center;" for="documentos" class="field-label-32">Logos</label>
+        <label style="text-align: center;" for="logos" class="field-label-32">Logos</label>
         @endif
         {{-- Busco los logos del proyecto --}}
         @foreach(logosProyecto($proyecto) as $logo)
@@ -216,6 +218,8 @@
               </form>
           </div>
         @endforeach
+
+        <br>
 
         @if(tieneDocumentos($proyecto))
           <label style="text-align: center;" for="documentos" class="field-label-32">Documentos</label>
@@ -236,8 +240,11 @@
 
         <br><br>
 
+        <label style="text-align: center;" for="actualizaciones" class="field-label-32">Actualizaciones</label>
+
         @foreach ($proyecto->actualizaciones as $actualizacion)
-          <div>
+          <div class="submit-button-17 w-button">
+            <p>{{fecha($actualizacion->created_at)}}</p>
             <p>{{$actualizacion->descripcion}}</p>
             <p>{{$actualizacion->nombre_empresa}}</p>
             <form action="/deleteactualizacion/{{$actualizacion->id}}" method="post">

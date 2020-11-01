@@ -554,7 +554,7 @@
                           <div class="div-block-79"></div>
                         </a>
                         <div class="div-block-1805">
-                          <a href="/perfil/{{$user->id}}" class="button-39 w-button">Editar</a>
+                          {{-- <a href="/perfil/{{$user->id}}" class="button-39 w-button">Editar</a> --}}
                           {{-- <a href="#" class="button-39 w-button">Eliminar</a> --}}
                         </div>
                       </div>

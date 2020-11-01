@@ -250,7 +250,7 @@
 
               {{-- Editar billetera --}}
               <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Editar Billetera</a>
+                <a href="/billetera/{{$user->id}}" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Editar Billetera</a>
               </div>
 
                 <h3 class="heading-6">Billetera y estadísticas de <span>{{$user->name}}</span></h3>
@@ -499,6 +499,7 @@
                       <input type="hidden" name="name" value="{{$user->name}}">
                       <input type="hidden" name="email" value="{{$user->email}}">
                     </div>
+                    <br>
                     <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
                       <input type="submit" value="Acreditar" data-wait="Please wait..." class="submit-button-17 w-button">
                     </div>
@@ -534,6 +535,8 @@
                         @endforeach
                       </select>
                     </div>
+                    <input type="hidden" name="proyecto_titulo" value="{{$proyecto->titulo}}">
+                    <br>
                     <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
                       <input type="submit" value="Invertir" data-wait="Please wait..." class="submit-button-17 w-button">
                     </div>

@@ -4,12 +4,14 @@ FALTA
 
 1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
 1 bis) Que el admin pueda registrar un usuario (al final de la function store va a enviarse un email transaccional avisandole al usuario)
-2)Añadir las Actualizaciones en addproyectos y editproyectos, crear Edit de Billetera
-3)Crear emails transaccionales
+2)Editar Proyectos - Borrar referente existente
+3)Configurar emails transaccionales (ya estan hechos, faltan los textos/destinatarios y configurarlos)
 4)Hacer confirms a todos los botones de eliminar
 5)Hacer el handleSlideClick para las cards de Asesores, Usuarios y Proyectos
 6)Sumarle el plugin de Cliengo
 7)Terminar funcion invertir y borrar inversion
+8)Pedirles los textos de los emails transaccionales a los chicos de Livv
+9)OJO Que el usuario comun pueda borrar su avatar pero no el de otros usuarios
 
 
 API:
