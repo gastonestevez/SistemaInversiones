@@ -35,6 +35,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::put('/acreditar-dinero/{id}', 'UserController@acreditar');
 
+Route::put('/invertir/{id}', 'UserController@invertir');
+
 // Asesores
 
 Route::get('/asesor/{id}', 'AsesorController@show');

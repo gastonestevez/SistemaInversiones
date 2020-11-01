@@ -107,8 +107,8 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
           $billetera = New Billetera();
-          $billetera->inversion_inicial = 0;
           $billetera->total = 0;
+          $billetera->invertido = 0;
           $billetera->rentabilidad = 0;
 
 

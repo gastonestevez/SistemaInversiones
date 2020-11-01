@@ -154,29 +154,28 @@ class UserController extends Controller
 
   }
 
-  // public function invertir(Request $request, int $id)
-  // {
-  //   dd($request->all());
-  //
-  //   if ($request->monto > $billetera->total - $billetera->inversion_inicial) {
-  //     return back()->with('error', 'No puede invertir más dinero del que que posee en su billetera');
-  //   }
-  //
-  //   $user = User::find($id);
-  //   $billetera = $user->billetera;
-  //
-  //   $inversion = $request->monto;
-  //   $proyecto = $request->proyecto_id;
-  //   $user = $user->id;
-  //
-  //   if ($request->monto > $billetera->inversion_inicial - $billetera->total) {
-  //
-  //     $user->proyectos()->attach([
-  //       $proyecto->inversiones->invertido
-  //       $car2->id,
-  //     ]);
-  //   }
-  // }
+  public function invertir(Request $request, int $id)
+  {
+
+    $user = User::find($id);
+    $billetera = Billetera::find($id);
+
+    if ($request->monto <= $billetera->total - $billetera->invertido) {
+      return back()->with('error', 'No puede invertir más dinero del que que posee en su billetera');
+
+      $billetera = $user->billetera;
+      $invertido = $request->monto;
+      $proyecto_id = $request->proyecto_id;
+      $user_id = $user->id;
+
+    } else {
+
+      $user->proyectos()->attach($id, array('invertido' => $invertido, 'proyecto_id' => $proyecto_id, 'user_id' => $user_id));
+      $user->save();
+
+      return back()->with('status', 'Inversión realizada correctamente');
+    }
+  }
 
 
 

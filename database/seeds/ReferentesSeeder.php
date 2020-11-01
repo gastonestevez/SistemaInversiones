@@ -14,37 +14,37 @@ class ReferentesSeeder extends Seeder
       DB::table('referentes')->insert([
         [
           "nombre" => "Pablo Caseros",
-          "foto" => "#",
+          "foto" => "archivos/img/imagen2.jpg",
           "proyecto_id" => 1,
           "tipo_de_referente_id" => 1,
         ],
         [
           "nombre" => "Andres Carton",
-          "foto" => "#",
+          "foto" => "archivos/img/imagen3.jpg",
           "proyecto_id" => 2,
           "tipo_de_referente_id" => 1,
         ],
         [
           "nombre" => "Julio Iglesias",
-          "foto" => "#",
+          "foto" => "archivos/img/imagen1.jpg",
           "proyecto_id" => 3,
           "tipo_de_referente_id" => 2,
         ],
         [
           "nombre" => "Arturo Illia",
-          "foto" => "#",
+          "foto" => "archivos/img/imagen1.jpg",
           "proyecto_id" => 1,
           "tipo_de_referente_id" => 2,
         ],
         [
           "nombre" => "Oscar Rugeri",
-          "foto" => "#",
+          "foto" => "archivos/img/imagen1.jpg",
           "proyecto_id" => 2,
           "tipo_de_referente_id" => 3,
         ],
         [
           "nombre" => "Bruno Diaz",
-          "foto" => "#",
+          "foto" => "archivos/img/imagen1.jpg",
           "proyecto_id" => 3,
           "tipo_de_referente_id" => 3,
         ],

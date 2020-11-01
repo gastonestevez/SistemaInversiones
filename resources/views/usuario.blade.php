@@ -259,15 +259,15 @@
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span>{{precio($user->billetera->inversion_inicial)}}</span></h3>
-                    <div class="text-block-316">Inversión inicial</div>
+                    <h3 class="large-number">$<span>{{precio($user->billetera->total)}}</span></h3>
+                    <div class="text-block-316">Dinero en billetera</div>
                   </div>
                 </div>
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span ms-data="spend">{{precio($user->billetera->total)}}</span></h3>
-                    <div class="text-block-318">Total invertido</div>
+                    <h3 class="large-number">$<span ms-data="spend">{{precio($user->billetera->invertido)}}</span></h3>
+                    <div class="text-block-318">Dinero invertido</div>
                   </div>
                 </div>
                 <div class="white-box third">
@@ -516,12 +516,14 @@
               <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
                 <div class="div-block-405"></div>
                 <div class="form-block-copy w-form">
-                  <form id="invertir" class="form-5" action="/invertir" method="post">
+                  {{session('error')}}
+                  <form id="invertir" class="form-5" action="/invertir/{{$user->id}}" method="post">
+                    @method('put')
                     @csrf
                     <div>
                       <label for="invertido" class="field-label-32">Monto de inversión</label>
-                      <small>Monto disponible: ${{montoDisponible($user)}}</small>
-                      <input type="number" max="{{$user->billetera->inversion_inicial - $user->billetera->total}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
+                      <small>Dinero disponible: ${{montoDisponible($user)}}</small>
+                      <input type="number" max="{{$user->billetera->total - $user->invertido}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
                     </div>
                     <div>
                       <label for="proyecto_id" class="field-label-32">Proyecto</label>

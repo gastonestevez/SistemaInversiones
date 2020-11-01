@@ -76,7 +76,7 @@
 
         <span style="text-decoration: underline;"><a href="{{ route('perfil.show', ['id' => $usuario->id]) }}">{{$usuario->name}}</a></span><br>
         <img width="150px" src="/storage/{{$usuario->avatar}}" alt=""><br>
-        <span>Total en billetera: ${{precio($usuario->billetera->total)}}</span><br>
+        <span>Dinero en billetera: ${{precio($usuario->billetera->total)}}</span><br>
         <span>Total invertido: ${{precio($usuario->billetera->inversion_inicial)}}</span><br>
         <span>Proyectos en los que invirtio:{{count($usuario->proyectos)}}</span><br>
 

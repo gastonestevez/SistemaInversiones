@@ -239,15 +239,15 @@
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span>{{precio(Auth::user()->billetera->inversion_inicial)}}</span></h3>
-                    <div class="text-block-316">Inversión inicial</div>
+                    <h3 class="large-number">$<span>{{precio(Auth::user()->billetera->total)}}</span></h3>
+                    <div class="text-block-316">Dinero en billetera</div>
                   </div>
                 </div>
                 <div class="white-box third">
                   <div class="box-padding">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number">$<span ms-data="spend">{{precio(Auth::user()->billetera->total)}}</span></h3>
-                    <div class="text-block-318">Total invertido</div>
+                    <h3 class="large-number">$<span ms-data="spend">{{precio(Auth::user()->billetera->invertido)}}</span></h3>
+                    <div class="text-block-318">Dinero invertido</div>
                   </div>
                 </div>
                 <div class="white-box third">
