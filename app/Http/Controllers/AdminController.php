@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Billetera;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -23,19 +25,19 @@ class AdminController extends Controller
 
   public function invertir(Request $request, int $id)
   {
-
     $user = User::find($id);
     $billetera = Billetera::find($id);
-
-    if ($request->monto <= $billetera->total - $billetera->invertido) {
+    //WIP !! ESTA BIEN EL COMPARADOR ? 
+    if ($request->monto >= $billetera->total - $billetera->invertido) {
       return back()->with('error', 'No puede invertir más dinero del que que posee en su billetera');
 
+      
+    } else {
+      //WIP !! 
       $billetera = $user->billetera;
-      $invertido = $request->monto;
+      $invertido = $request->invertido;
       $proyecto_id = $request->proyecto_id;
       $user_id = $user->id;
-
-    } else {
 
       $user->proyectos()->attach($id, array('invertido' => $invertido, 'proyecto_id' => $proyecto_id, 'user_id' => $user_id));
       $user->save();

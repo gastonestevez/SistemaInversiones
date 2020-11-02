@@ -492,10 +492,10 @@
                           <a href="/editproyecto/{{$proyecto->slug}}" class="button-35 w-button">Editar</a>
 
                           {{-- Eliminar Proyecto --}}
-                          <form action="/deleteproyecto/{{$proyecto->id}}" method="post">
+                          <form id="deleteProjectForm{{$proyecto->id}}" action="/deleteproyecto/{{$proyecto->id}}" method="post">
                             @method('delete')
                             @csrf
-                            <button class="button-35 w-button" type="submit">Eliminar</button>
+                            <button class="button-35 w-button" onclick="handleDeleteProject(event,{{$proyecto->id}})" type="submit">Eliminar</button>
                           </form>
 
                         </div>
@@ -705,6 +705,14 @@
 
       const handleSlideClick = (slug) => {
         window.location.pathname = `/proyecto/${slug}`
+      }
+
+      const handleDeleteProject = (e,id) => {
+        e.preventDefault()
+        const confirmDelete = confirm('¿Está seguro que quiere eliminar el proyecto?')
+        if(confirmDelete){
+          document.getElementById(`deleteProjectForm${id}`).submit()
+        }
       }
 
     </script>

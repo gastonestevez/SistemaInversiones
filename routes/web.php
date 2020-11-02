@@ -71,7 +71,12 @@ Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizaci
 
 // Usuarios
 
+Route::get('/usuario/agregarUsuario', 'UserController@addUser')->middleware('admin');
+
+Route::post('/usuario/agregarUsuario', 'UserController@addUser')->middleware('admin');
+
 Route::get('/usuario/{id}', 'UserController@show')->middleware('admin');
+
 
 Route::get('/perfil/{id}', 'UserController@edit')->middleware('admin');
 

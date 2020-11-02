@@ -15,6 +15,10 @@ use App\Mail\Acreditacion; // Por email con detalle de acreditacion de dinero
 class UserController extends Controller
 {
 
+  public function addUser() 
+  {
+    return view('/auth/register');
+  }
   public function show(int $id)
   {
     $users = User::all();

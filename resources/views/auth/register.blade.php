@@ -35,8 +35,7 @@
         @if($errors->any())
           {!! implode('', $errors->all('<div>:message</div>')) !!}
         @endif
-
-        <h1 class="login-head">Registrarme a la billetera!</h1>
+        <h1 class="login-head">@if(Auth::user() && Auth::user()->is_admin) Agregar nuevo usuario @else Registrarme a la billetera! @endif</h1>
         <form id="sign-up" class="memberstack-form" method="post" action="{{ route('register') }}" enctype="multipart/form-data">
           @csrf
           <div class="field-row">
@@ -83,7 +82,14 @@
             <input type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox" required="" class="w-checkbox-input">
             <span for="checkbox" class="terms-text w-form-label"> I agree to the <a href="#" class="login-page-link">Terms</a> and <a href="#" class="login-page-link">Privacy Policy</a></span>
           </label> --}}
-          <button type="submit" data-wait="Please wait..." class="login-button w-button">Registrarme</button>
+          <button type="submit" data-wait="Please wait..." class="login-button w-button">
+            @if(Auth::user() && Auth::user()->is_admin)
+              Crear usuario
+            @else
+              Registrarme
+            @endif
+
+          </button>
         </form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
