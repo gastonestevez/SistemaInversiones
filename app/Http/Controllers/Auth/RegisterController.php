@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -110,6 +112,8 @@ class RegisterController extends Controller
           $billetera->total = 0;
           $billetera->invertido = 0;
           $billetera->rentabilidad = 0;
+
+          $billetera->save();
 
 
         $this->guard()->login($user);

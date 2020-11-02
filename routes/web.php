@@ -31,6 +31,11 @@ Route::get('/ping','AuthenticationController@ping');
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Admin
+
+Route::put('/acreditar-dinero/{id}', 'AdminController@acreditar')->middleware('admin');
+
+Route::put('/invertir/{id}', 'AdminController@invertir')->middleware('admin');
 
 // Asesores
 
@@ -66,19 +71,15 @@ Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizaci
 
 // Usuarios
 
+Route::get('/usuario/{id}', 'UserController@show')->middleware('admin');
+
 Route::get('/perfil/{id}', 'UserController@edit')->middleware('admin');
+
+Route::put('/perfil/{id}', 'UserController@update')->middleware('auth');
 
 Route::get('/perfil', 'UserController@edit')->middleware('auth');
 
-Route::put('/perfil/{id}', 'UserController@update')->middleware('admin');
-
 Route::delete('/user/deleteimage/{id}', 'UserController@deleteimage')->middleware('auth');
-
-Route::get('/usuario/{id}', 'UserController@show')->middleware('admin');
-
-Route::put('/acreditar-dinero/{id}', 'UserController@acreditar')->middleware('admin');
-
-Route::put('/invertir/{id}', 'UserController@invertir')->middleware('admin');
 
 // Billetera
 

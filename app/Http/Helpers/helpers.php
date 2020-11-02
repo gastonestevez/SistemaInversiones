@@ -98,6 +98,16 @@ use Carbon\Carbon;
     }
   }
 
+  // Consulta si el proyecto tiene asesor asignado
+  function tieneAsesor($proyecto)
+  {
+    if($proyecto->asesor_id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Convierte la fecha del created_at en una fecha con formato: 'Diciembre 2020'
   function fecha($date)
   {

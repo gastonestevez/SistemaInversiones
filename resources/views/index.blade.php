@@ -118,12 +118,20 @@
                         </div>
 
                         <!-- Autor div -->
+                        {{-- Si el proyecto tiene asesor muestra sus datos --}}
                         <div class="author-block" style="margin-right: auto;">
-                          <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                          @if (tieneasesor($destacado))
+                            <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                            <div>
+                              <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
+                              <div class="author-job"><a href="https://api.whatsapp.com/send?phone={{$destacado->asesor->numero}}" target="_blank" style="color: rgba(21, 28, 52, 0.5);">Contactame</a></div>
+                            </div>
+                          @else
+                          <img src="/storage/archivos/img/avatarpredeterminado.svg" alt="" class="author-image">
                           <div>
-                            <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
-                            <div class="author-job"><a href="https://api.whatsapp.com/send?phone={{$destacado->asesor->numero}}" target="_blank" style="color: rgba(21, 28, 52, 0.5);">Contactame</a></div>
+                            <h4 class="author-name">No tiene asesor asignado</h4>
                           </div>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -413,17 +421,24 @@
                       <div id="w-node-b493d5813210-66a11659" class="link-block-42">
                         <div class="div-block-346">
                           <div class="div-block-1802">
-                            <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"></div>
-                            <div class="div-block-1771">
-                              <div class="text-block-325-copy">Asesor asignado
-                                @if (isset($proyecto->asesor->nombre))
-                                  {{$proyecto->asesor->nombre}}
-                                @endif
+                            @if (tieneAsesor($proyecto))
+                              <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"></div>
+                              <div class="div-block-1771">
+                                <div class="text-block-325-copy">Asesor asignado
+                                  @if (isset($proyecto->asesor->nombre))
+                                    {{$proyecto->asesor->nombre}}
+                                  @endif
+                                </div>
                               </div>
-                            </div>
-                            <div class="div-block-1798">
-                              <a href="https://api.whatsapp.com/send?phone={{$proyecto->asesor->numero}}" target="_blank" class="button-38 w-button">Chat</a>
-                            </div>
+                              <div class="div-block-1798">
+                                <a href="https://api.whatsapp.com/send?phone={{$proyecto->asesor->numero}}" target="_blank" class="button-38 w-button">Chat</a>
+                              </div>
+                            @else
+                              <div class="div-block-1803" style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-repeat: no-repeat; background-position: center;"></div>
+                              <div class="div-block-1771">
+                                <div class="text-block-325-copy">No tiene asesor asignado</div>
+                              </div>
+                            @endif
                           </div>
                         </div>
                       </div>
