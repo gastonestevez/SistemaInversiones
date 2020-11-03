@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Billetera;
 use App\User;
-
+use App\Mail\Acreditacion;
 class AdminController extends Controller
 {
   public function acreditar(int $id, Request $request)

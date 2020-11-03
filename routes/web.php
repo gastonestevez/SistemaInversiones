@@ -69,11 +69,14 @@ Route::delete('/deleteproyecto/{id}', 'ProyectoController@destroy')->middleware(
 
 Route::delete('/deleteactualizacion/{id}', 'ProyectoController@deleteactualizacion')->middleware('admin');
 
+Route::delete('/proyecto/deleteReferente/{id}', 'ProyectoController@deleteReferente')->middleware('admin');
+
+
 // Usuarios
 
 Route::get('/usuario/agregarUsuario', 'UserController@addUser')->middleware('admin');
 
-Route::post('/usuario/agregarUsuario', 'UserController@addUser')->middleware('admin');
+Route::post('/usuario/agregarUsuario', 'UserController@store')->middleware('admin');
 
 Route::get('/usuario/{id}', 'UserController@show')->middleware('admin');
 

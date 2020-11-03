@@ -358,7 +358,7 @@
                   @endphp
                   <div class="div-block-1768">
                     <div class="div-block-345 proyect-card-header fondo-blanco">
-                      <div id="w-node-b493d5813210-66a11659" class="link-block-42">
+                      <div id="w-node-b493d5813210-66a11659" class="link-block-42" onclick="handleSlideClick('{{$proyecto->slug}}')">
                         <div class="div-block-346">
                           <div class="div-block-1802">
                             <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"></div>
@@ -425,10 +425,10 @@
                           <a href="/editproyecto/{{$proyecto->slug}}" class="button-35 w-button">Editar</a>
 
                           {{-- Eliminar Proyecto --}}
-                          <form action="/deleteproyecto/{{$proyecto->id}}" method="post">
+                          <form id="deleteProjectForm{{$proyecto->id}}" action="/deleteproyecto/{{$proyecto->id}}" method="post">
                             @method('delete')
                             @csrf
-                            <button class="button-35 w-button" type="submit">Eliminar</button>
+                            <button class="button-35 w-button" onclick="handleDeleteProject(event,{{$proyecto->id}})" type="submit">Eliminar</button>
                           </form>
 
                         </div>
@@ -671,6 +671,15 @@
       const handleSlideClick = (slug) => {
         window.location.pathname = `/proyecto/${slug}`
       }
+
+      const handleDeleteProject = (e,id) => {
+        e.preventDefault()
+        const confirmDelete = confirm('¿Está seguro que quiere eliminar el proyecto?')
+        if(confirmDelete){
+          document.getElementById(`deleteProjectForm${id}`).submit()
+        }
+      }
+
     </script>
   </body>
 </html>

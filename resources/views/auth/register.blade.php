@@ -35,8 +35,8 @@
         @if($errors->any())
           {!! implode('', $errors->all('<div>:message</div>')) !!}
         @endif
-        <h1 class="login-head">@if(Auth::user() && Auth::user()->is_admin) Agregar nuevo usuario @else Registrarme a la billetera! @endif</h1>
-        <form id="sign-up" class="memberstack-form" method="post" action="{{ route('register') }}" enctype="multipart/form-data">
+        <h1 class="login-head">@if(isAdmin()) Agregar nuevo usuario @else Registrarme a la billetera! @endif</h1>
+        <form id="sign-up" class="memberstack-form" method="post" action="@if(isAdmin()) /usuario/agregarUsuario @else {{ route('register') }} @endif" enctype="multipart/form-data">
           @csrf
           <div class="field-row">
             <div class="field-wrapper first-name-wrapper">
@@ -70,14 +70,16 @@
             <input type="submit" value="cargar" data-wait="Please wait..." class="submit-button-15 w-button"> --}}
           </div>
           <br>
-          <div class="field-wrapper">
-            <label for="password" class="signup-label">Contraseña</label>
-            <input type="password" class="signup-field w-input" name="password" data-name="Password 2" id="password" required>
-          </div>
-          <div class="field-wrapper">
-            <label for="password_confirmation" class="signup-label">Repetir Contraseña</label>
-            <input type="password" class="signup-field w-input" name="password_confirmation" data-name="Password 2" id="password_confirmation" required>
-          </div>
+          @if(!isAdmin())
+            <div class="field-wrapper">
+              <label for="password" class="signup-label">Contraseña</label>
+              <input type="password" class="signup-field w-input" name="password" data-name="Password 2" id="password" required>
+            </div>
+            <div class="field-wrapper">
+              <label for="password_confirmation" class="signup-label">Repetir Contraseña</label>
+              <input type="password" class="signup-field w-input" name="password_confirmation" data-name="Password 2" id="password_confirmation" required>
+            </div>
+          @endif
           {{-- <label class="w-checkbox gdpr-checkbox">
             <input type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox" required="" class="w-checkbox-input">
             <span for="checkbox" class="terms-text w-form-label"> I agree to the <a href="#" class="login-page-link">Terms</a> and <a href="#" class="login-page-link">Privacy Policy</a></span>

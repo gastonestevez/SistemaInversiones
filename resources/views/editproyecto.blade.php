@@ -139,7 +139,7 @@
 
                   </th>
                   <th>
-                    <button id="deleteRef" onclick="onDeleteRef(this)" style="margin: 0px 0px 11px;" hidden name="referente[{{$loop->index}}][deleteRef]">X</button>
+                    <button id="ref{{$referente->id}}" type="button" onclick="onDeleteSavedRef(this, {{$referente->id}})" style="margin: 0px 0px 11px;" name="referente[{{$loop->index}}][deleteRef]">X</button>
                   </th>
                 </tr>
                   <input type="hidden" name="referente[{{$loop->index}}][id]" value="{{$referente->id}}">
@@ -352,6 +352,16 @@
 
     const onDeleteRef = (event) => {
       event.parentNode.parentNode.parentNode.removeChild(event.parentNode.parentNode);
+    }
+
+    const onDeleteSavedRef = (event, id) => {
+      const delForm = document.createElement('form');
+      delForm.setAttribute('method','post')
+      delForm.setAttribute('action', '/proyecto/deleteReferente/'+id)
+      delForm.innerHTML += '@csrf'
+      delForm.innerHTML += `@method('delete')`
+      document.body.appendChild(delForm)
+      delForm.submit()
     }
 
     agregarReferenteBoton.onclick = (event) => {

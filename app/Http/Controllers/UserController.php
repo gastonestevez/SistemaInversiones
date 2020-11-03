@@ -10,8 +10,8 @@ use App\Proyecto;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Registro;
 use App\Mail\Acreditacion; // Por email con detalle de acreditacion de dinero
-
 class UserController extends Controller
 {
 
@@ -19,6 +19,44 @@ class UserController extends Controller
   {
     return view('/auth/register');
   }
+
+  public function store(Request $request)
+  {
+    $reglas = [
+      'password' => 'min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
+      'name' =>'alpha|string|min:2|max:40|',
+      'email' => 'string|email|max:255|unique:users',
+      "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
+    ];
+
+    $mensajes = [
+      "required" => "Completar campos obligatorios",
+      "alpha" => "El campo nombre debe ser un texto",
+      "name.min" => "El nombre debe tener un minimo de :min caracteres",
+      "password.min" => "La clave debe tener un minimo de :min caracteres",
+      "max" => "El nombre debe tener un maximo de :max caracteres",
+      "confirmed" => "Las contraseñas no coinciden"
+    ];
+
+    $this->validate($request, $reglas, $mensajes);
+
+    $request['newPassword'] = str_random(8);
+
+    $user = new User();
+    $user->name = $request->name;
+    $user->last_name = $request->last_name;
+    $user->email = $request->email;
+    $user->number = $request->number;
+    $user->password = Hash::make($request['newPassword']);
+    
+    $user->save();
+    Mail::send(new Registro($request));
+
+    return redirect('/');
+  }
+
+
+
   public function show(int $id)
   {
     $users = User::all();

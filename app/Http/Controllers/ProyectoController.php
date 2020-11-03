@@ -430,4 +430,10 @@ class ProyectoController extends Controller
     return redirect()->back()->with('status', 'Actualizacion Eliminada correctamente');
   }
 
+  public function deleteReferente(int $id)
+  {
+    $referente = Referente::find($id);
+    $referente->delete();
+    return redirect()->back()->with('status', 'Referente borrado correctamente');
+  }
 }

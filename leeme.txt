@@ -2,22 +2,13 @@
 
 FALTA
 
-1)Ver como hacer para que un usuario pueda editar su perfil y el admin pueda editar el perfil de cualquier usuario
-    Esto estaba terminado?
-1 bis) Que el admin pueda registrar un usuario (al final de la function store va a enviarse un email transaccional avisandole al usuario)
-2)Editar Proyectos - Borrar referente existente
-    Esto estaba terminado? Metodo de cascada - funciona ok
 3)Configurar emails transaccionales (ya estan hechos, faltan los textos/destinatarios y configurarlos)
-4)Hacer confirms a todos los botones de eliminar
-    Listo!
-5)Hacer el handleSlideClick para las cards de Asesores, Usuarios y Proyectos
-    Esto estaba terminado?
 6)Sumarle el plugin de Cliengo
 7)Terminar funcion invertir y borrar inversion
     WIP, chequear comentarios...
-8)Pedirles los textos de los emails transaccionales a los chicos de Livv
-9)OJO Que el usuario comun pueda borrar su avatar pero no el de otros usuarios
-    Esto estaba terminado?
+    Analizar Attach --> agregar registro de inversion a tabla intermedia
+
+8)Terminar Swagger
 
 API:
 -Completar el Exceptions -> handler con la view 404 que nos brindaron

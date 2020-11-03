@@ -340,7 +340,7 @@
               <div class="dash-row masonry-copy">
 
                 @foreach ($asesores as $asesor)
-                  <div class="div-block-1768">
+                  <div class="div-block-1768" style="cursor: pointer;" onclick="handleAsesorClick('{{$asesor->id}}')">
                     <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
                       <div class="div-block-396">
                         <div class="div-block-1769"
@@ -555,12 +555,12 @@
           <div data-w-tab="usuarios" class="w-tab-pane @if(isAdmin())w--tab-active @endif">
             <div class="div-block-1815">
               <div class="div-block-1796">
-                <a href="cargar-asesores.html" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Agregar un usuario</a>
+                <a href="/usuario/agregarUsuario" data-w-id="3cf435c6-4f9c-827e-7d89-365c786d1f5a" class="button-39 w-button">Agregar un usuario</a>
               </div>
               <div class="div-block-1816">
 
                 @foreach ($users as $user)
-                  <div class="div-block-1768">
+                <div class="div-block-1768" style="cursor:pointer;" onclick="handleUserClick('{{$user->id}}')">
                     <div class="div-block-345 proyect-card-header fondo-blanco-copy">
                       <div class="link-block-42">
                         <a href="/usuario/{{$user->id}}" class="div-block-397 w-inline-block">
@@ -705,6 +705,14 @@
 
       const handleSlideClick = (slug) => {
         window.location.pathname = `/proyecto/${slug}`
+      }
+
+      const handleAsesorClick = (asesorId) => {
+        window.location.pathname = `/asesor/${asesorId}`
+      }
+      
+      const handleUserClick = (usuarioId) => {
+        window.location.pathname = `/usuario/${usuarioId}`
       }
 
       const handleDeleteProject = (e,id) => {

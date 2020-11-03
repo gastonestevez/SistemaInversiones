@@ -42,7 +42,7 @@
   <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
     <div class="div-block-405"></div>
     <div class="div-block-1807">
-      <a href="home.html" class="button-53 w-button">Volver</a>
+      <a href="{{url()->previous()}}" class="button-53 w-button">Volver</a>
     </div>
     <div class="form-block-copy w-form">
 
