@@ -34,8 +34,7 @@ class AdminController extends Controller
     $billetera = Billetera::find($id);
 
     // verificamos si el monto que queremos invertir es igual o menor al valor total que tenemos disponible en billetera
-    if ($request->monto > $billetera->total) {
-      dd('invirtio mas de lo que tiene en billetera');
+    if ($request->invertido > $billetera->total) {
       return back()->with('error', 'No puede invertir más dinero del que que posee en su billetera');
     }
 
@@ -54,7 +53,6 @@ class AdminController extends Controller
     foreach ($user->proyectos as $proyecto) {
       // Si ya invirtió en el proyecto, tomo el valor invertido anteriormente y le sumo el nuevo valor
       if ($proyecto->inversiones->proyecto_id == $request->proyecto_id) {
-        // dd('ya invirtio en este proyecto anteriormente');
         // Le sumamos el nuevo monto de inversion al monto anterior
         $proyecto->inversiones->invertido = $proyecto->inversiones->invertido + $request->invertido;
         $nuevaInversion = $proyecto->inversiones->invertido;
@@ -69,7 +67,6 @@ class AdminController extends Controller
     $user_id = $user->id;
 
     // Si los dos casos anteriores no se dan, entonces creo una nueva row en la tabla intermedia (proyecto_usuario) detallando la inversion del usuario
-    // dd('nunca invirtio antes en este proyecto');
     $user->proyectos()->attach($id, array('invertido' => $invertido, 'proyecto_id' => $proyecto_id, 'user_id' => $user_id));
     $user->save();
 
@@ -81,7 +78,6 @@ class AdminController extends Controller
     $proyecto = Proyecto::find($id);
     $user = User::find($request->user);
 
-    $proyectosArray = [];
     foreach ($user->proyectos as $proyecto) {
       if ($proyecto->id === $id) {
         $user->proyectos()->detach($id);

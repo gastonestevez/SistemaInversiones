@@ -488,7 +488,7 @@
                         </div>
                         <div class="div-block-1805">
 
-                          @if (isAdmin())                            
+                          @if (isAdmin())
                             {{-- Editar Proyecto --}}
                             <a href="/editproyecto/{{$proyecto->slug}}" class="button-35 w-button">Editar</a>
 
@@ -726,5 +726,6 @@
       }
 
     </script>
+    <!-- Código de instalación Cliengo para info@urbban.digital --> <script type="text/javascript">(function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; ldk.src = 'https://s.cliengo.com/weboptimizer/5fa337fdbb5b75002ae717eb/5fa337febb5b75002ae717ee.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ldk, s); })();</script>
   </body>
 </html>

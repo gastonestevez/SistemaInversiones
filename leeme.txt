@@ -2,10 +2,9 @@
 
 FALTA
 
-1)Sumarle el plugin de Cliengo
-2)Terminar Swagger
-3)Agregarle confirm al boton eliminar proyecto en vista (editproyecto) y al boton eliminar asesor en vistas (index, y editasesor)
-4)Hacer testing general de errores
+1)Terminar Swagger. Quitar la password de la query
+2)Agregarle confirm al boton eliminar proyecto en vista (editproyecto) y al boton eliminar asesor en vistas (index, y editasesor)
+3)Hacer testing general de errores
 
 API:
 -Completar el Exceptions -> handler con la view 404 que nos brindaron
