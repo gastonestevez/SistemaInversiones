@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Tipo_de_referente;
 
 class Referente extends Model
 {
@@ -16,6 +17,6 @@ class Referente extends Model
 
   public function tipoDeReferente()
   {
-    return $this->belongsTo("App\"tipo_de_referente", "tipo_de_referente_id");
+    return $this->belongsTo("App\Tipo_de_referente", "tipo_de_referente_id");
   }
 }

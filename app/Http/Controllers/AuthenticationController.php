@@ -93,6 +93,9 @@ class AuthenticationController extends Controller
             $proyecto['actualizaciones'] = $proyecto->actualizaciones;
             $proyecto['archivos'] = $proyecto->archivos;
             $proyecto['referentes'] = $proyecto->referentes;
+            foreach ($proyecto['referentes'] as $referente) {
+                $referente->tipoDeReferente;
+            }
         }
         return response()->json([
             'access_token' => $token,
