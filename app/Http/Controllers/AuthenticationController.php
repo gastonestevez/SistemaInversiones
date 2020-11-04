@@ -7,10 +7,16 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Auth;
 
+/**
+* @OA\Info(title="Sistema Inversiones", version="1.0")
+*
+* @OA\Server(url="http://localhost:8000")
+* https://styde.net/como-documentar-una-api-en-laravel-usando-swagger/
+*/
 class AuthenticationController extends Controller
 {
-
-     /**
+    
+    /**
      * Create a new AuthController instance.
      *
      * @return void
@@ -19,7 +25,55 @@ class AuthenticationController extends Controller
     {
         $this->middleware('auth:api', ['except' => ['login']]);
     }
-
+    
+    /**
+     * @OA\Post(
+     ** path="/api/auth/login",
+     *   tags={"Login"},
+     *   summary="Login",
+     *   operationId="login",
+     *
+     *   @OA\Parameter(
+     *      name="email",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="password",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -39,6 +93,9 @@ class AuthenticationController extends Controller
             $proyecto['actualizaciones'] = $proyecto->actualizaciones;
             $proyecto['archivos'] = $proyecto->archivos;
             $proyecto['referentes'] = $proyecto->referentes;
+            foreach ($proyecto['referentes'] as $referente) {
+                $referente->tipoDeReferente;
+            }
         }
         return response()->json([
             'access_token' => $token,

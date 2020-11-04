@@ -37,7 +37,7 @@ Route::put('/acreditar-dinero/{id}', 'AdminController@acreditar')->middleware('a
 
 Route::put('/invertir/{id}', 'AdminController@invertir')->middleware('admin');
 
-Route::delete('/deleteinversion/{id}', 'Admincontroller@deleteinversion')->middleware('admin');
+Route::delete('/deleteinversion/{id}', 'AdminController@deleteinversion')->middleware('admin');
 
 // Asesores
 
