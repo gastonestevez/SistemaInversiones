@@ -259,6 +259,16 @@
 
         <label for="editproyecto" class="submit-button-17 w-button" style="text-align:center; font-weight: 500;">Editar Proyecto</label>
 
+        <br>
+        <br>
+
+        {{-- Eliminar Proyecto --}}
+        <form id="deleteProjectForm{{$proyecto->id}}" action="/deleteproyecto/{{$proyecto->id}}" method="post">
+          @method('delete')
+          @csrf
+          <button class="button-35 w-button" onclick="handleDeleteProject(event,{{$proyecto->id}})" type="submit">Eliminar Proyecto</button>
+        </form>
+
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
         </div>

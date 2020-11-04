@@ -164,7 +164,7 @@ use Carbon\Carbon;
   function montoDisponible($user)
   {
     $billetera = $user->billetera;
-    $montoDisponible = precio($billetera->total - $billetera->invertido);
+    $montoDisponible = precio($billetera->total);
 
     return $montoDisponible;
   }

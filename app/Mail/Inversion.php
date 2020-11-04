@@ -32,8 +32,8 @@ class Inversion extends Mailable
     public function build()
     {
       return $this->subject('Se realizó una inversión')
-                  ->from('info@urbban.digital', 'urbban')
-                  ->to('info@urbban.digital')
+                  ->from('info@urbban.digital', 'urbban billetera')
+                  ->to($this->email['email'])
                   ->view('emails.inversion');
     }
 }

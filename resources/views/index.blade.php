@@ -4,7 +4,7 @@
 <html data-wf-page="5f43d67a5b9a601566a11659" data-wf-site="5f43d6794f715d3ebe1c4707">
   <head>
     <meta charset="utf-8">
-    <title>Home |</title>
+    <title>Home | Billetera.urbban</title>
     <meta content="preview" property="og:title">
     <meta content="preview" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -488,15 +488,17 @@
                         </div>
                         <div class="div-block-1805">
 
-                          {{-- Editar Proyecto --}}
-                          <a href="/editproyecto/{{$proyecto->slug}}" class="button-35 w-button">Editar</a>
+                          @if (isAdmin())                            
+                            {{-- Editar Proyecto --}}
+                            <a href="/editproyecto/{{$proyecto->slug}}" class="button-35 w-button">Editar</a>
 
-                          {{-- Eliminar Proyecto --}}
-                          <form id="deleteProjectForm{{$proyecto->id}}" action="/deleteproyecto/{{$proyecto->id}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <button class="button-35 w-button" onclick="handleDeleteProject(event,{{$proyecto->id}})" type="submit">Eliminar</button>
-                          </form>
+                            {{-- Eliminar Proyecto --}}
+                            <form id="deleteProjectForm{{$proyecto->id}}" action="/deleteproyecto/{{$proyecto->id}}" method="post">
+                              @method('delete')
+                              @csrf
+                              <button class="button-35 w-button" onclick="handleDeleteProject(event,{{$proyecto->id}})" type="submit">Eliminar</button>
+                            </form>
+                          @endif
 
                         </div>
                       </div>
@@ -710,7 +712,7 @@
       const handleAsesorClick = (asesorId) => {
         window.location.pathname = `/asesor/${asesorId}`
       }
-      
+
       const handleUserClick = (usuarioId) => {
         window.location.pathname = `/usuario/${usuarioId}`
       }

@@ -19,7 +19,7 @@ class ArchivosController extends Controller
       $archivo->first()->delete();
 
       // nos retorna a la ruta anterior
-      return redirect()->back();
+      return redirect()->back()->with('status', 'Imagen eliminada exitosamente');
   }
 
   public function deletelogo(Request $request, int $id)
@@ -33,7 +33,7 @@ class ArchivosController extends Controller
       $archivo->first()->delete();
 
       // nos retorna a la ruta anterior
-      return redirect()->back();
+      return redirect()->back()->with('status', 'Logo eliminado exitosamente');
   }
 
   public function deletedocumento(Request $request, int $id)
@@ -47,7 +47,7 @@ class ArchivosController extends Controller
       $archivo->first()->delete();
 
       // nos retorna a la ruta anterior
-      return redirect()->back();
+      return redirect()->back()->with('status', 'Documento eliminado exitosamente');
   }
 
 }

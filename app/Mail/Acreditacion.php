@@ -33,7 +33,7 @@ class Acreditacion extends Mailable
     {
       return $this->subject('Se acreditó tu dinero')
                   ->from('info@urbban.digital', 'urbban')
-                  ->to('info@urbban.digital')
+                  ->to($this->email['email'])
                   ->view('emails.acreditacion');
     }
 }

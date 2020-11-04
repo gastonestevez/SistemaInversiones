@@ -31,9 +31,9 @@ class Registro extends Mailable
      */
     public function build()
     {
-      return $this->subject('Se realizó una inversión')
+      return $this->subject('Datos de usuario - billetera.urbban.digital')
                   ->from('info@urbban.digital', 'urbban')
-                  ->to('info@urbban.digital')
+                  ->to($this->email['email'])
                   ->view('emails.registro');
     }
 }

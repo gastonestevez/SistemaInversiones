@@ -2,13 +2,10 @@
 
 FALTA
 
-3)Configurar emails transaccionales (ya estan hechos, faltan los textos/destinatarios y configurarlos)
-6)Sumarle el plugin de Cliengo
-7)Terminar funcion invertir y borrar inversion
-    WIP, chequear comentarios...
-    Analizar Attach --> agregar registro de inversion a tabla intermedia
-
-8)Terminar Swagger
+1)Sumarle el plugin de Cliengo
+2)Terminar Swagger
+3)Agregarle confirm al boton eliminar proyecto en vista (editproyecto) y al boton eliminar asesor en vistas (index, y editasesor)
+4)Hacer testing general de errores
 
 API:
 -Completar el Exceptions -> handler con la view 404 que nos brindaron

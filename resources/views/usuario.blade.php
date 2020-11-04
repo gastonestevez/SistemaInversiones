@@ -333,6 +333,7 @@
                       <form action="/deleteinversion/{{$proyecto->id}}" method="post">
                         @method('delete')
                         @csrf
+                        <input type="hidden" name="user" value="{{$user->id}}">
                         <button style="position:absolute; top: 2%; right: 6%; background-color: white;" type="submit" name="button">X</button>
                       </form>
                     </div>
@@ -524,7 +525,7 @@
                     <div>
                       <label for="invertido" class="field-label-32">Monto de inversión</label>
                       <small>Dinero disponible: ${{montoDisponible($user)}}</small>
-                      <input type="number" max="{{$user->billetera->total - $user->invertido}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
+                      <input type="number" max="{{$user->billetera->total}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
                     </div>
                     <div>
                       <label for="proyecto_id" class="field-label-32">Proyecto</label>

@@ -11,7 +11,7 @@ class UsuariosProyectosSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('usuarios_proyectos')->insert([
+      DB::table('proyecto_usuario')->insert([
         [
           'invertido' => '2222',
           'proyecto_id' => '1',

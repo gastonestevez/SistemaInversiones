@@ -29,13 +29,15 @@ Route::get('/ping','AuthenticationController@ping');
 
 /////////////////////////////////// RUTAS DEL PROYECTO /////////////////////////////////////////
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 // Admin
 
 Route::put('/acreditar-dinero/{id}', 'AdminController@acreditar')->middleware('admin');
 
 Route::put('/invertir/{id}', 'AdminController@invertir')->middleware('admin');
+
+Route::delete('/deleteinversion/{id}', 'Admincontroller@deleteinversion')->middleware('admin');
 
 // Asesores
 

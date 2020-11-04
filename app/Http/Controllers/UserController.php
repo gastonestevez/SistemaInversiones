@@ -15,7 +15,7 @@ use App\Mail\Acreditacion; // Por email con detalle de acreditacion de dinero
 class UserController extends Controller
 {
 
-  public function addUser() 
+  public function addUser()
   {
     return view('/auth/register');
   }
@@ -48,8 +48,16 @@ class UserController extends Controller
     $user->email = $request->email;
     $user->number = $request->number;
     $user->password = Hash::make($request['newPassword']);
-    
+
     $user->save();
+
+    $billetera = New Billetera();
+    $billetera->total = 0;
+    $billetera->invertido = 0;
+    $billetera->rentabilidad = 0;
+
+    $billetera->save();
+    
     Mail::send(new Registro($request));
 
     return redirect('/');

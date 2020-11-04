@@ -32,7 +32,7 @@ class Proyecto extends Model
   public function usuarios()
   {
     // https://styde.net/pivot-tables-con-eloquent-en-laravel/ para agregar pivots
-    return $this->belongsToMany("App\User", "usuarios_proyectos", "proyecto_id", "user_id")
+    return $this->belongsToMany("App\User", "proyecto_usuario", "proyecto_id", "user_id")
     ->withPivot('invertido')
     ->as('inversiones')
     ->withTimestamps();
