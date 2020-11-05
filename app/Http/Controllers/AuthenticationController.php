@@ -30,25 +30,17 @@ class AuthenticationController extends Controller
      * @OA\Post(
      ** path="/api/auth/login",
      *   tags={"Login"},
-     *   summary="Login",
+     *   summary="Login a user",
      *   operationId="login",
-     *
-     *   @OA\Parameter(
-     *      name="email",
-     *      in="query",
+     *   @OA\RequestBody(
      *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *          type="string"
-     *      )
-     *   ),
+     *      description="Pass the user credentials",
+     *      @OA\JsonContent(
+     *          required={"email","password"},
+     *          @OA\Property(property="email", type="string", format="email", example="dummy@dakota.com"),
+     *          @OA\Property(property="password", type="string", format="password", example="123456" ),
+     * ),
+     * ),
      *   @OA\Response(
      *      response=200,
      *       description="Success",
@@ -58,7 +50,7 @@ class AuthenticationController extends Controller
      *   ),
      *   @OA\Response(
      *      response=401,
-     *       description="Unauthenticated"
+     *       description="Invalid Credentials"
      *   ),
      *   @OA\Response(
      *      response=400,
