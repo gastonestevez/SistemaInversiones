@@ -2,10 +2,9 @@
 
 FALTA
 
-1)Terminar Swagger. Quitar la password de la query
-2)Agregarle confirm al boton eliminar proyecto en vista (editproyecto) y al boton eliminar asesor en vistas (index, y editasesor)
 3)Hacer testing general de errores
-
+    -bug: Si el asesor no tiene imagen, habria que ver si lo borra bien (unlink). 
+    
 API:
 -Completar el Exceptions -> handler con la view 404 que nos brindaron
 -Consultar lo de la expiracion del Token.

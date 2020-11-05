@@ -104,11 +104,11 @@
       <br>
 
       {{-- Eliminar Asesor --}}
-      <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
+      <form class="" id="deleteAsesorForm{{$asesor->id}}" action="/deleteasesor/{{$asesor->id}}" method="post">
         @method('delete')
         @csrf
         <div id="w-node-3b6e0ffe3746-aa769d9a" class="div-block-1808">
-          <button type="submit" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button">Eliminar Asesor</button>
+          <button type="submit" onclick="handleDeleteAsesor(event,'{{$asesor->id}}')" value="Cargar" data-wait="Please wait..." class="submit-button-17 w-button">Eliminar Asesor</button>
         </div>
       </form>
 
@@ -138,6 +138,15 @@
               } catch(e) {}
         }
     })
+  </script>
+  <script>
+    const handleDeleteAsesor = (e,id) => {
+      e.preventDefault()
+      const confirmDelete = confirm('¿Está seguro que quiere eliminar el asesor?')
+      if(confirmDelete){
+        document.getElementById(`deleteAsesorForm${id}`).submit()
+      }
+    }
   </script>
 </body>
 </html>

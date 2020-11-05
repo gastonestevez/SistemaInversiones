@@ -340,14 +340,14 @@
               <div class="dash-row masonry-copy">
 
                 @foreach ($asesores as $asesor)
-                  <div class="div-block-1768" style="cursor: pointer;" onclick="handleAsesorClick('{{$asesor->id}}')">
+                  <div class="div-block-1768" >
                     <div class="div-block-345 proyect-card-header fondo-blanco-copy-copy">
                       <div class="div-block-396">
-                        <div class="div-block-1769"
+                        <div class="div-block-1769" onclick="handleAsesorClick('{{$asesor->id}}')"
                         @if ($asesor->foto)
-                          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat; background-position: center;"
+                          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat; background-position: center; cursor: pointer;"
                         @else
-                          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
+                          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; cursor: pointer;"
                         @endif></div>
                         <div class="div-block-1771">
                           <div class="text-block-310">{{$asesor->rentabilidad}}%</div>
@@ -385,10 +385,10 @@
                         @if (isAdmin())
                           <div class="div-block-1805">
                             <a href="/editasesor/{{$asesor->id}}" class="button-39 w-button">Editar</a>
-                            <form class="" action="/deleteasesor/{{$asesor->id}}" method="post">
+                          <form id="deleteAsesorForm{{$asesor->id}}" class="" action="/deleteasesor/{{$asesor->id}}" method="post">
                               @method('delete')
                               @csrf
-                              <input type="submit" class="button-39 w-button" value="Eliminar">
+                          <input type="submit" onclick="handleDeleteAsesor(event,'{{$asesor->id}}')" class="button-39 w-button" value="Eliminar">
                             </form>
                           </div>
                         @endif
@@ -722,6 +722,14 @@
         const confirmDelete = confirm('¿Está seguro que quiere eliminar el proyecto?')
         if(confirmDelete){
           document.getElementById(`deleteProjectForm${id}`).submit()
+        }
+      }
+
+      const handleDeleteAsesor = (e,id) => {
+        e.preventDefault()
+        const confirmDelete = confirm('¿Está seguro que quiere eliminar el asesor?')
+        if(confirmDelete){
+          document.getElementById(`deleteAsesorForm${id}`).submit()
         }
       }
 

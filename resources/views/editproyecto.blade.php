@@ -266,7 +266,7 @@
         <form id="deleteProjectForm{{$proyecto->id}}" action="/deleteproyecto/{{$proyecto->id}}" method="post">
           @method('delete')
           @csrf
-          <button class="button-35 w-button" onclick="handleDeleteProject(event,{{$proyecto->id}})" type="submit">Eliminar Proyecto</button>
+          <button class="button-35 w-button" onclick="handleDeleteProject(event,'{{$proyecto->id}}')" type="submit">Eliminar Proyecto</button>
         </form>
 
         <div class="w-form-done">
@@ -360,6 +360,13 @@
       type[label] && type[label]();
     }
 
+    const handleDeleteProject = (e, id) => {
+      e.preventDefault()
+        const confirmDelete = confirm('¿Está seguro que quiere eliminar el proyecto?')
+        if(confirmDelete){
+          document.getElementById(`deleteProjectForm${id}`).submit()
+        }
+    }
     const onDeleteRef = (event) => {
       event.parentNode.parentNode.parentNode.removeChild(event.parentNode.parentNode);
     }
