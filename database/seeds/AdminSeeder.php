@@ -38,7 +38,7 @@ class AdminSeeder extends Seeder
           'last_name' => '222',
           'number' => '2342432',
           'avatar' => "archivos/img/imagen3.jpg",
-          'is_admin' => true,
+          'is_admin' => false,
           'email' => 'dummy@dakota.com',
           'password' => Hash::make('123456'),
           'created_at' => '2020-01-02 07:57:53',
