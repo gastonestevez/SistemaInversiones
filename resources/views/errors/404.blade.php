@@ -15,7 +15,7 @@
   </head>
   <body>
 
-    {{-- <div class="box">
+    <div class="box">
   <div class="box__ghost">
     <div class="symbol"></div>
     <div class="symbol"></div>
@@ -50,13 +50,13 @@
 
   </div>
 
-</div> --}}
+</div>
 
 
-<p class="center">Space Invadors destroyed this page! Take revenge on them!
+{{-- <p class="center">Space Invadors destroyed this page! Take revenge on them!
   <br/> Use <span class="label label-danger">Space</span> to shoot and <span class="label label-danger">←</span>&#160;<span class="label label-danger">→</span> to move!&#160;&#160;&#160;<button class="btn btn-default btn-xs" id="restart">Restart</button></p>
 
-<canvas id="space-invaders"/>
+<canvas id="space-invaders"/> --}}
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

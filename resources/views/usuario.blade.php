@@ -4,7 +4,7 @@
 <html data-wf-page="5f43d67a5b9a601566a11659" data-wf-site="5f43d6794f715d3ebe1c4707">
   <head>
     <meta charset="utf-8">
-    <title>Usuario |</title>
+    <title>Usuario | {{$user->name}}</title>
     <meta content="preview" property="og:title">
     <meta content="preview" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
