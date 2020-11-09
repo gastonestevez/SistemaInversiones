@@ -191,10 +191,10 @@
                   <div class="navigation-icon"></div>
                   <div>Perfil</div>
                 </a>
-                <a href="#" class="navigation-item dropdown-nav-item w-inline-block">
+                {{-- <a href="#" class="navigation-item dropdown-nav-item w-inline-block">
                   <div class="navigation-icon"></div>
                   <div>Soporte</div>
-                </a>
+                </a> --}}
                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
                       <button class="navigation-item logout-link w-inline-block"><div class="navigation-icon"></div>Salir</button>

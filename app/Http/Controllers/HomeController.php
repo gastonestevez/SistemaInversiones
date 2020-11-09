@@ -33,8 +33,8 @@ class HomeController extends Controller
       $users = User::orderBy('name')->get();
       $proyectos = Proyecto::all();
       $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
-      // Si no hay ni un proyecto destacado, mostramos los proyectos comunes
-      if (!count($proyectosDestacados)) {
+      // Si no hay ni un proyecto destacado pero hay proyectos comunes, mostramos los proyectos comunes
+      if (!count($proyectosDestacados) && count($proyectos)) {
         $proyectosDestacados = Proyecto::all()->random()->limit(5)->get();
       }
 

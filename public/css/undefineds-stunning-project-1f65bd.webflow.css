@@ -1118,6 +1118,7 @@ label {
 
 .progress-text-column {
   width: 100%;
+  margin: 3px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;

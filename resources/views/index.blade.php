@@ -176,10 +176,10 @@
                 <div class="navigation-icon"></div>
                 <div>Perfil</div>
               </a>
-              <a href="#" class="navigation-item dropdown-nav-item w-inline-block">
+              {{-- <a href="#" class="navigation-item dropdown-nav-item w-inline-block">
                 <div class="navigation-icon"></div>
                 <div>Soporte</div>
-              </a>
+              </a> --}}
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button class="navigation-item logout-link w-inline-block"><div class="navigation-icon"></div>Salir</button>
@@ -354,7 +354,7 @@
                           <div class="text-block-311">De rentabilidad aprox.</div>
                         </div>
                         <div class="div-block-1798">
-                          <a href="#" data-w-id="b08037e4-5345-c4df-7e05-de57c2e4423a" class="button-35 w-button">Chat</a>
+                          <a href="https://api.whatsapp.com/send?phone={{$asesor->numero}}" data-w-id="b08037e4-5345-c4df-7e05-de57c2e4423a" class="button-35 w-button">Chat</a>
                         </div>
                       </div>
                       <div class="link-block-42">
