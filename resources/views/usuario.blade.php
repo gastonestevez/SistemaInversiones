@@ -517,33 +517,34 @@
 
               <div id="fichar-cargar-proyecto" class="carga-de-proyectos">
                 <div class="div-block-405"></div>
+
                 <div class="form-block-copy w-form">
                   {{session('error')}}
-                  <form id="invertir" class="form-5" action="/invertir/{{$user->id}}" method="post">
-                    @method('put')
-                    @csrf
-                    <div>
-                      <label for="invertido" class="field-label-32">Monto de inversión</label>
-                      <small>Dinero disponible: ${{montoDisponible($user)}}</small>
-                      <input type="number" max="{{$user->billetera->total}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
-                    </div>
-                    <div>
-                      @if (count($todosLosProyectos))
-                        <label for="proyecto_id" class="field-label-32">Proyecto</label>
-                        <select id="proyecto_id" name="proyecto_id" class="w-select" required>
-                          <option value="">Seleccione una opción...</option>
-                          @foreach ($todosLosProyectos as $proyecto)
-                            <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
-                          @endforeach
-                        </select>
-                      @endif
-                    </div>
-                    <input type="hidden" name="proyecto_titulo" value="{{$proyecto->titulo}}">
-                    <br>
-                    <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
-                      <input type="submit" value="Invertir" data-wait="Please wait..." class="submit-button-17 w-button">
-                    </div>
-                  </form>
+                  @if (count($todosLosProyectos))
+                    <form id="invertir" class="form-5" action="/invertir/{{$user->id}}" method="post">
+                      @method('put')
+                      @csrf
+                      <div>
+                        <label for="invertido" class="field-label-32">Monto de inversión</label>
+                        <small>Dinero disponible: ${{montoDisponible($user)}}</small>
+                        <input type="number" max="{{$user->billetera->total}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
+                      </div>
+                      <div>
+                          <label for="proyecto_id" class="field-label-32">Proyecto</label>
+                          <select id="proyecto_id" name="proyecto_id" class="w-select" required>
+                            <option value="">Seleccione una opción...</option>
+                            @foreach ($todosLosProyectos as $proyecto)
+                              <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
+                            @endforeach
+                          </select>
+                      </div>
+                      <input type="hidden" name="proyecto_titulo" value="{{$proyecto->titulo}}">
+                      <br>
+                      <div id="w-node-c3e6f25a03c1-ac976307" class="div-block-1808">
+                        <input type="submit" value="Invertir" data-wait="Please wait..." class="submit-button-17 w-button">
+                      </div>
+                    </form>
+                  @endif
 
             </div>
           </div>
