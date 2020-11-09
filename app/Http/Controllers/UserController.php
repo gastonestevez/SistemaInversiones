@@ -57,7 +57,7 @@ class UserController extends Controller
     $billetera->rentabilidad = 0;
 
     $billetera->save();
-    
+
     Mail::send(new Registro($request));
 
     return redirect('/');
@@ -73,8 +73,8 @@ class UserController extends Controller
     $todosLosProyectos = Proyecto::all();
     $proyectos = $user->proyectos;
     $proyectosDestacados = Proyecto::where('destacado', '=', 1)->inRandomOrder()->get();
-    // Si no hay ni un proyecto destacado, mostramos los proyectos comunes
-    if (!count($proyectosDestacados)) {
+    // Si no hay ni un proyecto destacado pero hay proyectos comunes, mostramos los proyectos comunes
+    if (!count($proyectosDestacados) && count($proyectos)) {
       $proyectosDestacados = Proyecto::all()->random()->limit(5)->get();
     }
 
@@ -100,6 +100,7 @@ class UserController extends Controller
       // 'current_password' => ['required', new MatchOldPassword], // https://itsolutionstuff.com/post/laravel-change-password-with-current-password-validation-exampleexample.html
       'new_password' => 'nullable|min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
       'name' =>'alpha|string|min:2|max:40|',
+      'last_name' =>'alpha|string|min:2|max:40|',
       'email' => 'string|email|max:255|unique:users,email,'.$id.',id', // https://laravel.com/docs/5.2/validation#rule-unique , https://laracasts.com/discuss/channels/laravel/how-to-update-unique-email
       "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
     ];
@@ -118,6 +119,7 @@ class UserController extends Controller
 
     $user = User::find($id);
     $user->name = $request->name;
+    $user->last_name = $request->apellido;
     $user->email = $request->email;
     $user->number = $request->number;
 
