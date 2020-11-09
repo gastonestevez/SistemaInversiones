@@ -528,13 +528,15 @@
                       <input type="number" max="{{$user->billetera->total}}" name="invertido" id="invertido" class="text-field-16 w-input" required autofocus>
                     </div>
                     <div>
-                      <label for="proyecto_id" class="field-label-32">Proyecto</label>
-                      <select id="proyecto_id" name="proyecto_id" class="w-select" required>
-                        <option value="">Seleccione una opción...</option>
-                        @foreach ($todosLosProyectos as $proyecto)
-                          <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
-                        @endforeach
-                      </select>
+                      @if (count($todosLosProyectos))
+                        <label for="proyecto_id" class="field-label-32">Proyecto</label>
+                        <select id="proyecto_id" name="proyecto_id" class="w-select" required>
+                          <option value="">Seleccione una opción...</option>
+                          @foreach ($todosLosProyectos as $proyecto)
+                            <option value="{{$proyecto->id}}">{{$proyecto->titulo}}</option>
+                          @endforeach
+                        </select>
+                      @endif
                     </div>
                     <input type="hidden" name="proyecto_titulo" value="{{$proyecto->titulo}}">
                     <br>
