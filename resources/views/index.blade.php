@@ -340,6 +340,8 @@
                   </div>
               @endif
 
+              <h2 class="heading-5">Nuestros asesores</h2>
+
 
               <div class="dash-row masonry-copy">
 
@@ -412,6 +414,8 @@
                   <a href="/addproyecto" class="button-35 w-button">Agregar un proyecto</a>
                 </div>
               @endif
+
+              <h2 class="heading-5">Proyectos Destacados</h2>
 
 
               <div class="dash-row masonry">

@@ -107,10 +107,12 @@ class AsesorController extends Controller
 
     $asesor = Asesor::find($id);
 
-    // Busco la imagen del asesor almacenada en storage
     $image_path = storage_path('app/public/') . $asesor->foto;
-    // elimina la imagen de storage
-    unlink($image_path);
+    // verificamos si existe en la base de datos y en storage
+    if ($asesor->foto && file_exists($image_path)) {
+      // elimina la imagen de storage
+      unlink($image_path);
+    }
 
     // elimino el profesional de la base de datos
     $asesor->delete();

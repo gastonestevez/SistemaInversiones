@@ -17,7 +17,7 @@
   <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Oswald:200,300,400,500,600,700","Karla:regular,700"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-  
+
   <link href="/images/webclip.png" rel="apple-touch-icon">
   <!-- REPLACE ↓↓ -->
   <!--  Temporary Memberstack Code  -->
@@ -44,7 +44,13 @@
   <div class="div-block-1773">
     <div class="div-block-1776">
       <div class="div-block-1774">
-        <div class="div-block-1775"></div>
+        <div class="div-block-1775"
+        @if ($asesor->foto)
+          style="background-image: url('/storage/{{$asesor->foto}}'); background-repeat: no-repeat; background-position: center;"
+        @else
+          style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
+        @endif
+        ></div>
         <div class="div-block-1777">
           <h1 class="heading-31">{{$asesor->nombre}}</h1>
           <div class="div-block-1771-copy">
