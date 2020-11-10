@@ -27,9 +27,9 @@
 
     <div class="login-page-wrapper">
       <a href="/login" class="login-nav-link">Ingresar</a>
-      <div class="div-block-1807" style="margin-top:30px;">
+      {{-- <div class="div-block-1807" style="margin-top:30px;">
         <a href="/" class="button-52 w-button">Volver</a>
-      </div>
+      </div> --}}
       <div class="login-container w-form">
 
         @if($errors->any())

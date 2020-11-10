@@ -28,16 +28,16 @@
 <body>
 
   <div class="login-page-wrapper">
-    <div class="div-block-1807" style="margin-top:30px;">
+    {{-- <div class="div-block-1807" style="margin-top:30px;">
       <a href="{{ url()->previous() }}" class="button-52 w-button">Volver</a>
-    </div>
+    </div> --}}
     <div class="login-container w-form">
 
       @if($errors->any())
         {!! implode('', $errors->all('<div>:message</div>')) !!}
       @endif
 
-      <h1 class="login-head">Registrarme a la billetera!</h1>
+      <h1 class="login-head">Perfil de Usuario</h1>
       <form id="perfil" class="memberstack-form" method="post" action="/perfil/{{$user->id}}" enctype="multipart/form-data">
         @method('put')
         @csrf

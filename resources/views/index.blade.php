@@ -121,7 +121,11 @@
                         {{-- Si el proyecto tiene asesor muestra sus datos --}}
                         <div class="author-block" style="margin-right: auto;">
                           @if (tieneasesor($destacado))
-                            <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                            @if ($destacado->asesor->foto)
+                              <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                            @else
+                              <img src="/storage/archivos/img/avatarpredeterminado.svg" alt="" class="author-image">
+                            @endif
                             <div>
                               <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
                               <div class="author-job"><a href="https://api.whatsapp.com/send?phone={{$destacado->asesor->numero}}" target="_blank" style="color: rgba(21, 28, 52, 0.5);">Contactame</a></div>
@@ -422,7 +426,13 @@
                         <div class="div-block-346">
                           <div class="div-block-1802">
                             @if (tieneAsesor($proyecto))
-                              <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"></div>
+                              <div class="div-block-1803"
+                              @if ($proyecto->asesor->foto)
+                                style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"
+                              @else
+                                style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
+                              @endif
+                              ></div>
                               <div class="div-block-1771">
                                 <div class="text-block-325-copy">Asesor asignado
                                   @if (isset($proyecto->asesor->nombre))

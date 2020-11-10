@@ -134,13 +134,17 @@
                         <div class="horizontal-fixed-height">
                           <img src="https://uploads-ssl.webflow.com/5f45521257977e5aca6ac805/5f4552122f1ef1bacf71251d_4.svg" alt="" class="horizontal-logo">
                           <h4 class="horizontal-quote-h4">{{$destacado->titulo}}</h4>
-                          <h4 class="text-block-83">{{$destacado->localidad->nombre}}</h4>
+                          <h4 class="text-block-83">{{$destacado->localidad ? $destacado->localidad->nombre : ''}}</h4>
                           <h4 class="text-block-83">{{$destacado->fecha}}</h4>
                         </div>
 
                         <!-- Autor div -->
                         <div class="author-block" style="margin-right: auto;">
-                          <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                          @if ($destacado->asesor->foto)
+                            <img src="/storage/{{$destacado->asesor->foto}}" alt="" class="author-image">
+                          @else
+                            <img src="/storage/archivos/img/avatarpredeterminado.svg" alt="" class="author-image">
+                          @endif
                           <div>
                             <h4 class="author-name">{{$destacado->asesor->nombre}}</h4>
                             <div class="author-job">
@@ -362,8 +366,13 @@
                       <div id="w-node-b493d5813210-66a11659" class="link-block-42" onclick="handleSlideClick('{{$proyecto->slug}}')">
                         <div class="div-block-346">
                           <div class="div-block-1802">
-                            <div class="div-block-1803" style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"></div>
-                            <div class="div-block-1771">
+                            <div class="div-block-1803"
+                            @if ($proyecto->asesor->foto)
+                              style="background-image: url('/storage/{{$proyecto->asesor->foto}}'); background-repeat: no-repeat; background-position: center;"
+                            @else
+                              style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
+                            @endif
+                            ><div class="div-block-1771">
                               <div class="text-block-325-copy">Asesor asignado
                                 @if (isset($proyecto->asesor->nombre))
                                   {{$proyecto->asesor->nombre}}
