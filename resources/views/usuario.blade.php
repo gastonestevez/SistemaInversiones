@@ -467,9 +467,9 @@
                           $created_at = $archivo->created_at ? (new DateTime($archivo->created_at))->format('d-m-Y') : 'Sin fecha';
 
                         @endphp
-                        <a href="{{$link}}" class="white-box-2 link-box paper-box w-inline-block">
+                        <a href="/storage/{{$link}}" class="white-box-2 link-box paper-box w-inline-block">
                           <div class="box-padding paper-padding">
-                            <img src="{{$icon}}" alt="" class="doc-image">
+                            <img src="{{$icon ?: '/images/doc.svg'}}" alt="" class="doc-image">
                             <h3 class="doc-heading">{{ $archivo->nombre_documento}}</h3>
                             <div class="doc-date">{{$created_at}}</div>
                           </div>
