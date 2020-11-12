@@ -528,11 +528,13 @@
 
                     <h3 class="heading-8">{{count($proyecto->archivos) ? 'Documentos' : 'Sin documentos'}}</h3>
                     <div class="dash-row">
-
-                      @foreach ($proyecto->archivos as $archivo)
+                      @php
+                        $icon = '/images/doc.svg';  
+                      @endphp
+                      @foreach (documentosProyecto($proyecto) as $archivo)
                         @php
                           $format = 'docx';
-                          if(isset($archivo->documento)){
+                          if(isset($archivo)){
                             $icon = '/images/doc.svg';
                             $regexs = [
                               'pdf' => '/^.*\.(pdf)$/i',
@@ -540,19 +542,19 @@
                               'sheet' => '/^.*\.(xls|xlsx)$/i',
                             ];
                             foreach ($regexs as $ext => $reg) {
-                              if(preg_match($reg, $archivo->documento)){
+                              if(preg_match($reg, $archivo['path'])){
                                 $icon = '/images/'.$ext.'.svg';
                               }
                             }
                           }
-                          $link = $archivo->documento ?: '#';
-                          $created_at = $archivo->created_at ? (new DateTime($archivo->created_at))->format('d-m-Y') : 'Sin fecha';
+                          $link = $archivo['path'] ?: '#';
+                          $created_at = $archivo['created_at'] ? (new DateTime($archivo['created_at']))->format('d-m-Y') : 'Sin fecha';
 
                         @endphp
                         <a href="/storage/{{$link}}" class="white-box-2 link-box paper-box w-inline-block">
                           <div class="box-padding paper-padding">
                             <img src="{{$icon ?: '/images/doc.svg'}}" alt="" class="doc-image">
-                            <h3 class="doc-heading">{{ $archivo->nombre_documento}}</h3>
+                            <h3 class="doc-heading">{{ $archivo['nombre_archivo'] }}</h3>
                             <div class="doc-date">{{$created_at}}</div>
                           </div>
                           <img src="/images/paper.svg" alt="" class="paper">

@@ -61,7 +61,7 @@ use Carbon\Carbon;
     $arrayDocumentos = [];
     foreach ($proyecto->archivos as $archivo) {
       if (isset($archivo->documento)) {
-        $arrayDocumentos[] = array("id" => $archivo->id, "path" => $archivo->documento, "nombre_archivo" => $archivo->nombre_documento);
+        $arrayDocumentos[] = array("id" => $archivo->id, "path" => $archivo->documento, "nombre_archivo" => $archivo->nombre_documento, "created_at" => $archivo->created_at);
       }
     }
 
