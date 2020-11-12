@@ -24,7 +24,7 @@ class UserController extends Controller
   {
     $reglas = [
       'password' => 'min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
-      'name' =>'alpha|string|min:2|max:40|',
+      'name' =>'string|min:2|max:40|',
       'email' => 'string|email|max:255|unique:users',
       "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
     ];
@@ -99,7 +99,7 @@ class UserController extends Controller
     $reglas = [
       // 'current_password' => ['required', new MatchOldPassword], // https://itsolutionstuff.com/post/laravel-change-password-with-current-password-validation-exampleexample.html
       'new_password' => 'nullable|min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
-      'name' =>'alpha|string|min:2|max:40|',
+      'name' =>'string|min:2|max:40|',
       'last_name' =>'alpha|string|min:2|max:40|',
       'email' => 'string|email|max:255|unique:users,email,'.$id.',id', // https://laravel.com/docs/5.2/validation#rule-unique , https://laracasts.com/discuss/channels/laravel/how-to-update-unique-email
       "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
