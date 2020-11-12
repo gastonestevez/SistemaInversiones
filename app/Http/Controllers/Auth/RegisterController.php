@@ -53,7 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
           'password' => 'min:6|confirmed', // o bien 'new__password_confirmation' => ['same:new_password'],
-          'name' =>'alpha|string|min:2|max:40|',
+          'name' =>'string|min:2|max:40|',
           'email' => 'string|email|max:255|unique:users',
           "avatar" => 'image|mimes:png,jpg,jpeg|max:2048|nullable',
         ],
