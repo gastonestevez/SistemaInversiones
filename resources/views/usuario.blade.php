@@ -495,6 +495,7 @@
               </div>
             </div>
           </div>
+        </div>
 
           <div data-w-tab="acreditar-dinero" class="dashboard-section w-tab-pane">
             <div class="container">
