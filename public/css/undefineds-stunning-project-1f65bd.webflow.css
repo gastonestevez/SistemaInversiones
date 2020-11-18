@@ -6551,7 +6551,7 @@ label {
 .div-block-1791 {
   width: 100%;
   padding-right: 10%;
-  padding-bottom: 10%;
+  padding-bottom: 60px;
   padding-left: 10%;
 }
 
@@ -7751,6 +7751,16 @@ label {
     align-items: flex-start;
     text-decoration: none;
   }
+
+  .html-embed-5 {
+    padding-bottom: 0px;
+    border: solid 3px #dfeffc;
+    border-width: 3px;
+    border-color: #dfeffc;
+    border-radius: 0px;
+    box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.38), 7px 7px 20px 0 #fff;
+}
+
   .div-block-174 {
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;

@@ -265,7 +265,7 @@
                 <div class="white-box third">
                   <div class="box-padding _3">
                     <div class="colorful-icon green"></div>
-                    <h3 class="large-number _2">$<span ms-data="spend" class="text-span-2">{{precio(Auth::user()->billetera->rentabilidad)}}</span></h3>
+                    <h3 class="large-number _2"><span ms-data="spend" class="text-span-2">{{Auth::user()->billetera->rentabilidad}}%</span></h3>
                     <div class="text-block-145">Rentabilidad esperada</div>
                   </div>
                 </div>
@@ -529,7 +529,7 @@
                     <h3 class="heading-8">{{count($proyecto->archivos) ? 'Documentos' : 'Sin documentos'}}</h3>
                     <div class="dash-row">
                       @php
-                        $icon = '/images/doc.svg';  
+                        $icon = '/images/doc.svg';
                       @endphp
                       @foreach (documentosProyecto($proyecto) as $archivo)
                         @php

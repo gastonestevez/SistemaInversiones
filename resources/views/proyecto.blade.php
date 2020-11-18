@@ -130,6 +130,12 @@
       </div>
     </div>
 
+    <div class="div-block-1821" style="text-align-last: center; padding-top:40px;">
+      <div class="html-embed-5 w-embed w-iframe">
+        <iframe style=" border: 3px solid #dfeffc; box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.38), 7px 7px 20px 0 #fff;" width="560" height="315" src="https://www.youtube.com/embed/NsJ6XdAmmt4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+      </div>
+    </div>
+
 
     <div data-duration-in="300" data-duration-out="100" class="tabs-9 w-tabs">
 
@@ -209,6 +215,11 @@
       </div>
     </div>
   </div>
+
+  <div class="div-block-1796" style="margin: 0 auto;">
+    <a href="{{$proyecto->link_web}}"target="_blank" class="button-39 w-button">Ver landing del proyecto</a>
+  </div>
+
   <h1 class="h4-asesores h1">Nombre del proyecto</h1>
   <div class="html-embed-2 w-embed">
     <style>

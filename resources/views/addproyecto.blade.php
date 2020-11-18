@@ -57,7 +57,7 @@
           </div>
           <div>
             <label for="link_web" class="field-label-30">Link sitio web</label>
-            <input type="text" value="{{ old('link_web') }}" maxlength="256" name="link_web"data-name="" id="link_web" class="text-field-15 w-input">
+            <input type="text" value="{{ old('link_web') }}" maxlength="256" name="link_web"data-name="" id="link_web" class="text-field-15 w-input" placeholder="Con este formato https://www.google.com">
           </div>
           <div>
             <label for="estados" class="field-label-30">Estados (separados por coma) *</label>
