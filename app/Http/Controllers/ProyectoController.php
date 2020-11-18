@@ -69,12 +69,23 @@ class ProyectoController extends Controller
     $proyecto->slug = str_slug($request->titulo, "-");
     $proyecto->fecha = $request->fecha;
     $proyecto->link_web = $request->link_web;
-    $proyecto->imagen_360 = $request->imagen_360;
     $proyecto->estados = $request->estados;
     $proyecto->porcentaje = $request->porcentaje;
     $proyecto->destacado = $request->destacado;
     $proyecto->localidad_id = $request->localidad_id;
     $proyecto->asesor_id = $request->asesor_id;
+    $proyecto->imagen_360 = $request->imagen_360;
+
+    // Para remover un SRC de un iframe https://stackoverflow.com/questions/17017684/how-to-get-url-from-the-iframe-using-php#:~:text=php%20%24output%20%3D%20ob_get_contents()%3B%20ob_end_clean,%5D%3B%20echo%20%24output%3B%20%3F%3E
+      if (isset($request->imagen_360)) {
+        preg_match('~iframe.*src="([^"]*)"~', $request->imagen_360, $matchimagen);
+        if (isset($matchimagen[1])) {
+          $urlimagen = $matchimagen[1];
+          $proyecto->imagen_360= $urlimagen;
+        } else {
+          $proyecto->imagen_360= $request->imagen_360;
+        }
+      }
 
     $proyecto->save();
 
@@ -233,12 +244,23 @@ class ProyectoController extends Controller
     $proyecto->slug = str_slug($request->titulo, "-");
     $proyecto->fecha = $request->fecha;
     $proyecto->link_web = $request->link_web;
-    $proyecto->imagen_360 = $request->imagen_360;
     $proyecto->estados = $request->estados;
     $proyecto->porcentaje = $request->porcentaje;
     $proyecto->destacado = $request->destacado;
     $proyecto->localidad_id = $request->localidad_id;
     $proyecto->asesor_id = $request->asesor_id;
+    $proyecto->imagen_360 = $request->imagen_360;
+
+    // Para remover un SRC de un iframe https://stackoverflow.com/questions/17017684/how-to-get-url-from-the-iframe-using-php#:~:text=php%20%24output%20%3D%20ob_get_contents()%3B%20ob_end_clean,%5D%3B%20echo%20%24output%3B%20%3F%3E
+      if (isset($request->imagen_360)) {
+        preg_match('~iframe.*src="([^"]*)"~', $request->imagen_360, $matchimagen);
+        if (isset($matchimagen[1])) {
+          $urlimagen = $matchimagen[1];
+          $proyecto->imagen_360= $urlimagen;
+        } else {
+          $proyecto->imagen_360= $request->imagen_360;
+        }
+      }
 
     $proyecto->save();
     //si suben una o mas imagenes, entonces comenzamos el proceso de guardado. obtengo el array de imagenes
@@ -423,7 +445,7 @@ class ProyectoController extends Controller
 
   public function deleteactualizacion(int $id)
   {
-          
+
     $actualizacion = Actualizacion::find($id);
     $actualizacion->delete();
 
