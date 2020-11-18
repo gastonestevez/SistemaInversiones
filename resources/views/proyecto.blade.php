@@ -130,11 +130,13 @@
       </div>
     </div>
 
-    <div class="div-block-1821" style="text-align-last: center; padding-top:40px;">
-      <div class="html-embed-5 w-embed w-iframe">
-        <iframe style=" border: 3px solid #dfeffc; box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.38), 7px 7px 20px 0 #fff;" width="560" height="315" src="{{$proyecto->imagen_360}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    @if ($proyecto->imagen_360)
+      <div class="div-block-1821" style="text-align-last: center; padding-top:40px;">
+        <div class="html-embed-5 w-embed w-iframe">
+          <iframe style=" border: 3px solid #dfeffc; box-shadow: -7px -7px 20px -5px rgba(0, 0, 0, 0.38), 7px 7px 20px 0 #fff;" width="560" height="315" src="{{$proyecto->imagen_360}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
-    </div>
+    @endif
 
 
     <div data-duration-in="300" data-duration-out="100" class="tabs-9 w-tabs">
