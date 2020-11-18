@@ -576,32 +576,13 @@
             <div class="text-block-141">Livv</div>
           </a>
           <a href="https://www.urbban.digital/" target="_blank" class="navigation-item footer-nav-item w-inline-block">
-            <img src="/images/slack-new-logo.svg" alt="" class="navigation-icon">
+            {{-- <img src="/images/slack-new-logo.svg" alt="" class="navigation-icon"> --}}
             <div class="text-block-142">Urbban</div>
           </a>
           <a href="https://www.urbban.digital/hub-de-innovacion" target="_blank" class="navigation-item footer-nav-item w-inline-block">
-              <img src="/images/Logo.svg" alt="" class="navigation-icon memberstack-logo">
+              {{-- <img src="/images/Logo.svg" alt="" class="navigation-icon memberstack-logo"> --}}
               <div class="text-block-143">Sitty</div>
             </a>
-          </div>
-        <div class="social-row">
-          <a href="#" class="social-link w-inline-block">
-            <img src="https://uploads-ssl.webflow.com/5cd9dbe554fe38a1c05e6a9b/5cda1f38c90d43d1dc53de2e_Facebook.svg" alt="">
-          </a>
-          <a href="#" class="social-link w-inline-block">
-            <img src="https://uploads-ssl.webflow.com/5cd9dbe554fe38a1c05e6a9b/5cda1f38c6b14fc86a26b25f_Twitter.svg" alt="">
-          </a>
-          <a href="#" class="social-link w-inline-block">
-            <img src="https://uploads-ssl.webflow.com/5cd9dbe554fe38a1c05e6a9b/5cda1f47ec31a1854e1cf128_Youtube.svg" alt="">
-          </a>
-          <a href="#" class="social-link w-inline-block"><img src="https://uploads-ssl.webflow.com/5cd9dbe554fe38a1c05e6a9b/5cda1fe7b775662acf936ca5_Dribbble.svg" alt="">
-          </a>
-          <a href="#" class="social-link w-inline-block">
-            <img src="https://uploads-ssl.webflow.com/5cd9dbe554fe38a1c05e6a9b/5cda21dec6b14f2e4826b7e3_Spotify.svg" alt="">
-          </a>
-          <a href="#" class="social-link w-inline-block">
-            <img src="https://uploads-ssl.webflow.com/5cd9dbe554fe38a1c05e6a9b/5cda1f4ac90d43b98853de4c_Behance.svg" alt="">
-          </a>
         </div>
       </div>
     </div>
