@@ -222,7 +222,7 @@
     <a href="{{$proyecto->link_web}}"target="_blank" class="button-39 w-button">Ver landing del proyecto</a>
   </div>
 
-  <div style="position: fixed; bottom: 40%; left: -2%">
+  <div style="position: fixed; bottom: 40%; left: -1%">
     <h1 class="h4-asesores h1">{{$proyecto->titulo}}</h1>
   </div>
 
