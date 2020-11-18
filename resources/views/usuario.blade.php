@@ -372,7 +372,8 @@
                             @else
                               style="background-image: url('/storage/archivos/img/avatarpredeterminado.svg'); background-size: contain; background-repeat: no-repeat; background-position: center;"
                             @endif
-                            ><div class="div-block-1771">
+                            ></div>
+                            <div class="div-block-1771">
                               <div class="text-block-325-copy">Asesor asignado
                                 @if (isset($proyecto->asesor->nombre))
                                   {{$proyecto->asesor->nombre}}
@@ -495,7 +496,6 @@
               </div>
             </div>
           </div>
-        </div>
 
           <div data-w-tab="acreditar-dinero" class="dashboard-section w-tab-pane">
             <div class="container">
