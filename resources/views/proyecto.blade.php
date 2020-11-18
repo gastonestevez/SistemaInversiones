@@ -222,7 +222,10 @@
     <a href="{{$proyecto->link_web}}"target="_blank" class="button-39 w-button">Ver landing del proyecto</a>
   </div>
 
-  <h1 class="h4-asesores h1">Nombre del proyecto</h1>
+  <div style="position: fixed; bottom: 40%; left: -2%">
+    <h1 class="h4-asesores h1">{{$proyecto->titulo}}</h1>
+  </div>
+
   <div class="html-embed-2 w-embed">
     <style>
 .h1 {
@@ -250,7 +253,7 @@
     }
 })
 </script>
-!-- UIkit JS -->
+<!-- UIkit JS -->
 <script src="/js/uikit.js" type="text/javascript"></script>
 </body>
 </html>

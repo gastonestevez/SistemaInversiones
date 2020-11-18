@@ -6221,7 +6221,7 @@ label {
 
 .h4-asesores {
   position: fixed;
-  left: -7%;
+  /* left: -7%; */
   top: auto;
   right: auto;
   bottom: 17%;
@@ -6251,7 +6251,7 @@ label {
 }
 
 .h4-asesores.h1 {
-  left: -16%;
+  /* left: -16%; */
   bottom: 40%;
   font-size: 4vw;
 }
