@@ -75,14 +75,29 @@ class AdminController extends Controller
 
   public function deleteinversion(int $id, Request $request)
   {
+    // Encuentro el proyecto al que vamos a borrarle la inversión
     $proyecto = Proyecto::find($id);
+    // Encuentro al usuario que invirtio en ese proyecto
     $user = User::find($request->user);
+    // Encuentro la billetera del usuario responsable
+    $billetera = Billetera::find($user->id);
+    // Encuentro el valor invertido por el usuario en ese proyecto
+    $invertido = $user->proyectos()->find($id)->inversiones->invertido;
 
+    // Borro la inversión
     foreach ($user->proyectos as $proyecto) {
       if ($proyecto->id === $id) {
         $user->proyectos()->detach($id);
       }
     }
+
+    // Le resto el dinero invertido a la billetera del usuario
+    $billetera->invertido = $billetera->invertido - $invertido;
+    // Devuelvo el dinero invertido a la billetera del usuario correspondiente
+    $billetera->total = $billetera->total + $invertido;
+
+    $billetera->save();
+    
     return back()->with('status', 'Inversión eliminada correctamente');
   }
 
